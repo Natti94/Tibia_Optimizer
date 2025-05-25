@@ -4,23 +4,16 @@ import "./index.css";
 
 function App() {
   return (
-    <>
-      <div className="page">
-        <img
-          className="background"
-          src="../public/background.png"
-          alt="Tibia Background"
-        />
-        <div className="equipment">
-          Equipment
+    <div className="app-container">
+      <img className="background" src="../public/background.png" alt="background" />
+      <div className="content-wrapper">
+        <img src="../public/title.png" alt="Tibia Optimizer" className="app-title" />
+        <div className="main-card">
           <Equipment />
-        </div>
-        <div className="creature">
-          Creature
           <Creature />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

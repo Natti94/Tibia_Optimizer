@@ -4,6 +4,7 @@ import { fetchCreature } from "../../services/creature";
 function Creature() {
   const [creature, setCreature] = useState({ name: "" });
   const [option, setOption] = useState(null);
+
   useEffect(() => {
     if (!creature) return;
     fetchCreature(creature.name)
