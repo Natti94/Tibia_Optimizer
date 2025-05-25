@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { fetchCreature } from "../../services/creature";
+
 function Creature() {
   const [creature, setCreature] = useState({ name: "" });
-  const [option, setOption] = useState([]);
-
+  const [option, setOption] = useState(null);
   useEffect(() => {
     if (!creature) return;
-    fetch(fetchCreature)
-      .then((res) => res.json())
-      .then((data) => {
-        setOption(data);
-      })
+    fetchCreature(creature.name)
+      .then((data) => setOption(data))
       .catch((error) => {
-        console.error("not a creature", error);
+        console.error("Fetch failed:", error);
+        setOption(null);
       });
   }, [creature, creature.name]);
 
@@ -24,11 +22,12 @@ function Creature() {
         onChange={(event) => setCreature({ name: event.target.value })}
         placeholder="type creature name..."
       />
-      <ul>
-        {option.map((creature) => (
-          <li key={creature.id}>{creature.name}</li>
-        ))}
-      </ul>
+      {option && (
+        <div>
+          <h2>{option.name}</h2>
+          <p>{option.description}</p>
+        </div>
+      )}
     </div>
   );
 }
