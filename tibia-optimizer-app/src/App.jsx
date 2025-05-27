@@ -1,5 +1,6 @@
-import Creature from "./components/creature/creature";
 import Equipment from "./components/item/equipment/equipment";
+import Weapon from "./components/item/weapon/weapon";
+import Creature from "./components/creature/creature";
 import "./index.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         />
         <div className="main-card">
           <Equipment />
+          <Weapon />
           <Creature />
         </div>
       </div>

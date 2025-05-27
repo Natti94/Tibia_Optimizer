@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { itemList } from "../data/equipment";
+import { equipmentList } from "../data/equipment";
 
 function Equipment() {
-  const [item, setItem] = useState({
+  const [equipment, setEquipment] = useState({
     helmet: "",
     armor: "",
     leg: "",
@@ -11,18 +11,18 @@ function Equipment() {
     ring: "",
   });
   const [totalArmor, setTotalArmor] = useState(0);
-  const [totalResistance, setTotalResistance] = useState({});
   const [totalAllResistance, setTotalAllResistance] = useState(0);
+  const [totalSpecificResistance, setTotalSpecificResistance] = useState({});
   const [option, setOption] = useState(null);
-  useEffect(() => {
-    setOption(itemList);
-  }, []);
 
+  useEffect(() => {
+    setOption(equipmentList);
+  }, []);
   const handleChange = (field) => (event) => {
-    setItem((prev) => ({ ...prev, [field]: event.target.value }));
+    setEquipment((prev) => ({ ...prev, [field]: event.target.value }));
   };
-  const getItemsByType = (type) => {
-    return option ? option.filter((item) => item.type === type) : [];
+  const getequipmentsByType = (type) => {
+    return option ? option.filter((equipment) => equipment.type === type) : [];
   };
 
   const calculateTotals = () => {
@@ -30,36 +30,42 @@ function Equipment() {
     let resistanceOverallSum = 0;
     let resistanceSpecificSum = {};
 
-    Object.values(item).forEach((itemName) => {
-      const selected = itemList.find((theItem) => theItem.name === itemName);
+    Object.values(equipment).forEach((equipmentName) => {
+      const selected = equipmentList.find(
+        (theequipment) => theequipment.name === equipmentName
+      );
+
       if (!selected) return;
       armorSum += selected.armor || 0;
+
       if (selected.resistanceAll) {
         resistanceOverallSum += selected.resistanceAll;
       }
+
       if (selected.resistance) {
         Object.entries(selected.resistance).forEach(([element, value]) => {
-          resistanceSpecificSum[element] += value;
+          resistanceSpecificSum[element] =
+            (resistanceSpecificSum[element] || 0) + value;
         });
       }
     });
 
     setTotalArmor(armorSum);
     setTotalAllResistance(resistanceOverallSum);
-    setTotalResistance(resistanceSpecificSum);
+    setTotalSpecificResistance(resistanceSpecificSum);
   };
 
   return (
     <div>
       <h2>Defense Calculator</h2>
       <label>
-        <select value={item.helmet} onChange={handleChange("helmet")}>
+        <select value={equipment.helmet} onChange={handleChange("helmet")}>
           <option value="">Select a helmet</option>
-          {getItemsByType("helmet").map((slot) => (
+          {getequipmentsByType("helmet").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
-              {slot.resistanceAll ? ` | all res: ${slot.resistanceAll}%` : ""}
+              {slot.resistanceAll ? ` - | all res: ${slot.resistanceAll}%` : ""}
               {slot.resistance
                 ? Object.entries(slot.resistance)
                     .map(([element, value]) => ` ${element}: ${value}%`)
@@ -70,13 +76,13 @@ function Equipment() {
         </select>
       </label>
       <label>
-        <select value={item.armor} onChange={handleChange("armor")}>
+        <select value={equipment.armor} onChange={handleChange("armor")}>
           <option value="">Select an armor</option>
-          {getItemsByType("armor").map((slot) => (
+          {getequipmentsByType("armor").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
-              {slot.resistanceAll ? ` | all res: ${slot.resistanceAll}%` : ""}
+              {slot.resistanceAll ? ` - | all res: ${slot.resistanceAll}%` : ""}
               {slot.resistance
                 ? Object.entries(slot.resistance)
                     .map(([element, value]) => ` ${element}: ${value}%`)
@@ -87,13 +93,13 @@ function Equipment() {
         </select>
       </label>
       <label>
-        <select value={item.leg} onChange={handleChange("leg")}>
+        <select value={equipment.leg} onChange={handleChange("leg")}>
           <option value="">Select legs</option>
-          {getItemsByType("leg").map((slot) => (
+          {getequipmentsByType("leg").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
-              {slot.resistanceAll ? ` | all res: ${slot.resistanceAll}%` : ""}
+              {slot.resistanceAll ? ` - | all res: ${slot.resistanceAll}%` : ""}
               {slot.resistance
                 ? Object.entries(slot.resistance)
                     .map(([element, value]) => ` ${element}: ${value}%`)
@@ -104,13 +110,13 @@ function Equipment() {
         </select>
       </label>
       <label>
-        <select value={item.boot} onChange={handleChange("boot")}>
+        <select value={equipment.boot} onChange={handleChange("boot")}>
           <option value="">Select boots</option>
-          {getItemsByType("boot").map((slot) => (
+          {getequipmentsByType("boot").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
-              {slot.resistanceAll ? ` | all res: ${slot.resistanceAll}%` : ""}
+              {slot.resistanceAll ? ` - | all res: ${slot.resistanceAll}%` : ""}
               {slot.resistance
                 ? Object.entries(slot.resistance)
                     .map(([element, value]) => ` ${element}: ${value}%`)
@@ -121,13 +127,13 @@ function Equipment() {
         </select>
       </label>
       <label>
-        <select value={item.amulet} onChange={handleChange("amulet")}>
+        <select value={equipment.amulet} onChange={handleChange("amulet")}>
           <option value="">Select an amulet</option>
-          {getItemsByType("ring").map((slot) => (
+          {getequipmentsByType("ring").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
-              {slot.resistanceAll ? ` | all res: ${slot.resistanceAll}%` : ""}
+              {slot.resistanceAll ? ` - | all res: ${slot.resistanceAll}%` : ""}
               {slot.resistance
                 ? Object.entries(slot.resistance)
                     .map(([element, value]) => ` ${element}: ${value}%`)
@@ -138,13 +144,13 @@ function Equipment() {
         </select>
       </label>
       <label>
-        <select value={item.ring} onChange={handleChange("ring")}>
+        <select value={equipment.ring} onChange={handleChange("ring")}>
           <option value="">Select a ring</option>
-          {getItemsByType("ring").map((slot) => (
+          {getequipmentsByType("ring").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
-              {slot.resistanceAll ? ` | all res: ${slot.resistanceAll}%` : ""}
+              {slot.resistanceAll ? ` - | all res: ${slot.resistanceAll}%` : ""}
               {slot.resistance
                 ? Object.entries(slot.resistance)
                     .map(([element, value]) => ` ${element}: ${value}%`)
@@ -158,22 +164,22 @@ function Equipment() {
         <h3>Selected Equipment</h3>
         <div className="selected-equipment">
           <p>
-            <strong>Helmet:</strong> {item.helmet || "None"}
+            <strong>Helmet:</strong> {equipment.helmet || "None"}
           </p>
           <p>
-            <strong>armor:</strong> {item.armor || "None"}
+            <strong>armor:</strong> {equipment.armor || "None"}
           </p>
           <p>
-            <strong>Legs:</strong> {item.leg || "None"}
+            <strong>Legs:</strong> {equipment.leg || "None"}
           </p>
           <p>
-            <strong>Boots:</strong> {item.boot || "None"}
+            <strong>Boots:</strong> {equipment.boot || "None"}
           </p>
           <p>
-            <strong>Amulet:</strong> {item.amulet || "None"}
+            <strong>Amulet:</strong> {equipment.amulet || "None"}
           </p>
           <p>
-            <strong>Ring:</strong> {item.ring || "None"}
+            <strong>Ring:</strong> {equipment.ring || "None"}
           </p>
           <div>
             <hr />
@@ -191,11 +197,13 @@ function Equipment() {
               <strong>Element Specific Resistance: </strong>
             </p>
             <ul>
-              {Object.entries(totalResistance).map(([element, value]) => (
-                <li key={element}>
-                  {element}: {value}%
-                </li>
-              ))}
+              {Object.entries(totalSpecificResistance).map(
+                ([element, value]) => (
+                  <li key={element}>
+                    {element}: {value}%
+                  </li>
+                )
+              )}
             </ul>
           </div>
           <hr />
