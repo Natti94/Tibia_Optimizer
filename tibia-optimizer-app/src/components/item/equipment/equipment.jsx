@@ -161,8 +161,8 @@ function Equipment() {
         </select>
       </label>
       <div>
-        <h3>Selected Equipment</h3>
-        <div className="selected-equipment">
+        <h3>Selected Equipment:</h3>
+        <div>
           <p>
             <strong>Helmet:</strong> {equipment.helmet || "None"}
           </p>
@@ -181,34 +181,34 @@ function Equipment() {
           <p>
             <strong>Ring:</strong> {equipment.ring || "None"}
           </p>
-          <div>
-            <hr />
-            <h3>Calculate Defense:</h3>
-            <button onClick={calculateTotals}>Calculate</button>
-            <p>
-              <strong>Total Armor: </strong>
-              {totalArmor}
-            </p>
-            <p>
-              <strong>Total All Resistance: </strong>
-              {totalAllResistance}%
-            </p>
-            <p>
-              <strong>Element Specific Resistance: </strong>
-            </p>
-            <ul>
-              {Object.entries(totalSpecificResistance).map(
-                ([element, value]) => (
-                  <li key={element}>
-                    {element}: {value}%
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-          <hr />
+        </div>
+        <div>
+          <br />
+          <h3>Calculate Defense:</h3>
+          <button className="calculate-button" onClick={calculateTotals}>
+            =
+          </button>
+          <p>
+            <strong>Total Armor: </strong>
+            {totalArmor}
+          </p>
+          <p>
+            <strong>Total All Resistance: </strong>
+            {totalAllResistance}%
+          </p>
+          <p>
+            <strong>Element Specific Resistance: </strong>
+          </p>
+          <ul>
+            {Object.entries(totalSpecificResistance).map(([element, value]) => (
+              <li key={element}>
+                {element}: {value}%
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+      <hr />
     </div>
   );
 }

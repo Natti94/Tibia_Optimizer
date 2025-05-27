@@ -2,7 +2,7 @@ export const weaponList = [
   // SWORDS
   {
     name: "Sword",
-    type: "sword",
+    type: "weapon",
     attack: 19,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -11,7 +11,7 @@ export const weaponList = [
   },
   {
     name: "Bright Sword",
-    type: "sword",
+    type: "weapon",
     attack: 36,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -20,7 +20,7 @@ export const weaponList = [
   },
   {
     name: "Fire Sword",
-    type: "sword",
+    type: "weapon",
     attack: 35,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -29,7 +29,7 @@ export const weaponList = [
   },
   {
     name: "Magic Sword",
-    type: "sword",
+    type: "weapon",
     attack: 48,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -38,7 +38,7 @@ export const weaponList = [
   },
   {
     name: "Crimson Sword",
-    type: "sword",
+    type: "weapon",
     attack: 24,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -47,7 +47,7 @@ export const weaponList = [
   },
   {
     name: "Dagger",
-    type: "sword",
+    type: "weapon",
     attack: 8,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -56,7 +56,7 @@ export const weaponList = [
   },
   {
     name: "Poison Dagger",
-    type: "sword",
+    type: "weapon",
     attack: 11,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -65,7 +65,7 @@ export const weaponList = [
   },
   {
     name: "Throwing Knife",
-    type: "sword",
+    type: "weapon",
     attack: 15,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -76,7 +76,7 @@ export const weaponList = [
   // AXES
   {
     name: "Axe",
-    type: "axe",
+    type: "weapon",
     attack: 18,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -85,7 +85,7 @@ export const weaponList = [
   },
   {
     name: "Double Axe",
-    type: "axe",
+    type: "weapon",
     attack: 28,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -94,7 +94,7 @@ export const weaponList = [
   },
   {
     name: "War Axe",
-    type: "axe",
+    type: "weapon",
     attack: 32,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -103,7 +103,7 @@ export const weaponList = [
   },
   {
     name: "Guardian Halberd",
-    type: "axe",
+    type: "weapon",
     attack: 38,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -114,7 +114,7 @@ export const weaponList = [
   // CLUBS
   {
     name: "Mace",
-    type: "club",
+    type: "weapon",
     attack: 15,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -123,7 +123,7 @@ export const weaponList = [
   },
   {
     name: "Morning Star",
-    type: "club",
+    type: "weapon",
     attack: 24,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -132,7 +132,7 @@ export const weaponList = [
   },
   {
     name: "War Hammer",
-    type: "club",
+    type: "weapon",
     attack: 45,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -141,7 +141,7 @@ export const weaponList = [
   },
   {
     name: "Dragon Hammer",
-    type: "club",
+    type: "weapon",
     attack: 36,
     typeDamage: "physical",
     resistanceAll: 0,
@@ -152,7 +152,7 @@ export const weaponList = [
   // CROSSBOWS
   {
     name: "Crossbow",
-    type: "crossbow",
+    type: "weapon",
     attack: 28,
     armor: 0,
     resistanceAll: 0,
@@ -161,7 +161,7 @@ export const weaponList = [
   },
   {
     name: "Crossbow of Destruction",
-    type: "crossbow",
+    type: "weapon",
     attack: 32,
     armor: 0,
     resistanceAll: 0,
@@ -170,7 +170,7 @@ export const weaponList = [
   },
   {
     name: "Heavy Crossbow",
-    type: "crossbow",
+    type: "weapon",
     attack: 30,
     armor: 0,
     resistanceAll: 0,
@@ -179,7 +179,7 @@ export const weaponList = [
   },
   {
     name: "Modified Crossbow",
-    type: "crossbow",
+    type: "weapon",
     attack: 33,
     armor: 0,
     resistanceAll: 0,
@@ -188,7 +188,7 @@ export const weaponList = [
   },
   {
     name: "Royal Crossbow",
-    type: "crossbow",
+    type: "weapon",
     attack: 34,
     armor: 0,
     resistanceAll: 0,
@@ -197,7 +197,7 @@ export const weaponList = [
   },
   {
     name: "Triple Bolt Crossbow",
-    type: "crossbow",
+    type: "weapon",
     attack: 36,
     armor: 0,
     resistanceAll: 0,
@@ -208,7 +208,7 @@ export const weaponList = [
   // BOWS
   {
     name: "Bow",
-    type: "bow",
+    type: "weapon",
     attack: 18,
     armor: 0,
     resistanceAll: 0,
@@ -217,7 +217,7 @@ export const weaponList = [
   },
   {
     name: "Composite Bow",
-    type: "bow",
+    type: "weapon",
     attack: 21,
     armor: 0,
     resistanceAll: 0,
@@ -226,7 +226,7 @@ export const weaponList = [
   },
   {
     name: "Elven Bow",
-    type: "bow",
+    type: "weapon",
     attack: 22,
     armor: 0,
     resistanceAll: 0,
@@ -235,7 +235,7 @@ export const weaponList = [
   },
   {
     name: "Rift Bow",
-    type: "bow",
+    type: "weapon",
     attack: 28,
     armor: 0,
     resistanceAll: 0,
@@ -244,7 +244,7 @@ export const weaponList = [
   },
   {
     name: "Bow of Destruction",
-    type: "bow",
+    type: "weapon",
     attack: 28,
     armor: 0,
     resistanceAll: 0,
@@ -253,7 +253,7 @@ export const weaponList = [
   },
   {
     name: "Living Vine Bow",
-    type: "bow",
+    type: "weapon",
     attack: 30,
     armor: 0,
     resistanceAll: 0,
@@ -262,7 +262,7 @@ export const weaponList = [
   },
   {
     name: "Bow of Cataclysm",
-    type: "bow",
+    type: "weapon",
     attack: 32,
     armor: 0,
     resistanceAll: 0,
@@ -271,7 +271,7 @@ export const weaponList = [
   },
   {
     name: "Eldritch Bow",
-    type: "bow",
+    type: "weapon",
     attack: 33,
     armor: 0,
     resistanceAll: 0,
@@ -280,7 +280,7 @@ export const weaponList = [
   },
   {
     name: "Lion Longbow",
-    type: "bow",
+    type: "weapon",
     attack: 34,
     armor: 0,
     resistanceAll: 0,
@@ -289,7 +289,7 @@ export const weaponList = [
   },
   {
     name: "Umbral Master Bow",
-    type: "bow",
+    type: "weapon",
     attack: 35,
     armor: 0,
     resistanceAll: 0,
@@ -298,7 +298,7 @@ export const weaponList = [
   },
   {
     name: "Soulbleeder",
-    type: "bow",
+    type: "weapon",
     attack: 37,
     armor: 0,
     resistanceAll: 0,
@@ -306,113 +306,10 @@ export const weaponList = [
     skills: { distance: 4 },
   },
 
-  // BOLTS
-  {
-    name: "Bolt",
-    type: "bolt",
-    attack: 25,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Power Bolt",
-    type: "bolt",
-    attack: 35,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Piercing Bolt",
-    type: "bolt",
-    attack: 30,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Spectral Bolt",
-    type: "bolt",
-    attack: 32,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Infernal Bolt",
-    type: "bolt",
-    attack: 40,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-
-  // ARROWS
-  {
-    name: "Arrow",
-    type: "arrow",
-    attack: 18,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Sniper Arrow",
-    type: "arrow",
-    attack: 25,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Onyx Arrow",
-    type: "arrow",
-    attack: 28,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Burst Arrow",
-    type: "arrow",
-    attack: 31,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Crystalline Arrow",
-    type: "arrow",
-    attack: 32,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-  {
-    name: "Diamond Arrow",
-    type: "arrow",
-    attack: 35,
-    typeDamage: "physical",
-    resistanceAll: 0,
-    resistance: {},
-    skills: { distance: 0 },
-  },
-
-  // THROWING WEAPONS (from TibiaWiki)
+  // THROWING WEAPONS
   {
     name: "Assassin Star",
-    type: "throwing",
+    type: "weapon",
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
@@ -420,7 +317,7 @@ export const weaponList = [
   },
   {
     name: "Shuriken",
-    type: "throwing",
+    type: "weapon",
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
@@ -428,7 +325,7 @@ export const weaponList = [
   },
   {
     name: "Throwing Star",
-    type: "throwing",
+    type: "weapon",
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
@@ -436,7 +333,7 @@ export const weaponList = [
   },
   {
     name: "Enchanted Spear",
-    type: "throwing",
+    type: "weapon",
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
@@ -444,7 +341,7 @@ export const weaponList = [
   },
   {
     name: "Spear",
-    type: "throwing",
+    type: "weapon",
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
@@ -452,7 +349,7 @@ export const weaponList = [
   },
   {
     name: "Royal Spear",
-    type: "throwing",
+    type: "weapon",
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
@@ -460,7 +357,7 @@ export const weaponList = [
   },
   {
     name: "Hunting Spear",
-    type: "throwing",
+    type: "weapon",
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
@@ -470,7 +367,7 @@ export const weaponList = [
   // WANDS
   {
     name: "Wand of Vortex",
-    type: "wand",
+    type: "weapon",
     damage: { min: 8, max: 18 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -479,7 +376,7 @@ export const weaponList = [
   },
   {
     name: "Wand of Dragonbreath",
-    type: "wand",
+    type: "weapon",
     damage: { min: 13, max: 25 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -488,7 +385,7 @@ export const weaponList = [
   },
   {
     name: "Wand of Decay",
-    type: "wand",
+    type: "weapon",
     damage: { min: 18, max: 34 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -497,7 +394,7 @@ export const weaponList = [
   },
   {
     name: "Wand of Draconia",
-    type: "wand",
+    type: "weapon",
     damage: { min: 15, max: 28 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -506,7 +403,7 @@ export const weaponList = [
   },
   {
     name: "Wand of Cosmic Energy",
-    type: "wand",
+    type: "weapon",
     damage: { min: 21, max: 38 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -515,7 +412,7 @@ export const weaponList = [
   },
   {
     name: "Wand of Inferno",
-    type: "wand",
+    type: "weapon",
     damage: { min: 26, max: 48 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -524,7 +421,7 @@ export const weaponList = [
   },
   {
     name: "Wand of Destruction",
-    type: "wand",
+    type: "weapon",
     damage: { min: 32, max: 60 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -533,7 +430,7 @@ export const weaponList = [
   },
   {
     name: "Lion Wand",
-    type: "wand",
+    type: "weapon",
     damage: { min: 35, max: 65 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -542,7 +439,7 @@ export const weaponList = [
   },
   {
     name: "Naga Wand",
-    type: "wand",
+    type: "weapon",
     damage: { min: 38, max: 70 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -551,7 +448,7 @@ export const weaponList = [
   },
   {
     name: "Falcon Wand",
-    type: "wand",
+    type: "weapon",
     damage: { min: 41, max: 76 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -560,7 +457,7 @@ export const weaponList = [
   },
   {
     name: "Soultainter",
-    type: "wand",
+    type: "weapon",
     damage: { min: 45, max: 84 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -571,7 +468,7 @@ export const weaponList = [
   // RODS
   {
     name: "Snakebite Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 8, max: 18 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -580,7 +477,7 @@ export const weaponList = [
   },
   {
     name: "Moonlight Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 13, max: 25 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -589,7 +486,7 @@ export const weaponList = [
   },
   {
     name: "Necrotic Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 18, max: 34 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -598,7 +495,7 @@ export const weaponList = [
   },
   {
     name: "Northwind Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 15, max: 28 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -607,7 +504,7 @@ export const weaponList = [
   },
   {
     name: "Terra Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 21, max: 38 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -616,7 +513,7 @@ export const weaponList = [
   },
   {
     name: "Hailstorm Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 26, max: 48 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -625,7 +522,7 @@ export const weaponList = [
   },
   {
     name: "Rod of Destruction",
-    type: "rod",
+    type: "weapon",
     damage: { min: 32, max: 60 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -634,7 +531,7 @@ export const weaponList = [
   },
   {
     name: "Cobra Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 35, max: 65 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -643,7 +540,7 @@ export const weaponList = [
   },
   {
     name: "Naga Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 38, max: 70 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -652,7 +549,7 @@ export const weaponList = [
   },
   {
     name: "Falcon Rod",
-    type: "rod",
+    type: "weapon",
     damage: { min: 41, max: 76 },
     typeDamage: "physical",
     resistanceAll: 0,
@@ -661,7 +558,7 @@ export const weaponList = [
   },
   {
     name: "Soulhexer",
-    type: "rod",
+    type: "weapon",
     damage: { min: 45, max: 84 },
     typeDamage: "physical",
     resistanceAll: 0,
