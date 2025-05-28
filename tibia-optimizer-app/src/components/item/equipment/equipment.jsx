@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { equipmentList } from "../data/equipment";
+import { equipmentList } from "../../../data/item/equipment/equipment";
 
 function Equipment() {
   const [equipment, setEquipment] = useState({
@@ -9,6 +9,7 @@ function Equipment() {
     boot: "",
     amulet: "",
     ring: "",
+
   });
   const [totalArmor, setTotalArmor] = useState(0);
   const [totalAllResistance, setTotalAllResistance] = useState(0);
@@ -21,7 +22,7 @@ function Equipment() {
   const handleChange = (field) => (event) => {
     setEquipment((prev) => ({ ...prev, [field]: event.target.value }));
   };
-  const getequipmentsByType = (type) => {
+  const getEquipmentByType = (type) => {
     return option ? option.filter((equipment) => equipment.type === type) : [];
   };
 
@@ -34,14 +35,11 @@ function Equipment() {
       const selected = equipmentList.find(
         (theequipment) => theequipment.name === equipmentName
       );
-
       if (!selected) return;
       armorSum += selected.armor || 0;
-
       if (selected.resistanceAll) {
         resistanceOverallSum += selected.resistanceAll;
       }
-
       if (selected.resistance) {
         Object.entries(selected.resistance).forEach(([element, value]) => {
           resistanceSpecificSum[element] =
@@ -61,7 +59,7 @@ function Equipment() {
       <label>
         <select value={equipment.helmet} onChange={handleChange("helmet")}>
           <option value="">Select a helmet</option>
-          {getequipmentsByType("helmet").map((slot) => (
+          {getEquipmentByType("helmet").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
@@ -78,7 +76,7 @@ function Equipment() {
       <label>
         <select value={equipment.armor} onChange={handleChange("armor")}>
           <option value="">Select an armor</option>
-          {getequipmentsByType("armor").map((slot) => (
+          {getEquipmentByType("armor").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
@@ -95,7 +93,7 @@ function Equipment() {
       <label>
         <select value={equipment.leg} onChange={handleChange("leg")}>
           <option value="">Select legs</option>
-          {getequipmentsByType("leg").map((slot) => (
+          {getEquipmentByType("leg").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
@@ -112,7 +110,7 @@ function Equipment() {
       <label>
         <select value={equipment.boot} onChange={handleChange("boot")}>
           <option value="">Select boots</option>
-          {getequipmentsByType("boot").map((slot) => (
+          {getEquipmentByType("boot").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
@@ -129,7 +127,7 @@ function Equipment() {
       <label>
         <select value={equipment.amulet} onChange={handleChange("amulet")}>
           <option value="">Select an amulet</option>
-          {getequipmentsByType("ring").map((slot) => (
+          {getEquipmentByType("ring").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}
@@ -146,7 +144,7 @@ function Equipment() {
       <label>
         <select value={equipment.ring} onChange={handleChange("ring")}>
           <option value="">Select a ring</option>
-          {getequipmentsByType("ring").map((slot) => (
+          {getEquipmentByType("ring").map((slot) => (
             <option key={slot.name} value={slot.name}>
               {slot.name}
               {slot.armor ? ` - (armor: ${slot.armor})` : ""}

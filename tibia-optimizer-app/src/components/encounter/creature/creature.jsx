@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { creatureList } from "../creature/data/creature";
+import { creatureList } from "../../../data/encounter/creature/creature";
 
 function Creature() {
   const [creatureName, setCreatureName] = useState("");

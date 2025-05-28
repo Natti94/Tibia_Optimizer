@@ -1,5 +1,5 @@
-import { weaponList } from "../data/weapon";
 import { useState, useEffect } from "react";
+import { weaponList } from "../../../data/item/weapon/weapon";
 function Weapon() {
   const [weapon, setWeapon] = useState({
     sword: "",
@@ -19,11 +19,6 @@ function Weapon() {
   const [totalSpecificResistance, setTotalSpecificResistance] = useState({});
   const [option, setOption] = useState(null);
 
-  const [ammunition, setAmmunition] = useState({
-    bolt: "",
-    arrow: "",
-
-
   useEffect(() => {
     setOption(weaponList);
   }, []);
@@ -37,7 +32,7 @@ function Weapon() {
 
   const calculateTotals = () => {
     let attackSum = 0;
-    let specificAttackSum = {};
+    let attackSpecificSum = {};
     let wandDamageSum = {};
     let rodDamageSum = {};
     let resistanceOverallSum = 0;
@@ -49,16 +44,13 @@ function Weapon() {
       );
 
       if (!selected) return;
-
       attackSum += selected.attack || 0;
-
       if (selected.attackSpecific) {
         Object.entries(selected.attackSpecific).forEach(([element, value]) => {
-          specificAttackSum[element] =
-            (specificAttackSum[element] || 0) + value;
+          attackSpecificSum[element] =
+            (attackSpecificSum[element] || 0) + value;
         });
       }
-
       if (selected.wandDamage) {
         Object.entries(selected.wandDamage || selected.WandDamage).forEach(
           ([element, value]) => {
@@ -66,7 +58,6 @@ function Weapon() {
           }
         );
       }
-
       if (selected.rodDamage) {
         Object.entries(selected.rodDamage || selected.rodDamage).forEach(
           ([element, value]) => {
@@ -74,7 +65,6 @@ function Weapon() {
           }
         );
       }
-
       if (selected.resistanceAll) {
         resistanceOverallSum += selected.resistanceAll;
       }
@@ -88,7 +78,7 @@ function Weapon() {
     });
 
     setTotalAttack(attackSum);
-    setTotalSpecificAttack(specificAttackSum);
+    setTotalSpecificAttack(attackSpecificSum);
     setTotalWandDamage(wandDamageSum);
     setTotalRodDamage(rodDamageSum);
     setTotalAllResistance(resistanceOverallSum);
@@ -124,31 +114,12 @@ function Weapon() {
           ))}
         </select>
       </label>
-      <label>
-        <select value={weapon.ammunition} onChange={handleChange("ammunition")}>
-          <option value="">Select an ammunition</option>
-          {getWeaponsByType("ammunition").map((slot) => (
-            <option key={slot.name} value={slot.name}>
-              {slot.name}
-              {slot.attack ? ` - (attack: ${slot.attack})` : ""}
-              {slot.rodDamage
-                ? Object.entries(slot.rodDamage)
-                    .map(([element, value]) => ` ${element}: ${value}`)
-                    .join(", ")
-                : ""}
-            </option>
-          ))}
-        </select>
-      </label>
+      <label></label>
       <div>
-        <h3>Selected Equipment:</h3>
+        <h3>Selected Weapon:</h3>
         <div>
           <p>
             <strong>Weapon:</strong> {weapon.weapon || "None"}
-          </p>
-
-          <p>
-            <strong>Ammunition:</strong> {weapon.ammunition || "None"}
           </p>
         </div>
         <div>
@@ -157,7 +128,6 @@ function Weapon() {
           <button className="calculate-button" onClick={calculateTotals}>
             =
           </button>
-
           <p>
             <strong>Total Attack: {totalAttack}</strong>
           </p>
@@ -171,7 +141,6 @@ function Weapon() {
               </li>
             ))}
           </ul>
-
           <p>
             <strong>Total Wand Damage: </strong>
           </p>
@@ -208,8 +177,9 @@ function Weapon() {
           </ul>
         </div>
       </div>
-      <hr />
+      <br />
     </div>
   );
 }
+
 export default Weapon;
