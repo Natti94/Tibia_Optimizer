@@ -9,7 +9,6 @@ function Equipment() {
     boot: "",
     amulet: "",
     ring: "",
-
   });
   const [totalArmor, setTotalArmor] = useState(0);
   const [totalAllResistance, setTotalAllResistance] = useState(0);
@@ -33,7 +32,7 @@ function Equipment() {
 
     Object.values(equipment).forEach((equipmentName) => {
       const selected = equipmentList.find(
-        (theequipment) => theequipment.name === equipmentName
+        (theEquipment) => theEquipment.name === equipmentName
       );
       if (!selected) return;
       armorSum += selected.armor || 0;
