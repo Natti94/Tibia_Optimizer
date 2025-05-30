@@ -18,7 +18,7 @@ function Creature() {
 
   return (
     <div className="creature-container">
-      <h2>Creature Information</h2>
+      <h2>Creature</h2>
       <input
         type="text"
         placeholder="Enter creature name"

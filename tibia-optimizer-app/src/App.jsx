@@ -1,6 +1,7 @@
-import Equipment from "./components/item/equipment/equipment";
 import Weapon from "./components/item/weapon/Weapon";
 import Ammunition from "./components/item/ammunition/ammunition";
+import Quiver from "./components/item/quiver/quiver";
+import Equipment from "./components/item/equipment/equipment";
 import Creature from "./components/encounter/creature/creature";
 import "./index.css";
 
@@ -19,9 +20,14 @@ function App() {
           className="app-title"
         />
         <div className="main-card">
-          <Equipment />
           <Weapon />
-          <Ammunition/>
+          <hr />
+          <Ammunition />
+                <hr />
+          <Quiver />
+                <hr />
+          <Equipment />
+                <hr />
           <Creature />
         </div>
       </div>

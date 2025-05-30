@@ -35,7 +35,6 @@ function Ammunition() {
   return (
     <div>
       <label>
-        <h2>Ammunition</h2>
         <select
           value={ammunition.ammunition && ammunition.ammunition}
           onChange={handleChange("ammunition")}
@@ -50,7 +49,6 @@ function Ammunition() {
         </select>
       </label>
       <div>
-        <br />
         <h3>Selected Ammunition:</h3>
         <button className="calculate-button" onClick={calculateTotals}>
           =
@@ -62,7 +60,6 @@ function Ammunition() {
           <strong>Total Attack:</strong> {totalAttack}
         </p>
       </div>
-      <hr />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+// CUSTOM, USING REST API INSTEAD
 export const ammunitionList = [
   // BOLTS
   {

@@ -54,7 +54,6 @@ function Equipment() {
 
   return (
     <div>
-      <h2>Defense Calculator</h2>
       <label>
         <select value={equipment.helmet} onChange={handleChange("helmet")}>
           <option value="">Select a helmet</option>
@@ -157,55 +156,47 @@ function Equipment() {
           ))}
         </select>
       </label>
-      <div>
-        <h3>Selected Equipment:</h3>
-        <div>
-          <p>
-            <strong>Helmet:</strong> {equipment.helmet || "None"}
-          </p>
-          <p>
-            <strong>armor:</strong> {equipment.armor || "None"}
-          </p>
-          <p>
-            <strong>Legs:</strong> {equipment.leg || "None"}
-          </p>
-          <p>
-            <strong>Boots:</strong> {equipment.boot || "None"}
-          </p>
-          <p>
-            <strong>Amulet:</strong> {equipment.amulet || "None"}
-          </p>
-          <p>
-            <strong>Ring:</strong> {equipment.ring || "None"}
-          </p>
-        </div>
-        <div>
-          <br />
-          <h3>Calculate Defense:</h3>
-          <button className="calculate-button" onClick={calculateTotals}>
-            =
-          </button>
-          <p>
-            <strong>Total Armor: </strong>
-            {totalArmor}
-          </p>
-          <p>
-            <strong>Total All Resistance: </strong>
-            {totalAllResistance}%
-          </p>
-          <p>
-            <strong>Element Specific Resistance: </strong>
-          </p>
-          <ul>
-            {Object.entries(totalSpecificResistance).map(([element, value]) => (
-              <li key={element}>
-                {element}: {value}%
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <hr />
+      <h3>Selected Equipment:</h3>
+      <p>
+        <strong>Helmet:</strong> {equipment.helmet || "None"}
+      </p>
+      <p>
+        <strong>armor:</strong> {equipment.armor || "None"}
+      </p>
+      <p>
+        <strong>Legs:</strong> {equipment.leg || "None"}
+      </p>
+      <p>
+        <strong>Boots:</strong> {equipment.boot || "None"}
+      </p>
+      <p>
+        <strong>Amulet:</strong> {equipment.amulet || "None"}
+      </p>
+      <p>
+        <strong>Ring:</strong> {equipment.ring || "None"}
+      </p>
+      <h3>Calculate Defense:</h3>
+      <button className="calculate-button" onClick={calculateTotals}>
+        =
+      </button>
+      <p>
+        <strong>Total Armor: </strong>
+        {totalArmor}
+      </p>
+      <p>
+        <strong>Total All Resistance: </strong>
+        {totalAllResistance}%
+      </p>
+      <p>
+        <strong>Element Specific Resistance: </strong>
+      </p>
+      <ul>
+        {Object.entries(totalSpecificResistance).map(([element, value]) => (
+          <li key={element}>
+            {element}: {value}%
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
