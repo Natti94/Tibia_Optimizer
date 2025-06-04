@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
-import { ammunitionList } from "../../../data/item/ammunition/ammunition";
+import { fetchItemList } from "../services/itemService";
 
 function Ammunition() {
-  const [ammunition, setAmmunition] = useState({
-    ammunition: "",
-  });
+  const [ammunition, setAmmunition] = useState({});
   const [totalAttack, setTotalAttack] = useState(0);
-  const [option, setOption] = useState(null);
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    setOption(ammunitionList);
+    fetchItemList().then(setOptions);
   }, []);
 
   const handleChange = (field) => (event) => {
@@ -17,18 +15,14 @@ function Ammunition() {
   };
 
   const getAmmunitionByType = (type) => {
-    return option ? option.filter((weapon) => weapon.type === type) : [];
+    return options.filter((item) => item.type === type);
   };
 
   const calculateTotals = () => {
-    let attackSum = 0;
-    Object.values(ammunition).forEach((ammunitionName) => {
-      const selected = ammunitionList.find(
-        (theAmmunition) => theAmmunition.name === ammunitionName
-      );
-      if (!selected) return;
-      attackSum += selected.attack || 0;
-    });
+    const attackSum = Object.values(ammunition).reduce((sum, name) => {
+      const item = options.find((i) => i.name === name);
+      return sum + (item?.attack || 0);
+    }, 0);
     setTotalAttack(attackSum);
   };
 
@@ -36,14 +30,13 @@ function Ammunition() {
     <div>
       <label>
         <select
-          value={ammunition.ammunition && ammunition.ammunition}
+          value={ammunition.ammunition || ""}
           onChange={handleChange("ammunition")}
         >
           <option value="">Select an ammunition</option>
-          {getAmmunitionByType("ammunition").map((slot) => (
-            <option key={slot.name} value={slot.name}>
-              {slot.name}
-              {slot.attack ? ` - (attack: ${slot.attack})` : ""}
+          {getAmmunitionByType("ammunition").map((item) => (
+            <option key={item.name} value={item.name}>
+              {item.name} {item.attack ? `- (attack: ${item.attack})` : ""}
             </option>
           ))}
         </select>
