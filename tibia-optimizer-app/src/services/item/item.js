@@ -1,5 +1,5 @@
 export async function fetchItemList() {
-  const API_LIST = "https://tibiawiki.dev/api/items";
+  const API_LIST = "/api/items"; // Use relative path for Vite proxy
 
   try {
     const response = await fetch(API_LIST);
@@ -7,13 +7,9 @@ export async function fetchItemList() {
       throw new Error(`Failed to fetch item list (Status: ${response.status})`);
     }
 
-    const itemNames = await response.json();
-
-    return itemNames.map((name) => ({
-      name,
-      type: "ammunition",
-      attack: Math.floor(Math.random() * 50),
-    }));
+    // Assuming the API returns an array of item objects, not just names
+    const items = await response.json();
+    return items;
   } catch (error) {
     console.error("Item List Load Error:", error.message || error);
     return [];

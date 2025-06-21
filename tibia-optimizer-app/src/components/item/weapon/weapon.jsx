@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchItemList } from "../../../services/item/item";
+
+const API_LIST = "/api/items";
 
 function Weapon() {
   const weaponTypes = [
@@ -26,6 +28,14 @@ function Weapon() {
     resistanceSpecific: {},
   });
 
+  // Store all items here
+  const [items, setItems] = useState([]);
+
+  // Fetch items once on mount
+  useEffect(() => {
+    fetchItemList().then(setItems);
+  }, []);
+
   const handleChange = (type) => (event) => {
     setWeapon((prev) => ({ ...prev, [type]: event.target.value }));
   };
@@ -40,18 +50,15 @@ function Weapon() {
 
     Object.entries(weapon).forEach(([type, name]) => {
       if (!name) return;
-      const list = fetchItemList[type] || [];
+      const list = items.filter((item) => item.type === type);
       const selected = list.find((item) => item.name === name);
       if (!selected) return;
 
       attackSum += selected.attack || 0;
 
       if (selected.attackSpecific) {
-        for (const [element, value] of Object.entries(
-          selected.attackSpecific
-        )) {
-          attackSpecificSum[element] =
-            (attackSpecificSum[element] || 0) + value;
+        for (const [element, value] of Object.entries(selected.attackSpecific)) {
+          attackSpecificSum[element] = (attackSpecificSum[element] || 0) + value;
         }
       }
 
@@ -93,13 +100,13 @@ function Weapon() {
     <div>
       <h2>Select Weapons</h2>
       {weaponTypes.map((type) => {
-        const items = fetchItemList(type) || [];
+        const filteredItems = items.filter((item) => item.type === type);
         return (
           <div key={type}>
             <label style={{ textTransform: "capitalize" }}>{type}</label>
             <select value={weapon[type]} onChange={handleChange(type)}>
               <option value="">Select a {type}</option>
-              {items.map((item) => (
+              {filteredItems.map((item) => (
                 <option key={item.name} value={item.name}>
                   {item.name}
                   {item.attack ? ` (Attack: ${item.attack})` : ""}
