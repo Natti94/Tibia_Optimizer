@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchItemList } from "../services/itemService";
+import { fetchItemList } from "../../../services/item/item";
 
 function Ammunition() {
   const [ammunition, setAmmunition] = useState({});

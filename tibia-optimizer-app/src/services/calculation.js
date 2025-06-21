@@ -19,7 +19,6 @@ export function Calculation(item) {
     type: item.weapontype,
     subtype: item.secondarytype,
     attack,
-    defense,
     hitMod,
     resistances,
     critChance,

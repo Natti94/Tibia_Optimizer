@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ItemSelect } from "../../../services/item/item";
+import { fetchItemList } from "../../../services/item/item";
 
 function Weapon() {
   const weaponTypes = [
@@ -40,7 +40,7 @@ function Weapon() {
 
     Object.entries(weapon).forEach(([type, name]) => {
       if (!name) return;
-      const list = ItemSelect(type);
+      const list = fetchItemList[type] || [];
       const selected = list.find((item) => item.name === name);
       if (!selected) return;
 
@@ -93,7 +93,7 @@ function Weapon() {
     <div>
       <h2>Select Weapons</h2>
       {weaponTypes.map((type) => {
-        const items = ItemSelect(type);
+        const items = fetchItemList(type) || [];
         return (
           <div key={type}>
             <label style={{ textTransform: "capitalize" }}>{type}</label>
