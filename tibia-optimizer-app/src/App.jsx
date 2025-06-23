@@ -1,4 +1,4 @@
-import Weapon from "./components/item/weapon/Weapon";
+import Weapon from "./components/item/weapon/weapon";
 import Ammunition from "./components/item/ammunition/ammunition";
 import Quiver from "./components/item/quiver/quiver";
 import Equipment from "./components/item/equipment/equipment";
@@ -10,12 +10,12 @@ function App() {
     <div className="app-container">
       <img
         className="background"
-        src="../public/background.png"
+        src="/tibia-optimizer-app/public/background.jpg"
         alt="background"
       />
       <div className="content-wrapper">
         <img
-          src="../public/title.png"
+          src="/tibia-optimizer-app/public/title.png"
           alt="Tibia Optimizer"
           className="app-title"
         />

@@ -1,199 +1,55 @@
 import { useState, useEffect } from "react";
 import { fetchItemList } from "../../../services/item/item";
 
-const API_LIST = "/api/items";
-
 function Weapon() {
-  const weaponTypes = [
-    "sword",
-    "axe",
-    "club",
-    "crossbow",
-    "bow",
-    "throw",
-    "wand",
-    "rod",
-  ];
-
-  const [weapon, setWeapon] = useState(
-    Object.fromEntries(weaponTypes.map((type) => [type, ""]))
-  );
-
-  const [totals, setTotals] = useState({
-    attack: 0,
-    attackSpecific: {},
-    wandDamage: {},
-    rodDamage: {},
-    resistanceAll: 0,
-    resistanceSpecific: {},
-  });
-
-  // Store all items here
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedWeapon, setSelectedWeapon] = useState("");
 
-  // Fetch items once on mount
   useEffect(() => {
-    fetchItemList().then(setItems);
+    async function loadItems() {
+      try {
+        const itemList = await fetchItemList();
+        setItems(itemList);
+      } catch (err) {
+        setError(err.message || "Failed to load items");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadItems();
   }, []);
 
-  const handleChange = (type) => (event) => {
-    setWeapon((prev) => ({ ...prev, [type]: event.target.value }));
-  };
-
-  const calculateTotals = () => {
-    let attackSum = 0;
-    let attackSpecificSum = {};
-    let wandDamageSum = {};
-    let rodDamageSum = {};
-    let resistanceAllSum = 0;
-    let resistanceSpecificSum = {};
-
-    Object.entries(weapon).forEach(([type, name]) => {
-      if (!name) return;
-      const list = items.filter((item) => item.type === type);
-      const selected = list.find((item) => item.name === name);
-      if (!selected) return;
-
-      attackSum += selected.attack || 0;
-
-      if (selected.attackSpecific) {
-        for (const [element, value] of Object.entries(selected.attackSpecific)) {
-          attackSpecificSum[element] = (attackSpecificSum[element] || 0) + value;
-        }
-      }
-
-      if (selected.wandDamage) {
-        for (const [element, value] of Object.entries(selected.wandDamage)) {
-          wandDamageSum[element] = (wandDamageSum[element] || 0) + value;
-        }
-      }
-
-      if (selected.rodDamage) {
-        for (const [element, value] of Object.entries(selected.rodDamage)) {
-          rodDamageSum[element] = (rodDamageSum[element] || 0) + value;
-        }
-      }
-
-      if (selected.resistanceAll) {
-        resistanceAllSum += selected.resistanceAll;
-      }
-
-      if (selected.resistance) {
-        for (const [element, value] of Object.entries(selected.resistance)) {
-          resistanceSpecificSum[element] =
-            (resistanceSpecificSum[element] || 0) + value;
-        }
-      }
-    });
-
-    setTotals({
-      attack: attackSum,
-      attackSpecific: attackSpecificSum,
-      wandDamage: wandDamageSum,
-      rodDamage: rodDamageSum,
-      resistanceAll: resistanceAllSum,
-      resistanceSpecific: resistanceSpecificSum,
-    });
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
-      <h2>Select Weapons</h2>
-      {weaponTypes.map((type) => {
-        const filteredItems = items.filter((item) => item.type === type);
-        return (
-          <div key={type}>
-            <label style={{ textTransform: "capitalize" }}>{type}</label>
-            <select value={weapon[type]} onChange={handleChange(type)}>
-              <option value="">Select a {type}</option>
-              {filteredItems.map((item) => (
-                <option key={item.name} value={item.name}>
-                  {item.name}
-                  {item.attack ? ` (Attack: ${item.attack})` : ""}
-                  {item.attackSpecific
-                    ? " (" +
-                      Object.entries(item.attackSpecific)
-                        .map(([e, v]) => `${e}: ${v}`)
-                        .join(", ") +
-                      ")"
-                    : ""}
-                  {item.wandDamage
-                    ? " (" +
-                      Object.entries(item.wandDamage)
-                        .map(([e, v]) => `${e}: ${v}`)
-                        .join(", ") +
-                      ")"
-                    : ""}
-                  {item.rodDamage
-                    ? " (" +
-                      Object.entries(item.rodDamage)
-                        .map(([e, v]) => `${e}: ${v}`)
-                        .join(", ") +
-                      ")"
-                    : ""}
-                </option>
-              ))}
-            </select>
-          </div>
-        );
-      })}
-
-      <button className="calculate-button" onClick={calculateTotals}>
-        =
-      </button>
-
-      <h3>Totals</h3>
-      <p>
-        <strong>Attack:</strong> {totals.attack}
-      </p>
-
-      <p>
-        <strong>Specific Attack:</strong>
-      </p>
-      <ul>
-        {Object.entries(totals.attackSpecific).map(([element, value]) => (
-          <li key={element}>
-            {element}: {value}
-          </li>
-        ))}
-      </ul>
-
-      <p>
-        <strong>Wand Damage:</strong>
-      </p>
-      <ul>
-        {Object.entries(totals.wandDamage).map(([element, value]) => (
-          <li key={element}>
-            {element}: {value}
-          </li>
-        ))}
-      </ul>
-
-      <p>
-        <strong>Rod Damage:</strong>
-      </p>
-      <ul>
-        {Object.entries(totals.rodDamage).map(([element, value]) => (
-          <li key={element}>
-            {element}: {value}
-          </li>
-        ))}
-      </ul>
-
-      <p>
-        <strong>All Resistance:</strong> {totals.resistanceAll}%
-      </p>
-
-      <p>
-        <strong>Element Specific Resistance:</strong>
-      </p>
-      <ul>
-        {Object.entries(totals.resistanceSpecific).map(([element, value]) => (
-          <li key={element}>
-            {element}: {value}%
-          </li>
-        ))}
-      </ul>
+      <h1>Weapon List</h1>
+      <label htmlFor="weapon-select">Choose a weapon:</label>
+      <select
+        id="weapon-select"
+        value={selectedWeapon}
+        onChange={(e) => setSelectedWeapon(e.target.value)}
+      >
+        <option value="">-- Select a weapon --</option>
+        {items
+          .filter(
+            (item) => item.attack !== undefined || item.damage !== undefined
+          )
+          .map((item, idx) => (
+            <option key={item.id || item.name || idx} value={item.name}>
+              {item.name}
+            </option>
+          ))}
+      </select>
+      {selectedWeapon && (
+        <div style={{ marginTop: "1em" }}>
+          <strong>Selected Weapon:</strong> {selectedWeapon}
+        </div>
+      )}
     </div>
   );
 }
