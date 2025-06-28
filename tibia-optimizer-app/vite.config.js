@@ -3,10 +3,9 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/Tibia_Optimizer/",
   server: {
     proxy: {
-      "/api": {
+      "/api/items": {
         target: "https://tibiawiki.dev",
         changeOrigin: true,
       },
