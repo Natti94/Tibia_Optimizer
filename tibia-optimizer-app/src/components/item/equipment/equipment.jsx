@@ -1,23 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { equipmentList } from "../../../data/item/equipment/equipment";
 
-// Placeholder equipment items for each slot
-const placeholderEquipment = {
-  helmet: ["helmet"],
-  armor: ["armor"],
-  leg: ["legs"],
-  boot: ["boots"],
-  amulet: ["amulet"],
-  ring: ["ring"],
-  trinket: ["trinket"],
-  offhand: ["offhand"], // Combined
-};
-
 function Equipment() {
-  const [apiEquipment, setApiEquipment] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   const [equipment, setEquipment] = useState({
     helmet: "",
     armor: "",
@@ -26,70 +10,56 @@ function Equipment() {
     amulet: "",
     ring: "",
     trinket: "",
-    offhand: "", // Combined
+    offhand: "",
   });
 
   const [vocation, setVocation] = useState("");
-  const [paladinMode, setPaladinMode] = useState("12.5+"); // "12.5+" or "before 12.5"
-
+  const [paladinMode, setPaladinMode] = useState("12.5+");
   const [totalArmor, setTotalArmor] = useState(0);
   const [totalAllResistance, setTotalAllResistance] = useState(0);
   const [totalSpecificResistance, setTotalSpecificResistance] = useState({});
 
-  // Fetch equipment from API on mount
-  useEffect(() => {
-    setLoading(true);
-    try {
-      const items = Array.isArray(equipmentList)
-        ? equipmentList
-        : equipmentList.items || [];
-      setApiEquipment(
-        items.filter((item) => item.name && item.name.trim() !== "")
-      );
-      setError(null);
-    } catch (err) {
-      console.error("Error loading equipment:", err); // Log the error
-      setApiEquipment([]);
-      setError("Failed to load equipment.");
-    }
-    setLoading(false);
-  }, []);
+  const placeholderEquipment = {
+    helmet: ["helmet"],
+    armor: ["armor"],
+    leg: ["legs"],
+    boot: ["boots"],
+    amulet: ["amulet"],
+    ring: ["ring"],
+    trinket: ["trinket"],
+    offhand: ["offhand"],
+  };
 
-  // Combine placeholder and API equipment, remove duplicates
   const getAllOptions = (type) => {
     const placeholders = placeholderEquipment[type] || [];
+    let data = Array.isArray(equipmentList) ? equipmentList : [];
     let apiNames = [];
     if (type === "offhand") {
       if (vocation === "paladin" && paladinMode === "12.5+") {
-        // Paladin 12.5+: only quiver
-        apiNames = apiEquipment
+        apiNames = data
           .filter(
             (item) =>
               item.type && item.type.toLowerCase() === "quiver" && item.name
           )
           .map((item) => item.name);
       } else if (vocation === "paladin" && paladinMode === "before 12.5") {
-        // Paladin before 12.5: show nothing (handled in render)
         apiNames = [];
       } else if (vocation === "knight") {
-        // Knight: only shield
-        apiNames = apiEquipment
+        apiNames = data
           .filter(
             (item) =>
               item.type && item.type.toLowerCase() === "shield" && item.name
           )
           .map((item) => item.name);
       } else if (vocation === "sorcerer" || vocation === "druid") {
-        // Sorcerer/Druid: only spellbook
-        apiNames = apiEquipment
+        apiNames = data
           .filter(
             (item) =>
               item.type && item.type.toLowerCase() === "spellbook" && item.name
           )
           .map((item) => item.name);
       } else {
-        // Default: both quiver and shield
-        apiNames = apiEquipment
+        apiNames = data
           .filter(
             (item) =>
               item.type &&
@@ -100,7 +70,7 @@ function Equipment() {
           .map((item) => item.name);
       }
     } else {
-      apiNames = apiEquipment
+      apiNames = data
         .filter(
           (item) => item.type && item.type.toLowerCase() === type && item.name
         )
@@ -112,23 +82,24 @@ function Equipment() {
     ];
   };
 
-  // Find selected equipment object (from API only)
   const getSelectedEquipmentObj = (type) =>
-    apiEquipment.find((item) => item.name === equipment[type]);
+    (Array.isArray(equipmentList) ? equipmentList : []).find(
+      (item) => item.name === equipment[type]
+    );
 
-  // Handle select change
   const handleChange = (field) => (event) => {
     setEquipment((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  // Calculate totals (API items only)
   const calculateTotals = () => {
     let armorSum = 0;
     let resistanceOverallSum = 0;
     let resistanceSpecificSum = {};
 
     Object.values(equipment).forEach((equipmentName) => {
-      const selected = apiEquipment.find((item) => item.name === equipmentName);
+      const selected = (Array.isArray(equipmentList) ? equipmentList : []).find(
+        (item) => item.name === equipmentName
+      );
       if (!selected) return;
       armorSum += selected.armor || 0;
       if (selected.resistanceAll) {
@@ -147,7 +118,6 @@ function Equipment() {
     setTotalSpecificResistance(resistanceSpecificSum);
   };
 
-  // Display properties for selected equipment (API only)
   const renderEquipmentProps = (type) => {
     const obj = getSelectedEquipmentObj(type);
     if (!obj) return null;
@@ -170,8 +140,6 @@ function Equipment() {
   return (
     <div>
       <h1>Equipment</h1>
-      {loading && <div>Loading...</div>}
-      {error && <div style={{ color: "red" }}>{error}</div>}
 
       <label>
         Vocation:
@@ -184,8 +152,6 @@ function Equipment() {
           <option value="druid">Druid</option>
         </select>
       </label>
-
-      {/* Paladin mode switch */}
       {vocation === "paladin" && (
         <label>
           Paladin Equipment Mode:
@@ -194,13 +160,11 @@ function Equipment() {
             value={paladinMode}
             onChange={(e) => setPaladinMode(e.target.value)}
           >
-            <option value="12.5+">Tibia - V. 12.5{"?"} + ..</option>
-            <option value="before 12.5">Tibia - V. 5.00..{"?"} - 12.4..</option>
+            <option value="12.5+">Tibia - V. 12.5+ ..</option>
+            <option value="before 12.5">Tibia - V. 5.00.. - 12.4..</option>
           </select>
         </label>
       )}
-
-      {/* Equipment selection */}
       <label>
         Helmet:
         <br />
@@ -292,8 +256,6 @@ function Equipment() {
         </select>
         {renderEquipmentProps("trinket")}
       </label>
-
-      {/* Offhand logic */}
       {vocation === "paladin" && paladinMode === "12.5+" && (
         <label>
           Quiver:
@@ -309,7 +271,6 @@ function Equipment() {
           {renderEquipmentProps("offhand")}
         </label>
       )}
-
       {vocation === "knight" && (
         <label>
           Shield:
@@ -341,7 +302,6 @@ function Equipment() {
           {renderEquipmentProps("offhand")}
         </label>
       )}
-
       <h3>Selected Equipment:</h3>
       <ul>
         <li>

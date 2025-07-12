@@ -1,4 +1,3 @@
-// CUSTOM, USING REST API INSTEAD
 export const equipmentList = [
   // HELMETS
   {

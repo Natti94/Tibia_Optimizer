@@ -1,6 +1,6 @@
+import Character from "./components/character/chartacter";
 import Weapon from "./components/item/weapon/weapon";
 import Equipment from "./components/item/equipment/equipment";
-import Creature from "./components/encounter/creature/creature";
 import "./index.css";
 
 function App() {
@@ -10,11 +10,12 @@ function App() {
       <div className="content-wrapper">
         <img src="title.png" alt="Tibia Optimizer" className="app-title" />
         <div className="main-card">
+          <Character />
+          <hr />
           <Weapon />
           <hr />
           <Equipment />
           <hr />
-          <Creature />
         </div>
       </div>
     </div>
