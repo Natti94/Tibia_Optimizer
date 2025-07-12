@@ -3,23 +3,20 @@ import { weaponList } from "../../../data/item/weapon/weapon";
 
 // Placeholder for weapon types (optional, can be empty or used for UI fallback)
 const placeholderWeapons = {
-  sword: ["sword"],
-  axe: ["axe"],
-  club: ["club"],
-  bow: ["bow"],
-  crossbow: ["crossbow"],
-  wand: ["wand"],
-  rod: ["rod"],
+  sword: ["Sword"],
+  axe: ["Axe"],
+  club: ["Club"],
+  bow: ["Bow"],
+  crossbow: ["Crossbow"],
+  wand: ["Wand"],
+  rod: ["Rod"],
   // Add more if needed
 };
-
-const ammunitions = ["Arrow", "Bolt"];
 
 function Weapon() {
   const [apiWeapons, setApiWeapons] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const [weapon, setWeapon] = useState("");
   const [ammunition, setAmmunition] = useState("");
   const [vocation, setVocation] = useState("");
@@ -43,7 +40,9 @@ function Weapon() {
   const getAllOptions = (type) => {
     const placeholders = placeholderWeapons[type] || [];
     const apiNames = apiWeapons
-      .filter((item) => item.type && item.type.toLowerCase() === type && item.name)
+      .filter(
+        (item) => item.type && item.type.toLowerCase() === type && item.name
+      )
       .map((item) => item.name);
     return [
       ...placeholders,
@@ -53,6 +52,17 @@ function Weapon() {
 
   // Find selected weapon object (from API only)
   const selectedWeaponObj = apiWeapons.find((item) => item.name === weapon);
+
+  // Determine if selected weapon is a Bow or Crossbow (EXACT match)
+  const isCrossbow =
+    selectedWeaponObj &&
+    selectedWeaponObj.name &&
+    selectedWeaponObj.name.toLowerCase().includes("crossbow");
+  const isBow =
+    selectedWeaponObj &&
+    selectedWeaponObj.name &&
+    selectedWeaponObj.name.toLowerCase().includes("bow") &&
+    !isCrossbow;
 
   // Totals for output
   const [totalAttack, setTotalAttack] = useState(0);
@@ -70,7 +80,10 @@ function Weapon() {
       setTotalDamage(0);
     } else if (vocation === "sorcerer" || vocation === "druid") {
       // If damage is an object (min/max), sum or average as needed
-      if (selectedWeaponObj.damage && typeof selectedWeaponObj.damage === "object") {
+      if (
+        selectedWeaponObj.damage &&
+        typeof selectedWeaponObj.damage === "object"
+      ) {
         const { min = 0, max = 0 } = selectedWeaponObj.damage;
         setTotalAttack(0);
         setTotalDamage((min + max) / 2);
@@ -90,7 +103,9 @@ function Weapon() {
     if (!obj) return null;
     return (
       <ul>
-        {obj.attack !== undefined && obj.attack !== null && <li>Attack: {obj.attack}</li>}
+        {obj.attack !== undefined && obj.attack !== null && (
+          <li>Attack: {obj.attack}</li>
+        )}
         {obj.damage !== undefined && obj.damage !== null && (
           <li>
             Damage:{" "}
@@ -132,6 +147,8 @@ function Weapon() {
 
       <label>
         Vocation:
+        <br />
+        {/* Vocation selection */}
         <select value={vocation} onChange={(e) => setVocation(e.target.value)}>
           <option value="">Select vocation</option>
           <option value="knight">Knight</option>
@@ -142,12 +159,14 @@ function Weapon() {
       </label>
 
       {/* Weapon selection by vocation */}
-      {(vocation === "paladin" || vocation === "knight") && (
+      {vocation === "knight" && (
         <>
           <label>
             Weapon:
+            <br />
+            {/* Knight can use sword, axe, club */}
             <select value={weapon} onChange={handleChange}>
-              <option value="">Select weapon</option>
+              <option value="">Select Weapon</option>
               {["sword", "axe", "club"].flatMap((type) =>
                 getAllOptions(type).map((name) => (
                   <option key={name} value={name}>
@@ -157,30 +176,81 @@ function Weapon() {
               )}
             </select>
           </label>
+        </>
+      )}
+
+      {vocation === "paladin" && (
+        <>
           <label>
-            Ammunition:
-            <select
-              value={ammunition}
-              onChange={(e) => setAmmunition(e.target.value)}
-            >
-              <option value="">Select ammunition</option>
-              {ammunitions.map((a) => (
-                <option key={a} value={a}>
-                  {a}
-                </option>
-              ))}
+            Weapon:
+            <br />
+            {/* Paladin can use Bow & Crossbow */}
+            <select value={weapon} onChange={handleChange}>
+              <option value="">Select Weapon</option>
+              {["bow", "crossbow"].flatMap((type) =>
+                getAllOptions(type).map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))
+              )}
+            </select>
+          </label>
+          {/* Only show Arrow if Bow, Bolt if Crossbow */}
+          {isBow && (
+            <label>
+              Arrow:
+              <br />
+              <select
+                value={ammunition}
+                onChange={(e) => setAmmunition(e.target.value)}
+              >
+                <option value="">Select arrow</option>
+                <option value="Arrow">Arrow</option>
+              </select>
+            </label>
+          )}
+          {isCrossbow && (
+            <label>
+              Bolt:
+              <br />
+              <select
+                value={ammunition}
+                onChange={(e) => setAmmunition(e.target.value)}
+              >
+                <option value="">Select Bolt</option>
+                <option value="Bolt">Bolt</option>
+              </select>
+            </label>
+          )}
+        </>
+      )}
+
+      {vocation === "sorcerer" && (
+        <>
+          <label>
+            Weapon:
+            <select value={weapon} onChange={handleChange}>
+              <option value="">Select Weapon</option>
+              {["wand"].flatMap((type) =>
+                getAllOptions(type).map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))
+              )}
             </select>
           </label>
         </>
       )}
 
-      {(vocation === "sorcerer" || vocation === "druid") && (
+      {vocation === "druid" && (
         <>
           <label>
             Weapon:
             <select value={weapon} onChange={handleChange}>
               <option value="">Select weapon</option>
-              {["wand", "rod"].flatMap((type) =>
+              {["rod"].flatMap((type) =>
                 getAllOptions(type).map((name) => (
                   <option key={name} value={name}>
                     {name}

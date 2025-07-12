@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .app-container {
     display: flex;
     flex-direction: column;
@@ -7,15 +11,20 @@
     position: relative;
     box-sizing: border-box;
     overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 .background {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
+    min-width: 100vw;
     object-fit: cover;
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     z-index: -1;
 }
 
@@ -24,14 +33,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
-    border-radius: 12px;
-    outline: 3px groove aqua;
+    padding: 2rem 3.5rem; /* Increased horizontal padding for more space */
+    border-radius: 18px;
+    outline: 6px groove aqua;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
     max-height: 100%;
     overflow: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
+    margin: 2rem 0; /* Add vertical spacing from top/bottom */
 }
 
 .app-title {
