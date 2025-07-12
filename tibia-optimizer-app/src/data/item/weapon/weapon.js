@@ -1,77 +1,92 @@
-// CUSTOM, USING REST API INSTEAD
 export const weaponList = [
   // SWORDS
   {
     name: "Sword",
     type: "weapon",
     attack: 19,
+    damage: null, // or { min: 0, max: 0 } if you want to be explicit
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { sword: 0 },
+    version: "before 11.40",
   },
   {
     name: "Bright Sword",
     type: "weapon",
     attack: 36,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { sword: 0 },
+    version: "before 11.40",
   },
   {
     name: "Fire Sword",
     type: "weapon",
     attack: 35,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: { fire: 2 },
     skills: { sword: 0 },
+    version: "before 11.40",
   },
   {
     name: "Magic Sword",
     type: "weapon",
     attack: 48,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { sword: 0 },
+    version: "before 11.40",
   },
   {
     name: "Crimson Sword",
     type: "weapon",
     attack: 24,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { sword: 0 },
+    version: "before 11.40",
   },
   {
     name: "Dagger",
     type: "weapon",
     attack: 8,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { sword: 0 },
+    version: "before 11.40",
   },
   {
     name: "Poison Dagger",
     type: "weapon",
     attack: 11,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: { earth: 2 },
     skills: { sword: 0 },
+    version: "before 11.40",
   },
   {
     name: "Throwing Knife",
     type: "weapon",
     attack: 15,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { sword: 0 },
+    version: "before 11.40",
   },
 
   // AXES
@@ -79,37 +94,45 @@ export const weaponList = [
     name: "Axe",
     type: "weapon",
     attack: 18,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { axe: 0 },
+    version: "before 11.40",
   },
   {
     name: "Double Axe",
     type: "weapon",
     attack: 28,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { axe: 0 },
+    version: "before 11.40",
   },
   {
     name: "War Axe",
     type: "weapon",
     attack: 32,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { axe: 0 },
+    version: "before 11.40",
   },
   {
     name: "Guardian Halberd",
     type: "weapon",
     attack: 38,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { axe: 0 },
+    version: "before 11.40",
   },
 
   // CLUBS
@@ -117,37 +140,45 @@ export const weaponList = [
     name: "Mace",
     type: "weapon",
     attack: 15,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { club: 0 },
+    version: "before 11.40",
   },
   {
     name: "Morning Star",
     type: "weapon",
     attack: 24,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { club: 0 },
+    version: "before 11.40",
   },
   {
     name: "War Hammer",
     type: "weapon",
     attack: 45,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},
     skills: { club: 0 },
+    version: "before 11.40",
   },
   {
     name: "Dragon Hammer",
     type: "weapon",
     attack: 36,
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: { fire: 2 },
     skills: { club: 0 },
+    version: "before 11.40",
   },
 
   // CROSSBOWS
@@ -159,6 +190,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 2 },
+    version: "before 11.40",
   },
   {
     name: "Crossbow of Destruction",
@@ -168,6 +200,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 3 },
+    version: "before 11.40",
   },
   {
     name: "Heavy Crossbow",
@@ -177,6 +210,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 2 },
+    version: "before 11.40",
   },
   {
     name: "Modified Crossbow",
@@ -186,6 +220,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 3 },
+    version: "before 11.40",
   },
   {
     name: "Royal Crossbow",
@@ -195,6 +230,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 3 },
+    version: "before 11.40",
   },
   {
     name: "Triple Bolt Crossbow",
@@ -204,6 +240,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 3 },
+    version: "before 11.40",
   },
 
   // BOWS
@@ -215,6 +252,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Composite Bow",
@@ -224,6 +262,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Elven Bow",
@@ -233,6 +272,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Rift Bow",
@@ -242,6 +282,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Bow of Destruction",
@@ -251,6 +292,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Living Vine Bow",
@@ -260,6 +302,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { earth: 4 },
     skills: { distance: 1 },
+    version: "before 11.40",
   },
   {
     name: "Bow of Cataclysm",
@@ -269,6 +312,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 2 },
+    version: "before 11.40",
   },
   {
     name: "Eldritch Bow",
@@ -278,6 +322,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 2 },
+    version: "before 11.40",
   },
   {
     name: "Lion Longbow",
@@ -287,6 +332,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { ice: 5 },
     skills: { distance: 2 },
+    version: "before 11.40",
   },
   {
     name: "Umbral Master Bow",
@@ -296,6 +342,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Soulbleeder",
@@ -305,6 +352,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { holy: 7 },
     skills: { distance: 4 },
+    version: "before 11.40",
   },
 
   // THROWING WEAPONS
@@ -315,6 +363,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Shuriken",
@@ -323,6 +372,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Throwing Star",
@@ -331,6 +381,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Enchanted Spear",
@@ -339,6 +390,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Spear",
@@ -347,6 +399,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Royal Spear",
@@ -355,6 +408,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
   {
     name: "Hunting Spear",
@@ -363,17 +417,20 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { distance: 0 },
+    version: "before 11.40",
   },
 
   // WANDS
   {
     name: "Wand of Vortex",
     type: "weapon",
+    attack: null,
     damage: { min: 8, max: 18 },
-    typeDamage: "physical",
+    typeDamage: "energy",
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "11.40+",
   },
   {
     name: "Wand of Dragonbreath",
@@ -383,6 +440,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Wand of Decay",
@@ -392,6 +450,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Wand of Draconia",
@@ -401,6 +460,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Wand of Cosmic Energy",
@@ -410,6 +470,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Wand of Inferno",
@@ -419,6 +480,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Wand of Destruction",
@@ -428,6 +490,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 1 },
+    version: "before 11.40",
   },
   {
     name: "Lion Wand",
@@ -437,6 +500,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { holy: 5 },
     skills: { magicLevel: 1 },
+    version: "before 11.40",
   },
   {
     name: "Naga Wand",
@@ -446,6 +510,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 2 },
+    version: "before 11.40",
   },
   {
     name: "Falcon Wand",
@@ -455,6 +520,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { fire: 5 },
     skills: { magicLevel: 2 },
+    version: "before 11.40",
   },
   {
     name: "Soultainter",
@@ -464,6 +530,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { death: 7 },
     skills: { magicLevel: 3 },
+    version: "before 11.40",
   },
 
   // RODS
@@ -475,6 +542,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Moonlight Rod",
@@ -484,6 +552,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Necrotic Rod",
@@ -493,6 +562,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Northwind Rod",
@@ -502,6 +572,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Terra Rod",
@@ -511,6 +582,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Hailstorm Rod",
@@ -520,6 +592,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 0 },
+    version: "before 11.40",
   },
   {
     name: "Rod of Destruction",
@@ -529,6 +602,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 1 },
+    version: "before 11.40",
   },
   {
     name: "Cobra Rod",
@@ -538,6 +612,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { fire: -5 },
     skills: { magicLevel: 1 },
+    version: "before 11.40",
   },
   {
     name: "Naga Rod",
@@ -547,6 +622,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: {},
     skills: { magicLevel: 2 },
+    version: "before 11.40",
   },
   {
     name: "Falcon Rod",
@@ -556,6 +632,7 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { fire: 5 },
     skills: { magicLevel: 2 },
+    version: "before 11.40",
   },
   {
     name: "Soulhexer",
@@ -565,5 +642,6 @@ export const weaponList = [
     resistanceAll: 0,
     resistance: { death: 7 },
     skills: { magicLevel: 3 },
+    version: "before 11.40",
   },
 ];

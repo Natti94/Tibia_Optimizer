@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchItemList } from "../../../services/item/item";
+import { equipmentList } from "../../../data/item/equipment/equipment";
 
 // Placeholder equipment items for each slot
 const placeholderEquipment = {
@@ -10,13 +10,12 @@ const placeholderEquipment = {
   amulet: ["amulet"],
   ring: ["ring"],
   trinket: ["trinket"],
-  quiver: ["quiver"],
+  offhand: ["quiver/shield"], // Combined
 };
 
 function Equipment() {
   const [apiEquipment, setApiEquipment] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const [equipment, setEquipment] = useState({
     helmet: "",
@@ -25,7 +24,12 @@ function Equipment() {
     boot: "",
     amulet: "",
     ring: "",
+    trinket: "",
+    offhand: "", // Combined
   });
+
+  const [vocation, setVocation] = useState("");
+  const [paladinMode, setPaladinMode] = useState("11.40+"); // "11.40+" or "before 11.40"
 
   const [totalArmor, setTotalArmor] = useState(0);
   const [totalAllResistance, setTotalAllResistance] = useState(0);
@@ -34,25 +38,41 @@ function Equipment() {
   // Fetch equipment from API on mount
   useEffect(() => {
     setLoading(true);
-    fetchItemList()
-      .then((data) => {
-        const items = Array.isArray(data) ? data : data.items || [];
-        setApiEquipment(
-          items.filter((item) => item.name && item.name.trim() !== "")
-        );
-      })
-      .catch((err) => setError(err.message || "Failed to load items"))
-      .finally(() => setLoading(false));
+    try {
+      const items = Array.isArray(equipmentList)
+        ? equipmentList
+        : equipmentList.items || [];
+      setApiEquipment(
+        items.filter((item) => item.name && item.name.trim() !== "")
+      );
+    } catch {
+      setApiEquipment([]);
+    }
+    setLoading(false);
   }, []);
 
   // Combine placeholder and API equipment, remove duplicates
   const getAllOptions = (type) => {
     const placeholders = placeholderEquipment[type] || [];
-    const apiNames = apiEquipment
-      .filter(
-        (item) => item.type && item.type.toLowerCase() === type && item.name
-      )
-      .map((item) => item.name);
+    let apiNames = [];
+    if (type === "offhand") {
+      // Combine both quiver and shield types
+      apiNames = apiEquipment
+        .filter(
+          (item) =>
+            item.type &&
+            (item.type.toLowerCase() === "quiver" ||
+              item.type.toLowerCase() === "shield") &&
+            item.name
+        )
+        .map((item) => item.name);
+    } else {
+      apiNames = apiEquipment
+        .filter(
+          (item) => item.type && item.type.toLowerCase() === type && item.name
+        )
+        .map((item) => item.name);
+    }
     return [
       ...placeholders,
       ...apiNames.filter((name) => !placeholders.includes(name)),
@@ -116,12 +136,43 @@ function Equipment() {
 
   return (
     <div>
-      <h1>Equipment Setup</h1>
+      <h1>Equipment</h1>
       {loading && <div>Loading...</div>}
-      {error && <div>Error: {error}</div>}
 
       <label>
+        Vocation:
+        <br />
+        <select value={vocation} onChange={(e) => setVocation(e.target.value)}>
+          <option value="">Select vocation</option>
+          <option value="knight">Knight</option>
+          <option value="paladin">Paladin</option>
+          <option value="sorcerer">Sorcerer</option>
+          <option value="druid">Druid</option>
+        </select>
+      </label>
+
+      {/* Paladin mode switch */}
+      {vocation === "paladin" && (
+        <label>
+          Paladin Equipment Mode:
+          <select
+            value={paladinMode}
+            onChange={(e) => setPaladinMode(e.target.value)}
+          >
+            <option value="11.40+">
+              11.40+ (Weapon + Quiver/Shield/Trinket)
+            </option>
+            <option value="before 11.40">
+              Before 11.40 (Weapon + Ammunition only)
+            </option>
+          </select>
+        </label>
+      )}
+
+      {/* Equipment selection */}
+      <label>
         Helmet:
+        <br />
         <select value={equipment.helmet} onChange={handleChange("helmet")}>
           <option value="">Select helmet</option>
           {getAllOptions("helmet").map((name) => (
@@ -134,6 +185,7 @@ function Equipment() {
       </label>
       <label>
         Armor:
+        <br />
         <select value={equipment.armor} onChange={handleChange("armor")}>
           <option value="">Select armor</option>
           {getAllOptions("armor").map((name) => (
@@ -146,6 +198,7 @@ function Equipment() {
       </label>
       <label>
         Legs:
+        <br />
         <select value={equipment.leg} onChange={handleChange("leg")}>
           <option value="">Select legs</option>
           {getAllOptions("leg").map((name) => (
@@ -158,6 +211,7 @@ function Equipment() {
       </label>
       <label>
         Boots:
+        <br />
         <select value={equipment.boot} onChange={handleChange("boot")}>
           <option value="">Select boots</option>
           {getAllOptions("boot").map((name) => (
@@ -170,6 +224,7 @@ function Equipment() {
       </label>
       <label>
         Amulet:
+        <br />
         <select value={equipment.amulet} onChange={handleChange("amulet")}>
           <option value="">Select amulet</option>
           {getAllOptions("amulet").map((name) => (
@@ -182,6 +237,7 @@ function Equipment() {
       </label>
       <label>
         Ring:
+        <br />
         <select value={equipment.ring} onChange={handleChange("ring")}>
           <option value="">Select ring</option>
           {getAllOptions("ring").map((name) => (
@@ -192,6 +248,68 @@ function Equipment() {
         </select>
         {renderEquipmentProps("ring")}
       </label>
+      <label>
+        Trinket:
+        <br />
+        <select value={equipment.trinket} onChange={handleChange("trinket")}>
+          <option value="">Select trinket</option>
+          {getAllOptions("trinket").map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+        {renderEquipmentProps("trinket")}
+      </label>
+
+      {/* Paladin-specific equipment options */}
+      {vocation === "paladin" && paladinMode === "11.40+" && (
+        <label>
+          Quiver/Shield:
+          <br />
+          <select value={equipment.offhand} onChange={handleChange("offhand")}>
+            <option value="">Select quiver/shield</option>
+            {getAllOptions("offhand").map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+          {renderEquipmentProps("offhand")}
+        </label>
+      )}
+
+      {vocation === "paladin" && paladinMode === "before 11.40" && (
+        <label>
+          Ammunition:
+          <select value={equipment.offhand} onChange={handleChange("offhand")}>
+            <option value="">Select ammunition</option>
+            {getAllOptions("offhand").map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+          {renderEquipmentProps("offhand")}
+        </label>
+      )}
+
+      {/* Other vocations */}
+      {vocation !== "paladin" && (
+        <label>
+          Quiver/Shield:
+                 <br />
+          <select value={equipment.offhand} onChange={handleChange("offhand")}>
+            <option value="">Select quiver/shield</option>
+            {getAllOptions("offhand").map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+          {renderEquipmentProps("offhand")}
+        </label>
+      )}
 
       <h3>Selected Equipment:</h3>
       <ul>
@@ -212,6 +330,12 @@ function Equipment() {
         </li>
         <li>
           <strong>Ring:</strong> {equipment.ring || "None"}
+        </li>
+        <li>
+          <strong>Trinket:</strong> {equipment.trinket || "None"}
+        </li>
+        <li>
+          <strong>Quiver/Shield:</strong> {equipment.offhand || "None"}
         </li>
       </ul>
 

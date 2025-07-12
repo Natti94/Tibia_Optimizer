@@ -10,7 +10,6 @@ function App() {
       <div className="content-wrapper">
         <img src="title.png" alt="Tibia Optimizer" className="app-title" />
         <div className="main-card">
-          <h1>Offense</h1>
           <Weapon />
           <hr />
           <Equipment />
