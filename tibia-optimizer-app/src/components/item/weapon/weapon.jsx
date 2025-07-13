@@ -6,15 +6,15 @@ function Weapon() {
   const [ammunition, setAmmunition] = useState("");
   const [vocation, setVocation] = useState("");
 
-const placeholderWeapons = {
-  sword: ["Sword"],
-  axe: ["Axe"],
-  club: ["Club"],
-  bow: ["Bow"],
-  crossbow: ["Crossbow"],
-  wand: ["Wand"],
-  rod: ["Rod"],
-};
+  const placeholderWeapons = {
+    sword: ["Sword"],
+    axe: ["Axe"],
+    club: ["Club"],
+    bow: ["Bow"],
+    crossbow: ["Crossbow"],
+    wand: ["Wand"],
+    rod: ["Rod"],
+  };
 
   const getAllOptions = (type) => {
     const placeholders = placeholderWeapons[type] || [];
@@ -119,7 +119,7 @@ const placeholderWeapons = {
     <div>
       <h1>Weapon</h1>
       <label>
-        Vocation:
+        Weapon Type [Vocation]:
         <br />
         <select value={vocation} onChange={(e) => setVocation(e.target.value)}>
           <option value="">Select vocation</option>

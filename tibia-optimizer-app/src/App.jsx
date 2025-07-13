@@ -1,6 +1,7 @@
 import Character from "./components/character/chartacter";
 import Weapon from "./components/item/weapon/weapon";
 import Equipment from "./components/item/equipment/equipment";
+import Rune from "./components/item/rune/rune";
 import "./index.css";
 
 function App() {
@@ -12,9 +13,11 @@ function App() {
         <div className="main-card">
           <Character />
           <hr />
+          <Equipment />
+          <hr />
           <Weapon />
           <hr />
-          <Equipment />
+          <Rune />
           <hr />
         </div>
       </div>

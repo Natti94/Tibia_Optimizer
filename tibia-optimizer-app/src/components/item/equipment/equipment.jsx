@@ -142,7 +142,7 @@ function Equipment() {
       <h1>Equipment</h1>
 
       <label>
-        Vocation:
+        Equipment Type [Vocation]:
         <br />
         <select value={vocation} onChange={(e) => setVocation(e.target.value)}>
           <option value="">Select vocation</option>

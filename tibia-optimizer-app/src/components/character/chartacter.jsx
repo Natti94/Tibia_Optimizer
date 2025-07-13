@@ -6,11 +6,11 @@ function Character() {
     level: "",
     magic: "",
     skill: {
-      swordFighting: "",
-      axeFighting: "",
-      clubFighting: "",
-      distanceFighting: "",
-      shielding: "",
+      sword: "",
+      axe: "",
+      club: "",
+      distance: "",
+      shield: "",
     },
   });
 
@@ -61,7 +61,7 @@ function Character() {
     <div>
       <form>
         <h1>Character</h1>
-
+        <h3>Main Attributes</h3>
         <label>
           Vocation:
           <br />
@@ -104,13 +104,13 @@ function Character() {
           <br />
           <input type="number" value={calculatedHealth} readOnly />
         </label>
-
         <label>
           Mana:
           <br />
           <input type="number" value={calculatedMana} readOnly />
         </label>
-        <fieldset>
+        <label>
+          <h3>Secondary Attributes</h3>
           {Object.keys(character.skill).map((skill) => (
             <label key={skill}>
               {skill.charAt(0).toUpperCase() + skill.slice(1)}:
@@ -124,9 +124,9 @@ function Character() {
               />
             </label>
           ))}
-        </fieldset>
+        </label>
         <div>
-          <h4>Vocational Damage Modifiers</h4>
+          <h3>Vocational Damage Modifiers</h3>
           <ul>
             <li>
               Melee: {getVocationModifier(character.vocation, "melee") * 100}%
@@ -142,16 +142,17 @@ function Character() {
         </div>
       </form>
       <div>
-        <h4>Character Stats</h4>
+        <h4>Main Attributes</h4>
         <ul>
           <li>Vocation: {character.vocation}</li>
           <li>Level: {character.level}</li>
           <li>Health: {calculatedHealth}</li>
           <li>Mana: {calculatedMana}</li>
+          <li>Magic: {character.magic}</li>
         </ul>
       </div>
       <div>
-        <h4>Skills</h4>
+        <h4>Secondary Attributes</h4>
         <ul>
           {Object.entries(character.skill).map(([skill, value]) => (
             <li key={skill}>
