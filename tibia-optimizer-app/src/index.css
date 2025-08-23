@@ -98,11 +98,16 @@ input {
     padding: 0.4rem;
     background: #181818;
     color: #fff;
+    box-sizing: border-box; /* <-- Add this line */
 }
 
 ul {
     margin: 0.5rem 0 1rem 0;
     padding-left: 1.2rem;
+}
+
+h1 {
+    text-align: center;
 }
 
 .equipment-summary {
@@ -136,4 +141,82 @@ ul {
     border-radius: 6px;
     box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.1);
     white-space: nowrap;
+}
+
+.skill-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-arrow {
+    background: aqua;
+    color: #181818;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 6px aqua;
+    transition: background 0.2s, color 0.2s;
+}
+
+.skill-arrow:hover {
+    background: #00ffff;
+    color: #000;
+}
+
+
+input[type="number"].skill-input::-webkit-inner-spin-button,
+input[type="number"].skill-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    display: none;
+}
+
+input[type="number"].skill-input {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.vocation-content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition:
+        opacity 0.8s cubic-bezier(.4, 2, .6, 1),
+        max-height 0.8s cubic-bezier(.4, 2, .6, 1),
+        transform 0.8s cubic-bezier(.4, 2, .6, 1);
+    will-change: opacity, max-height, transform;
+}
+
+.vocation-content.show {
+    opacity: 1;
+    max-height: 2000px;
+    transform: translateY(0);
+    transition:
+        opacity 0.8s cubic-bezier(.4, 2, .6, 1),
+        max-height 0.8s cubic-bezier(.4, 2, .6, 1),
+        transform 0.8s cubic-bezier(.4, 2, .6, 1);
+}
+
+.select-vocation-message {
+    background: rgba(0, 255, 255, 0.08);
+    border: 1.5px solid aqua;
+    color: #fff;
+    border-radius: 8px;
+    padding: 1.2rem 1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: monospace;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.12);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }

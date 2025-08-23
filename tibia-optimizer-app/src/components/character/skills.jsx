@@ -1,0 +1,192 @@
+function Skills({ main, setMain, secondary, setSecondary }) {
+  const VOCATION_MODIFIERS = {
+    knight: { health: 15, mana: 5, melee: 1.0, distance: 0.55, magic: 0.3 },
+    paladin: { health: 10, mana: 15, melee: 0.7, distance: 1.0, magic: 0.5 },
+    sorcerer: { health: 5, mana: 30, melee: 0.3, distance: 0.4, magic: 1.0 },
+    druid: { health: 5, mana: 30, melee: 0.3, distance: 0.4, magic: 1.0 },
+    "": { health: 0, mana: 0, melee: 0.5, distance: 0.5, magic: 0.5 },
+  };
+
+  const handleMainChange = (e) => {
+    const { name, value } = e.target;
+    setMain((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSecondaryChange = (e) => {
+    const { name, value } = e.target;
+    setSecondary((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const getVocationModifier = (vocation, type) => {
+    const mods = VOCATION_MODIFIERS[vocation] || VOCATION_MODIFIERS[""];
+    return mods[type] || 1;
+  };
+
+  const levelNum = parseInt(main.level) || 0;
+  const vocationMods =
+    VOCATION_MODIFIERS[main.vocation] || VOCATION_MODIFIERS[""];
+  const calculatedHealth = levelNum * vocationMods.health;
+  const calculatedMana = levelNum * vocationMods.mana;
+
+  const meleeEffective = 100 * getVocationModifier(main.vocation, "melee");
+  const distanceEffective =
+    100 * getVocationModifier(main.vocation, "distance");
+  const magicEffective = 100 * getVocationModifier(main.vocation, "magic");
+
+  return (
+    <div>
+      <form>
+        <h2>Skills</h2>
+        <h3>Main Attributes</h3>
+        <label>
+          Vocation:
+          <br />
+          <select
+            name="vocation"
+            value={main.vocation}
+            onChange={handleMainChange}
+          >
+            <option value="">Select Vocation</option>
+            <option value="knight">Knight</option>
+            <option value="paladin">Paladin</option>
+            <option value="sorcerer">Sorcerer</option>
+            <option value="druid">Druid</option>
+          </select>
+        </label>
+        <br />
+        <br />
+        {!main.vocation && (
+          <div className="select-vocation-message">
+            <strong>
+              🛈 Please select a vocation to view and edit your character's
+              attributes.
+            </strong>
+          </div>
+        )}
+
+        <div className={`vocation-content${main.vocation ? " show" : ""}`}>
+          {main.vocation && (
+            <>
+              <label>
+                Level:
+                <br />
+                <input
+                  type="number"
+                  name="level"
+                  value={main.level}
+                  onChange={handleMainChange}
+                  min="1"
+                  className="skill-input"
+                />
+              </label>
+              <label>
+                Magic Level:
+                <br />
+                <input
+                  type="number"
+                  name="magic"
+                  value={main.magic}
+                  onChange={handleMainChange}
+                  min="1"
+                  className="skill-input"
+                />
+              </label>
+              <label>
+                Health:
+                <br />
+                <input
+                  type="number"
+                  value={calculatedHealth}
+                  readOnly
+                  className="skill-input"
+                  tabIndex={-1}
+                />
+              </label>
+              <label>
+                Mana:
+                <br />
+                <input
+                  type="number"
+                  value={calculatedMana}
+                  readOnly
+                  className="skill-input"
+                  tabIndex={-1}
+                />
+              </label>
+              <h3>Secondary Attributes</h3>
+              {Object.keys(secondary).map((skill) => (
+                <label key={skill}>
+                  {skill.charAt(0).toUpperCase() + skill.slice(1)}:
+                  <br />
+                  <input
+                    type="number"
+                    name={skill}
+                    value={secondary[skill]}
+                    onChange={handleSecondaryChange}
+                    min="0"
+                    className="skill-input"
+                  />
+                </label>
+              ))}
+              <div>
+                <h3>Modifier</h3>
+                <ul>
+                  <li>
+                    Melee: {getVocationModifier(main.vocation, "melee") * 100}%
+                  </li>
+                  <li>
+                    Distance:{" "}
+                    {getVocationModifier(main.vocation, "distance") * 100}%
+                  </li>
+                  <li>
+                    Magic: {getVocationModifier(main.vocation, "magic") * 100}%
+                  </li>
+                </ul>
+              </div>
+            </>
+          )}
+        </div>
+      </form>
+      {main.vocation && (
+        <>
+          <div>
+            <h4>Main Attributes</h4>
+            <ul>
+              <li>Vocation: {main.vocation}</li>
+              <li>Level: {main.level}</li>
+              <li>Health: {calculatedHealth}</li>
+              <li>Mana: {calculatedMana}</li>
+              <li>Magic: {main.magic}</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Secondary Attributes</h4>
+            <ul>
+              {Object.entries(secondary).map(([skill, value]) => (
+                <li key={skill}>
+                  {skill.charAt(0).toUpperCase() + skill.slice(1)}: {value}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4>Effective Damage</h4>
+            <ul>
+              <li>Melee Effective: {meleeEffective}</li>
+              <li>Distance Effective: {distanceEffective}</li>
+              <li>Magic Effective: {magicEffective}</li>
+            </ul>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default Skills;

@@ -1,37 +1,33 @@
 import { useState } from "react";
-import Character from "./components/chartacter";
-import Equipment from "./components/character/equipments";
-import Weapon from "./components/character/weapons";
-import Rune from "./components/character/runes";
+import Skills from "./components/character/skills";
+import Equipments from "./components/character/items/equipments";
+import Weapons from "./components/character/items/weapons";
+import Runes from "./components/character/items/runes";
 import "./index.css";
 
 function App() {
-  const [vocation, setVocation] = useState("");
-  const [character, setCharacter] = useState({
+  const [main, setMain] = useState({
     vocation: "",
     level: "",
     magic: "",
-    skill: {
-      sword: "",
-      axe: "",
-      club: "",
-      distance: "",
-      shield: "",
-    },
+  });
+  const [secondary, setSecondary] = useState({
+    sword: "",
+    axe: "",
+    club: "",
+    distance: "",
+    shield: "",
   });
   const [equipment, setEquipment] = useState({});
   const [weapon, setWeapon] = useState({});
 
-  // Calculate total +magic level from equipment and weapon
   const getMagicLevelBonus = () => {
     let bonus = 0;
-    // Sum equipment bonuses
     Object.values(equipment).forEach((item) => {
       if (item && item.skills && item.skills.magicLevel) {
         bonus += Number(item.skills.magicLevel);
       }
     });
-    // Add weapon bonus
     if (weapon && weapon.skills && weapon.skills.magicLevel) {
       bonus += Number(weapon.skills.magicLevel);
     }
@@ -39,7 +35,7 @@ function App() {
   };
 
   const effectiveMagicLevel =
-    (parseInt(character.magic) || 0) + getMagicLevelBonus();
+    (parseInt(main.magic) || 0) + getMagicLevelBonus();
 
   return (
     <div className="app-container">
@@ -47,29 +43,27 @@ function App() {
       <div className="content-wrapper">
         <img src="title.png" alt="Tibia Optimizer" className="app-title" />
         <div className="main-card">
-          <Character
-            vocation={vocation}
-            setVocation={setVocation}
-            character={character}
-            setCharacter={setCharacter}
+          <h1>Character</h1>
+          <Skills
+            main={main}
+            setMain={setMain}
+            secondary={secondary}
+            setSecondary={setSecondary}
           />
           <hr />
-          <Equipment
-            vocation={vocation}
+          <Equipments
+            vocation={main.vocation}
             equipment={equipment}
             setEquipment={setEquipment}
           />
           <hr />
-          <Weapon
-            vocation={vocation}
+          <Weapons
+            vocation={main.vocation}
             weapon={weapon}
             setWeapon={setWeapon}
           />
           <hr />
-          <Rune
-            character={{ ...character, magic: effectiveMagicLevel }}
-            // pass effectiveMagicLevel if you want
-          />
+          <Runes character={{ ...main, magic: effectiveMagicLevel }} />
           <hr />
         </div>
       </div>
