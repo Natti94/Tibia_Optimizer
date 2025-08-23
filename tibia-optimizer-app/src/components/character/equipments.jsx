@@ -158,7 +158,7 @@ function Equipment({ vocation }) {
             value={paladinMode}
             onChange={(e) => setPaladinMode(e.target.value)}
           >
-            <option value="12.5+">Tibia - V. 12.5+ ..</option>
+            <option value="12.5+">Tibia - V. 12.5+..</option>
             <option value="before 12.5">Tibia - V. 5.00.. - 12.4..</option>
           </select>
         </label>

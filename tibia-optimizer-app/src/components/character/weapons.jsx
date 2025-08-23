@@ -109,7 +109,6 @@ function Weapon({ vocation }) {
     );
   };
 
-  // Handle select change
   const handleChange = (event) => {
     setWeapon(event.target.value);
   };
