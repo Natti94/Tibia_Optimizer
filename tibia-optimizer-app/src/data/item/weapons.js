@@ -4,7 +4,7 @@ export const weaponList = [
     name: "Sword",
     type: "weapon",
     attack: 19,
-    damage: null, // or { min: 0, max: 0 } if you want to be explicit
+    damage: null,
     typeDamage: "physical",
     resistanceAll: 0,
     resistance: {},

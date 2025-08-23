@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Character() {
+function Character({ setVocation }) {
   const [character, setCharacter] = useState({
     vocation: "",
     level: "",
@@ -24,6 +24,9 @@ function Character() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "vocation" && setVocation) {
+      setVocation(value);
+    }
     setCharacter((prev) => ({
       ...prev,
       [name]: value,

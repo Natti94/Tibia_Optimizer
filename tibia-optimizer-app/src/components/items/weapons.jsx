@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { weaponList } from "../../../data/item/weapon/weapon";
+import { weaponList } from "../../data/item/weapons";
 
-function Weapon() {
+function Weapon({ vocation }) {
   const [weapon, setWeapon] = useState("");
   const [ammunition, setAmmunition] = useState("");
-  const [vocation, setVocation] = useState("");
 
   const placeholderWeapons = {
     sword: ["Sword"],
@@ -119,9 +118,8 @@ function Weapon() {
     <div>
       <h1>Weapon</h1>
       <label>
-        Weapon Type [Vocation]:
-        <br />
-        <select value={vocation} onChange={(e) => setVocation(e.target.value)}>
+        <h4>Vocation that is selected from Character:</h4>
+        <select value={vocation} disabled>
           <option value="">Select vocation</option>
           <option value="knight">Knight</option>
           <option value="paladin">Paladin</option>

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { equipmentList } from "../../../data/item/equipment/equipment";
+import { equipmentList } from "../../data/item/equipments";
 
-function Equipment() {
+function Equipment({ vocation }) {
   const [equipment, setEquipment] = useState({
     helmet: "",
     armor: "",
@@ -13,7 +13,6 @@ function Equipment() {
     offhand: "",
   });
 
-  const [vocation, setVocation] = useState("");
   const [paladinMode, setPaladinMode] = useState("12.5+");
   const [totalArmor, setTotalArmor] = useState(0);
   const [totalAllResistance, setTotalAllResistance] = useState(0);
@@ -142,9 +141,8 @@ function Equipment() {
       <h1>Equipment</h1>
 
       <label>
-        Equipment Type [Vocation]:
-        <br />
-        <select value={vocation} onChange={(e) => setVocation(e.target.value)}>
+        <h4>Vocation that is selected from Character:</h4>
+        <select value={vocation} disabled>
           <option value="">Select vocation</option>
           <option value="knight">Knight</option>
           <option value="paladin">Paladin</option>

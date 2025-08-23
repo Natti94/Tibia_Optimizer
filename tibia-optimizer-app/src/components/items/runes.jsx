@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { runeList } from "../../../data/item/rune/rune";
+import { runeList } from "../../data/item/rune/rune";
 
 function Rune() {
   const [selectedRune, setSelectedRune] = useState(null);
