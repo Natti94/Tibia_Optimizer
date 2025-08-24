@@ -42,8 +42,6 @@ function Skills({ main, setMain, secondary, setSecondary }) {
   return (
     <div>
       <form>
-        <h2>Skills</h2>
-        <h3>Main Attributes</h3>
         <label>
           Vocation:
           <br />
@@ -58,9 +56,9 @@ function Skills({ main, setMain, secondary, setSecondary }) {
             <option value="sorcerer">Sorcerer</option>
             <option value="druid">Druid</option>
           </select>
+          <hr />
+          <h2>Skills</h2>
         </label>
-        <br />
-        <br />
         {!main.vocation && (
           <div className="select-vocation-message">
             <strong>
@@ -69,11 +67,11 @@ function Skills({ main, setMain, secondary, setSecondary }) {
             </strong>
           </div>
         )}
-
         <div className={`vocation-content${main.vocation ? " show" : ""}`}>
           {main.vocation && (
             <>
               <label>
+                <h3>Main Attributes</h3>
                 Level:
                 <br />
                 <input
@@ -119,6 +117,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                   tabIndex={-1}
                 />
               </label>
+              <br />
               <h3>Secondary Attributes</h3>
               {Object.keys(secondary).map((skill) => (
                 <label key={skill}>

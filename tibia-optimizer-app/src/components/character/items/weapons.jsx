@@ -127,8 +127,11 @@ function Weapon({ vocation }) {
         {vocation && (
           <>
             <label>
-               <h4>🛈 Your vocation has already been selected.</h4>
-               <h5>This now displays the weapon options available for your vocation.</h5>
+              <h4>🛈 Your vocation has already been selected.</h4>
+              <h5>
+                This now displays the weapon options available for your
+                vocation.
+              </h5>
               <select value={vocation} disabled>
                 <option value="">Select vocation</option>
                 <option value="knight">Knight</option>

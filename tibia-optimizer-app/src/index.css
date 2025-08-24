@@ -98,7 +98,8 @@ input {
     padding: 0.4rem;
     background: #181818;
     color: #fff;
-    box-sizing: border-box; /* <-- Add this line */
+    box-sizing: border-box;
+    /* <-- Add this line */
 }
 
 ul {

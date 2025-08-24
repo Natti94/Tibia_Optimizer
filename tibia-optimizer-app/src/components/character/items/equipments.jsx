@@ -17,6 +17,7 @@ function Equipments({ vocation }) {
   const [totalArmor, setTotalArmor] = useState(0);
   const [totalAllResistance, setTotalAllResistance] = useState(0);
   const [totalSpecificResistance, setTotalSpecificResistance] = useState({});
+  const [skillSum, setSkillSum] = useState({});
 
   const placeholderEquipment = {
     helmet: ["helmet"],
@@ -27,6 +28,10 @@ function Equipments({ vocation }) {
     ring: ["ring"],
     trinket: ["trinket"],
     offhand: ["offhand"],
+  };
+
+  const forceCasing = (str) => {
+    return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
   };
 
   const getAllOptions = (type) => {
@@ -94,6 +99,7 @@ function Equipments({ vocation }) {
     let armorSum = 0;
     let resistanceOverallSum = 0;
     let resistanceSpecificSum = {};
+    let skillSum = {};
 
     Object.values(equipment).forEach((equipmentName) => {
       const selected = (Array.isArray(equipmentList) ? equipmentList : []).find(
@@ -110,11 +116,17 @@ function Equipments({ vocation }) {
             (resistanceSpecificSum[element] || 0) + value;
         });
       }
+      if (selected.skills) {
+        Object.entries(selected.skills).forEach(([element, value]) => {
+          skillSum[element] = (skillSum[element] || 0) + (value || 0);
+        });
+      }
     });
 
     setTotalArmor(armorSum);
     setTotalAllResistance(resistanceOverallSum);
     setTotalSpecificResistance(resistanceSpecificSum);
+    setSkillSum(skillSum);
   };
 
   const renderEquipmentProps = (type) => {
@@ -129,7 +141,15 @@ function Equipments({ vocation }) {
         {obj.resistance &&
           Object.entries(obj.resistance).map(([element, value]) => (
             <li key={element}>
-              {element}: {value}%
+              {forceCasing(element)}:{" "}
+              {typeof value === "string" ? forceCasing(value) : value}%
+            </li>
+          ))}
+        {obj.skills &&
+          Object.entries(obj.skills).map(([element, value]) => (
+            <li key={element}>
+              {forceCasing(element)}:{" "}
+              {typeof value === "string" ? forceCasing(value) : value}
             </li>
           ))}
       </ul>
@@ -141,7 +161,9 @@ function Equipments({ vocation }) {
       <h2>Equipments</h2>
       {!vocation && (
         <div className="select-vocation-message">
-          <strong>🛈 Please select a vocation to view and manage equipment.</strong>
+          <strong>
+            🛈 Please select a vocation to view and manage equipment.
+          </strong>
         </div>
       )}
       <div className={`vocation-content${vocation ? " show" : ""}`}>
@@ -149,7 +171,10 @@ function Equipments({ vocation }) {
           <>
             <label>
               <h4>🛈 Your vocation has already been selected.</h4>
-              <h5>This now displays the equipment options available for your vocation.</h5>
+              <h5>
+                This now displays the equipment options available for your
+                vocation.
+              </h5>
               <select value={vocation} disabled>
                 <option value="">Select vocation</option>
                 <option value="knight">Knight</option>
@@ -167,7 +192,9 @@ function Equipments({ vocation }) {
                   onChange={(e) => setPaladinMode(e.target.value)}
                 >
                   <option value="12.5+">Tibia - V. 12.5+..</option>
-                  <option value="before 12.5">Tibia - V. 5.00.. - 12.4..</option>
+                  <option value="before 12.5">
+                    Tibia - V. 5.00.. - 12.4..
+                  </option>
                 </select>
               </label>
             )}
@@ -176,7 +203,10 @@ function Equipments({ vocation }) {
             <label>
               Helmet:
               <br />
-              <select value={equipment.helmet} onChange={handleChange("helmet")}>
+              <select
+                value={equipment.helmet}
+                onChange={handleChange("helmet")}
+              >
                 <option value="">Select Helmet</option>
                 {getAllOptions("helmet").map((name) => (
                   <option key={name} value={name}>
@@ -228,7 +258,10 @@ function Equipments({ vocation }) {
             <label>
               Amulet:
               <br />
-              <select value={equipment.amulet} onChange={handleChange("amulet")}>
+              <select
+                value={equipment.amulet}
+                onChange={handleChange("amulet")}
+              >
                 <option value="">Select Amulet</option>
                 {getAllOptions("amulet").map((name) => (
                   <option key={name} value={name}>
@@ -254,7 +287,10 @@ function Equipments({ vocation }) {
             <label>
               Trinket:
               <br />
-              <select value={equipment.trinket} onChange={handleChange("trinket")}>
+              <select
+                value={equipment.trinket}
+                onChange={handleChange("trinket")}
+              >
                 <option value="">Select Trinket</option>
                 {getAllOptions("trinket").map((name) => (
                   <option key={name} value={name}>
@@ -357,7 +393,7 @@ function Equipments({ vocation }) {
               </li>
             </ul>
 
-            <h3>Calculate Defense:</h3>
+            <h3>Calculate:</h3>
             <button className="calculate-button" onClick={calculateTotals}>
               =
             </button>
@@ -369,15 +405,30 @@ function Equipments({ vocation }) {
               <strong>Total All Resistance: </strong>
               {totalAllResistance}%
             </p>
-            <p>
-              <strong>Element Specific Resistance: </strong>
-            </p>
+
             <ul>
-              {Object.entries(totalSpecificResistance).map(([element, value]) => (
-                <li key={element}>
-                  {element}: {value}%
-                </li>
-              ))}
+              <p>
+                <strong>Element Specific Resistance: </strong>
+              </p>
+              {Object.entries(totalSpecificResistance).map(
+                ([element, value]) => (
+                  <li key={element}>
+                    {forceCasing(element)}: {value}%
+                  </li>
+                )
+              )}
+            </ul>
+            <ul>
+              <p>
+                <strong>Skill Sum:</strong>
+              </p>
+              <ul>
+                {Object.entries(skillSum).map(([element, value]) => (
+                  <li key={element}>
+                    {forceCasing(element)}: {value}
+                  </li>
+                ))}
+              </ul>
             </ul>
           </>
         )}
