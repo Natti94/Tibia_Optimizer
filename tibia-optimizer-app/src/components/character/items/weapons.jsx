@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { weaponList } from "../../../data/character/items/weapons";
 
-function Weapon({ vocation }) {
-  const [weapon, setWeapon] = useState("");
-  const [ammunition, setAmmunition] = useState("");
+function Weapons({ vocation, weapon, setWeapon }) {
+  const forceCasing = (str) =>
+    str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
 
   const placeholderWeapons = {
     sword: ["Sword"],
@@ -13,10 +12,6 @@ function Weapon({ vocation }) {
     crossbow: ["Crossbow"],
     wand: ["Wand"],
     rod: ["Rod"],
-  };
-
-  const forceCasing = (str) => {
-    return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
   };
 
   const getAllOptions = (type) => {
@@ -33,8 +28,8 @@ function Weapon({ vocation }) {
     ];
   };
 
-  const selectedWeaponObj = (Array.isArray(weaponList) ? weaponList : []).find(
-    (item) => item.name === weapon
+  const selectedWeaponObj = weaponList.find(
+    (item) => item.name === weapon.weapon
   );
 
   const isCrossbow =
@@ -46,27 +41,6 @@ function Weapon({ vocation }) {
     selectedWeaponObj.name &&
     selectedWeaponObj.name.toLowerCase().includes("bow") &&
     !isCrossbow;
-
-  let totalAttack = 0;
-  let totalDamage = 0;
-  if (selectedWeaponObj) {
-    if (vocation === "knight" || vocation === "paladin") {
-      totalAttack = selectedWeaponObj.attack || 0;
-      totalDamage = 0;
-    } else if (vocation === "sorcerer" || vocation === "druid") {
-      if (
-        selectedWeaponObj.damage &&
-        typeof selectedWeaponObj.damage === "object"
-      ) {
-        const { min = 0, max = 0 } = selectedWeaponObj.damage;
-        totalAttack = 0;
-        totalDamage = (min + max) / 2;
-      } else {
-        totalAttack = 0;
-        totalDamage = selectedWeaponObj.damage || 0;
-      }
-    }
-  }
 
   const renderWeaponProps = () => {
     const obj = selectedWeaponObj;
@@ -84,7 +58,7 @@ function Weapon({ vocation }) {
               : obj.damage}
           </li>
         )}
-        {obj.typeDamage && <li>Type: {obj.typeDamage}</li>}
+        {obj.typeDamage && <li>Type: {forceCasing(obj.typeDamage)}</li>}
         {obj.resistanceAll !== undefined && obj.resistanceAll !== 0 && (
           <li>All Resistance: {obj.resistanceAll}%</li>
         )}
@@ -102,10 +76,6 @@ function Weapon({ vocation }) {
           ))}
       </ul>
     );
-  };
-
-  const handleChange = (event) => {
-    setWeapon(event.target.value);
   };
 
   return (
@@ -138,29 +108,37 @@ function Weapon({ vocation }) {
             <br />
             <br />
             {vocation === "knight" && (
-              <>
-                <label>
-                  Weapon:
-                  <br />
-                  <select value={weapon} onChange={handleChange}>
-                    <option value="">Select Weapon</option>
-                    {["sword", "axe", "club"].flatMap((type) =>
-                      getAllOptions(type).map((name) => (
-                        <option key={name} value={name}>
-                          {name}
-                        </option>
-                      ))
-                    )}
-                  </select>
-                </label>
-              </>
+              <label>
+                Weapon:
+                <br />
+                <select
+                  value={weapon.weapon}
+                  onChange={(e) =>
+                    setWeapon({ ...weapon, weapon: e.target.value })
+                  }
+                >
+                  <option value="">Select Weapon</option>
+                  {["sword", "axe", "club"].flatMap((type) =>
+                    getAllOptions(type).map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </label>
             )}
             {vocation === "paladin" && (
               <>
                 <label>
                   Weapon:
                   <br />
-                  <select value={weapon} onChange={handleChange}>
+                  <select
+                    value={weapon.weapon}
+                    onChange={(e) =>
+                      setWeapon({ ...weapon, weapon: e.target.value })
+                    }
+                  >
                     <option value="">Select Weapon</option>
                     {["bow", "crossbow"].flatMap((type) =>
                       getAllOptions(type).map((name) => (
@@ -176,8 +154,10 @@ function Weapon({ vocation }) {
                     Arrow:
                     <br />
                     <select
-                      value={ammunition}
-                      onChange={(e) => setAmmunition(e.target.value)}
+                      value={weapon.ammunition}
+                      onChange={(e) =>
+                        setWeapon({ ...weapon, ammunition: e.target.value })
+                      }
                     >
                       <option value="">Select arrow</option>
                       <option value="Arrow">Arrow</option>
@@ -189,8 +169,10 @@ function Weapon({ vocation }) {
                     Bolt:
                     <br />
                     <select
-                      value={ammunition}
-                      onChange={(e) => setAmmunition(e.target.value)}
+                      value={weapon.ammunition}
+                      onChange={(e) =>
+                        setWeapon({ ...weapon, ammunition: e.target.value })
+                      }
                     >
                       <option value="">Select Bolt</option>
                       <option value="Bolt">Bolt</option>
@@ -200,53 +182,48 @@ function Weapon({ vocation }) {
               </>
             )}
             {vocation === "sorcerer" && (
-              <>
-                <label>
-                  Weapon:
-                  <br />
-                  <select value={weapon} onChange={handleChange}>
-                    <option value="">Select Weapon</option>
-                    {["wand"].flatMap((type) =>
-                      getAllOptions(type).map((name) => (
-                        <option key={name} value={name}>
-                          {name}
-                        </option>
-                      ))
-                    )}
-                  </select>
-                </label>
-              </>
+              <label>
+                Weapon:
+                <br />
+                <select
+                  value={weapon.weapon}
+                  onChange={(e) =>
+                    setWeapon({ ...weapon, weapon: e.target.value })
+                  }
+                >
+                  <option value="">Select Weapon</option>
+                  {["wand"].flatMap((type) =>
+                    getAllOptions(type).map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </label>
             )}
             {vocation === "druid" && (
-              <>
-                <label>
-                  Weapon:
-                  <br />
-                  <select value={weapon} onChange={handleChange}>
-                    <option value="">Select weapon</option>
-                    {["rod"].flatMap((type) =>
-                      getAllOptions(type).map((name) => (
-                        <option key={name} value={name}>
-                          {name}
-                        </option>
-                      ))
-                    )}
-                  </select>
-                </label>
-              </>
+              <label>
+                Weapon:
+                <br />
+                <select
+                  value={weapon.weapon}
+                  onChange={(e) =>
+                    setWeapon({ ...weapon, weapon: e.target.value })
+                  }
+                >
+                  <option value="">Select weapon</option>
+                  {["rod"].flatMap((type) =>
+                    getAllOptions(type).map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))
+                  )}
+                </select>
+              </label>
             )}
             {renderWeaponProps()}
-
-            <p>
-              <strong>
-                {vocation === "knight" || vocation === "paladin"
-                  ? "Total Attack: "
-                  : "Total Damage: "}
-              </strong>
-              {vocation === "knight" || vocation === "paladin"
-                ? totalAttack
-                : totalDamage}
-            </p>
           </>
         )}
       </div>
@@ -254,4 +231,4 @@ function Weapon({ vocation }) {
   );
 }
 
-export default Weapon;
+export default Weapons;

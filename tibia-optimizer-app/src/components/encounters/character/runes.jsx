@@ -55,7 +55,7 @@ function Rune({ character }) {
       <h2>Runes</h2>
       {!character.vocation && (
         <div className="select-vocation-message">
-          <strong>🛈 Please select a vocation to view rune calculations.</strong>
+         <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
       <div className={`vocation-content${character.vocation ? " show" : ""}`}>

@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Skills from "./components/character/skills";
+import Nav from "./components/nav";
 import Equipments from "./components/character/items/equipments";
 import Weapons from "./components/character/items/weapons";
 import Runes from "./components/encounters/character/runes";
@@ -48,6 +50,8 @@ function App() {
   let skillSum = { ...secondary };
   let magicLevelBonus = 0;
 
+  const effectiveMagicLevel = (parseInt(main.magic) || 0) + magicLevelBonus;
+
   const addTo = (obj, key, value) => {
     obj[key] = (parseInt(obj[key]) || 0) + (parseInt(value) || 0);
   };
@@ -75,6 +79,20 @@ function App() {
   const selectedWeaponObj = weaponList.find(
     (item) => item.name === weapon.weapon
   );
+
+  let totalAttack = 0;
+  let totalDamage = 0;
+  if (selectedWeaponObj) {
+    totalAttack = selectedWeaponObj.attack || 0;
+    if (typeof selectedWeaponObj.damage === "object") {
+      totalDamage =
+        ((selectedWeaponObj.damage.min || 0) +
+          (selectedWeaponObj.damage.max || 0)) /
+        2;
+    } else {
+      totalDamage = selectedWeaponObj.damage || 0;
+    }
+  }
   if (selectedWeaponObj) {
     if (selectedWeaponObj.attack)
       addTo(skillSum, "attack", selectedWeaponObj.attack);
@@ -95,15 +113,16 @@ function App() {
     }
   }
 
-  const effectiveMagicLevel = (parseInt(main.magic) || 0) + magicLevelBonus;
-
   return (
     <div className="app-container">
-      <img className="background" src="background.png" alt="background" />
-      <div className="content-wrapper">
-        <img src="title.png" alt="Tibia Optimizer" className="app-title" />
-        <div className="main-card">
-          <h1>Character</h1>
+      <BrowserRouter>
+        <Nav />
+      </BrowserRouter>
+        <img className="background" src="background.png" alt="background" />
+        <div className="content-wrapper">
+          <img src="title.png" alt="Tibia Optimizer" className="app-title" />
+          <div className="main-card">
+            <h1>Character</h1>
           <div style={{ marginBottom: "1.5rem" }}>
             <label>
               <strong>Vocation:</strong>
@@ -126,7 +145,6 @@ function App() {
               </select>
             </label>
           </div>
-
           <div style={{ marginBottom: "1rem" }}>
             <button
               className="collapse-toggle"
@@ -148,8 +166,6 @@ function App() {
               />
             )}
           </div>
-
-          <hr />
 
           <div style={{ marginBottom: "1rem" }}>
             <button
@@ -176,8 +192,6 @@ function App() {
               />
             )}
           </div>
-
-          <hr />
 
           <div style={{ marginBottom: "1rem" }}>
             <button
@@ -242,10 +256,11 @@ function App() {
                 <strong>Trinket:</strong> {equipment.trinket || "None"}
               </p>
               <p>
-                <strong>Offhand:</strong> {equipment.offhand || "None"}
+                <strong>Shield/Offhand/Spellbook:</strong>{" "}
+                {equipment.offhand || "None"}
               </p>
             </div>
-            <h4>Totals</h4>
+            <br />
             <ul>
               <li>
                 <strong>Total Armor:</strong> {totalArmor}
@@ -254,7 +269,7 @@ function App() {
                 <strong>Total All Resistance:</strong> {totalAllResistance}%
               </li>
               <li>
-                <strong>Element Specific Resistance:</strong>
+                <strong>Total Element Specific Resistance:</strong>
                 <ul>
                   {Object.entries(totalSpecificResistance).map(
                     ([element, value]) => (
@@ -266,22 +281,31 @@ function App() {
                 </ul>
               </li>
               <li>
-                <strong>Skill Sum:</strong>
+                <strong>Total Skills:</strong>
                 <ul>
-                  {Object.entries(skillSum).map(([skill, value]) => (
-                    <li key={skill}>
-                      {forceCasing(skill)}: {value}
-                    </li>
-                  ))}
+                  {Object.entries(skillSum)
+                    .filter(
+                      ([skill]) => skill !== "attack" && skill !== "damage"
+                    )
+                    .map(([skill, value]) => (
+                      <li key={skill}>
+                        {forceCasing(skill)}: {value}
+                      </li>
+                    ))}
                 </ul>
+              </li>
+              <li>
+                <strong>Total Attack:</strong> {totalAttack}
+              </li>
+              <li>
+                <strong>Total Damage:</strong> {totalDamage}
               </li>
             </ul>
           </div>
-
+          <br />
+          <hr />
           <h1>Encounter</h1>
           <Runes character={{ ...main, magic: effectiveMagicLevel }} />
-
-          <hr />
         </div>
       </div>
     </div>

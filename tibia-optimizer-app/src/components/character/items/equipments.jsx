@@ -1,23 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { equipmentList } from "../../../data/character/items/equipments";
 
-function Equipments({ vocation }) {
-  const [equipment, setEquipment] = useState({
-    helmet: "",
-    armor: "",
-    leg: "",
-    boot: "",
-    amulet: "",
-    ring: "",
-    trinket: "",
-    offhand: "",
-  });
-
+function Equipments({ vocation, equipment, setEquipment }) {
   const [paladinMode, setPaladinMode] = useState("12.5+");
-  const [totalArmor, setTotalArmor] = useState(0);
-  const [totalAllResistance, setTotalAllResistance] = useState(0);
-  const [totalSpecificResistance, setTotalSpecificResistance] = useState({});
-  const [skillSum, setSkillSum] = useState({});
+
+  const forceCasing = (str) =>
+    str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
 
   const placeholderEquipment = {
     helmet: ["helmet"],
@@ -28,10 +16,6 @@ function Equipments({ vocation }) {
     ring: ["ring"],
     trinket: ["trinket"],
     offhand: ["offhand"],
-  };
-
-  const forceCasing = (str) => {
-    return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
   };
 
   const getAllOptions = (type) => {
@@ -95,40 +79,6 @@ function Equipments({ vocation }) {
     setEquipment((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  useEffect(() => {
-    let armorSum = 0;
-    let resistanceOverallSum = 0;
-    let resistanceSpecificSum = {};
-    let skillSumObj = {};
-
-    Object.values(equipment).forEach((equipmentName) => {
-      const selected = equipmentList.find(
-        (item) => item.name === equipmentName
-      );
-      if (!selected) return;
-      armorSum += selected.armor || 0;
-      if (selected.resistanceAll) {
-        resistanceOverallSum += selected.resistanceAll;
-      }
-      if (selected.resistance) {
-        Object.entries(selected.resistance).forEach(([element, value]) => {
-          resistanceSpecificSum[element] =
-            (resistanceSpecificSum[element] || 0) + value;
-        });
-      }
-      if (selected.skills) {
-        Object.entries(selected.skills).forEach(([element, value]) => {
-          skillSumObj[element] = (skillSumObj[element] || 0) + (value || 0);
-        });
-      }
-    });
-
-    setTotalArmor(armorSum);
-    setTotalAllResistance(resistanceOverallSum);
-    setTotalSpecificResistance(resistanceSpecificSum);
-    setSkillSum(skillSumObj);
-  }, [equipment]);
-
   const renderEquipmentProps = (type) => {
     const obj = getSelectedEquipmentObj(type);
     if (!obj) return null;
@@ -161,9 +111,7 @@ function Equipments({ vocation }) {
       <h2>Equipments</h2>
       {!vocation && (
         <div className="select-vocation-message">
-          <strong>
-            🛈 Please select a vocation to view and manage equipment.
-          </strong>
+          <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
       <div className={`vocation-content${vocation ? " show" : ""}`}>
@@ -356,70 +304,6 @@ function Equipments({ vocation }) {
                 {renderEquipmentProps("offhand")}
               </label>
             )}
-            <h3>Selected Equipment:</h3>
-            <ul>
-              <li>
-                <strong>Helmet:</strong> {equipment.helmet || "None"}
-              </li>
-              <li>
-                <strong>Armor:</strong> {equipment.armor || "None"}
-              </li>
-              <li>
-                <strong>Legs:</strong> {equipment.leg || "None"}
-              </li>
-              <li>
-                <strong>Boots:</strong> {equipment.boot || "None"}
-              </li>
-              <li>
-                <strong>Amulet:</strong> {equipment.amulet || "None"}
-              </li>
-              <li>
-                <strong>Ring:</strong> {equipment.ring || "None"}
-              </li>
-              <li>
-                <strong>Trinket:</strong> {equipment.trinket || "None"}
-              </li>
-              <li>
-                <strong>
-                  {vocation === "paladin"
-                    ? paladinMode === "12.5+"
-                      ? "Quiver"
-                      : "Ammunition"
-                    : vocation === "knight"
-                    ? "Shield"
-                    : "Spellbook"}
-                  :
-                </strong>{" "}
-                {equipment.offhand || "None"}
-              </li>
-            </ul>
-            <p>
-              <strong>Total Armor: </strong>
-              {totalArmor}
-            </p>
-            <p>
-              <strong>Total All Resistance: </strong>
-              {totalAllResistance}%
-            </p>
-
-            <h4>Element Specific Resistance</h4>
-            <ul>
-              {Object.entries(totalSpecificResistance).map(
-                ([element, value]) => (
-                  <li key={element}>
-                    {forceCasing(element)}: {value}%
-                  </li>
-                )
-              )}
-            </ul>
-            <h4>Skill Sum:</h4>
-            <ul>
-              {Object.entries(skillSum).map(([element, value]) => (
-                <li key={element}>
-                  {forceCasing(element)}: {value}
-                </li>
-              ))}
-            </ul>
           </>
         )}
       </div>

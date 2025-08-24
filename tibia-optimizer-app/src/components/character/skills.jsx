@@ -44,16 +44,11 @@ function Skills({ main, setMain, secondary, setSecondary }) {
         <label>
           Vocation:
           <br />
-      
-          <hr />
           <h2>Skills</h2>
         </label>
         {!main.vocation && (
           <div className="select-vocation-message">
-            <strong>
-              🛈 Please select a vocation to view and edit your character's
-              attributes.
-            </strong>
+            <strong>🛈 Please select a vocation to view and edit this.</strong>
           </div>
         )}
         <div className={`vocation-content${main.vocation ? " show" : ""}`}>
