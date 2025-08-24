@@ -185,6 +185,7 @@ function Equipments({ vocation }) {
             </label>
             {vocation === "paladin" && (
               <label>
+                <br />
                 Paladin Equipment Mode:
                 <br />
                 <select
@@ -393,10 +394,13 @@ function Equipments({ vocation }) {
               </li>
             </ul>
 
-            <h3>Calculate:</h3>
-            <button className="calculate-button" onClick={calculateTotals}>
-              =
-            </button>
+            <h3>
+              Calculate:{" "}
+              <button className="calculate-button" onClick={calculateTotals}>
+                =
+              </button>
+            </h3>
+
             <p>
               <strong>Total Armor: </strong>
               {totalArmor}
@@ -406,10 +410,8 @@ function Equipments({ vocation }) {
               {totalAllResistance}%
             </p>
 
+            <h4>Element Specific Resistance</h4>
             <ul>
-              <p>
-                <strong>Element Specific Resistance: </strong>
-              </p>
               {Object.entries(totalSpecificResistance).map(
                 ([element, value]) => (
                   <li key={element}>
@@ -418,17 +420,13 @@ function Equipments({ vocation }) {
                 )
               )}
             </ul>
+            <h4>Skill Sum:</h4>
             <ul>
-              <p>
-                <strong>Skill Sum:</strong>
-              </p>
-              <ul>
-                {Object.entries(skillSum).map(([element, value]) => (
-                  <li key={element}>
-                    {forceCasing(element)}: {value}
-                  </li>
-                ))}
-              </ul>
+              {Object.entries(skillSum).map(([element, value]) => (
+                <li key={element}>
+                  {forceCasing(element)}: {value}
+                </li>
+              ))}
             </ul>
           </>
         )}

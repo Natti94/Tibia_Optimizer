@@ -15,6 +15,10 @@ function Weapon({ vocation }) {
     rod: ["Rod"],
   };
 
+  const forceCasing = (str) => {
+    return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
+  };
+
   const getAllOptions = (type) => {
     const placeholders = placeholderWeapons[type] || [];
     const data = Array.isArray(weaponList) ? weaponList : [];
@@ -96,13 +100,13 @@ function Weapon({ vocation }) {
         {obj.resistance &&
           Object.entries(obj.resistance).map(([element, value]) => (
             <li key={element}>
-              {element}: {value}%
+              {forceCasing(element)}: {value}%
             </li>
           ))}
         {obj.skills &&
           Object.entries(obj.skills).map(([skill, value]) => (
             <li key={skill}>
-              {skill}: {value}
+              {forceCasing(skill)}: {value}
             </li>
           ))}
       </ul>
@@ -241,10 +245,12 @@ function Weapon({ vocation }) {
               </>
             )}
             {renderWeaponProps()}
-            <h3>Calculate:</h3>
-            <button className="calculate-button" onClick={calculateTotals}>
-              =
-            </button>
+            <h3>
+              Calculate:{" "}
+              <button className="calculate-button" onClick={calculateTotals}>
+                =
+              </button>
+            </h3>
             <p>
               <strong>
                 {vocation === "knight" || vocation === "paladin"

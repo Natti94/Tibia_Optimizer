@@ -7,6 +7,10 @@ function Skills({ main, setMain, secondary, setSecondary }) {
     "": { health: 0, mana: 0, melee: 0.5, distance: 0.5, magic: 0.5 },
   };
 
+  const forceCasing = (str) => {
+    return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
+  };
+
   const handleMainChange = (e) => {
     const { name, value } = e.target;
     setMain((prev) => ({
@@ -33,11 +37,6 @@ function Skills({ main, setMain, secondary, setSecondary }) {
     VOCATION_MODIFIERS[main.vocation] || VOCATION_MODIFIERS[""];
   const calculatedHealth = levelNum * vocationMods.health;
   const calculatedMana = levelNum * vocationMods.mana;
-
-  const meleeEffective = 100 * getVocationModifier(main.vocation, "melee");
-  const distanceEffective =
-    100 * getVocationModifier(main.vocation, "distance");
-  const magicEffective = 100 * getVocationModifier(main.vocation, "magic");
 
   return (
     <div>
@@ -121,7 +120,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
               <h3>Secondary Attributes</h3>
               {Object.keys(secondary).map((skill) => (
                 <label key={skill}>
-                  {skill.charAt(0).toUpperCase() + skill.slice(1)}:
+                  {forceCasing(skill)}:
                   <br />
                   <input
                     type="number"
@@ -133,21 +132,6 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                   />
                 </label>
               ))}
-              <div>
-                <h3>Modifier</h3>
-                <ul>
-                  <li>
-                    Melee: {getVocationModifier(main.vocation, "melee") * 100}%
-                  </li>
-                  <li>
-                    Distance:{" "}
-                    {getVocationModifier(main.vocation, "distance") * 100}%
-                  </li>
-                  <li>
-                    Magic: {getVocationModifier(main.vocation, "magic") * 100}%
-                  </li>
-                </ul>
-              </div>
             </>
           )}
         </div>
@@ -157,7 +141,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
           <div>
             <h4>Main Attributes</h4>
             <ul>
-              <li>Vocation: {main.vocation}</li>
+              <li>Vocation: {forceCasing(main.vocation)}</li>
               <li>Level: {main.level}</li>
               <li>Health: {calculatedHealth}</li>
               <li>Mana: {calculatedMana}</li>
@@ -169,17 +153,27 @@ function Skills({ main, setMain, secondary, setSecondary }) {
             <ul>
               {Object.entries(secondary).map(([skill, value]) => (
                 <li key={skill}>
-                  {skill.charAt(0).toUpperCase() + skill.slice(1)}: {value}
+                  {forceCasing(skill)}: {value}
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h4>Effective Damage</h4>
+            <h3>Vocational Skill Modifiers</h3>
+            <p>
+              Your vocation is <strong>{forceCasing(main.vocation)}.</strong>
+            </p>
             <ul>
-              <li>Melee Effective: {meleeEffective}</li>
-              <li>Distance Effective: {distanceEffective}</li>
-              <li>Magic Effective: {magicEffective}</li>
+              <li>
+                Melee: {getVocationModifier(main.vocation, "melee") * 100}%
+              </li>
+              <li>
+                Distance: {getVocationModifier(main.vocation, "distance") * 100}
+                %
+              </li>
+              <li>
+                Magic: {getVocationModifier(main.vocation, "magic") * 100}%
+              </li>
             </ul>
           </div>
         </>

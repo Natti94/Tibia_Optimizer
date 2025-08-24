@@ -21,6 +21,10 @@ function Rune({ character }) {
   let minDamage = "";
   let maxDamage = "";
 
+  const forceCasing = (str) => {
+    return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
+  };
+
   if (selectedRune) {
     if (
       selectedRune.minSubtract !== undefined ||
@@ -58,7 +62,7 @@ function Rune({ character }) {
         {character.vocation && (
           <>
             <div>
-              <h3>Modifier</h3>
+              <h3>Vocational Rune Modifiers</h3>
               <ul>
                 <li>Knight: 30%</li>
                 <li>Paladin: 50%</li>
@@ -67,7 +71,8 @@ function Rune({ character }) {
                 <li>No vocation: 50%</li>
               </ul>
               <p>
-                <strong>Your vocation modifier:</strong> {Math.round(magicMod * 100)}%
+                Your vocation is{" "}
+                <strong>{forceCasing(character.vocation)}.</strong>
               </p>
             </div>
             <label>
@@ -90,7 +95,7 @@ function Rune({ character }) {
             </label>
             {selectedRune && (
               <div>
-                <p>Type: {selectedRune.typeDamage}</p>
+                <p>Type: {forceCasing(selectedRune.typeDamage)}</p>
                 <p>
                   Damage: {minDamage} - {maxDamage}
                 </p>
