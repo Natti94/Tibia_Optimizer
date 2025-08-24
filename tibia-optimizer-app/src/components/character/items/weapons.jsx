@@ -47,7 +47,6 @@ function Weapon({ vocation }) {
     selectedWeaponObj.name.toLowerCase().includes("bow") &&
     !isCrossbow;
 
-  // --- Calculate attack/damage directly ---
   let totalAttack = 0;
   let totalDamage = 0;
   if (selectedWeaponObj) {

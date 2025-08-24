@@ -102,7 +102,9 @@ function Equipments({ vocation }) {
     let skillSumObj = {};
 
     Object.values(equipment).forEach((equipmentName) => {
-      const selected = equipmentList.find((item) => item.name === equipmentName);
+      const selected = equipmentList.find(
+        (item) => item.name === equipmentName
+      );
       if (!selected) return;
       armorSum += selected.armor || 0;
       if (selected.resistanceAll) {

@@ -44,17 +44,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
         <label>
           Vocation:
           <br />
-          <select
-            name="vocation"
-            value={main.vocation}
-            onChange={handleMainChange}
-          >
-            <option value="">Select Vocation</option>
-            <option value="knight">Knight</option>
-            <option value="paladin">Paladin</option>
-            <option value="sorcerer">Sorcerer</option>
-            <option value="druid">Druid</option>
-          </select>
+      
           <hr />
           <h2>Skills</h2>
         </label>

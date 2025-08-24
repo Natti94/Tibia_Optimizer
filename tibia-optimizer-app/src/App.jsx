@@ -2,7 +2,7 @@ import { useState } from "react";
 import Skills from "./components/character/skills";
 import Equipments from "./components/character/items/equipments";
 import Weapons from "./components/character/items/weapons";
-import Runes from "./components/character/items/runes";
+import Runes from "./components/encounters/character/runes";
 import { equipmentList } from "./data/character/items/equipments";
 import { weaponList } from "./data/character/items/weapons";
 import "./index.css";
@@ -34,6 +34,9 @@ function App() {
     weapon: "",
     ammunition: "",
   });
+  const [showSkills, setShowSkills] = useState(true);
+  const [showEquipments, setShowEquipments] = useState(true);
+  const [showWeapons, setShowWeapons] = useState(true);
 
   function forceCasing(str) {
     return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
@@ -101,29 +104,100 @@ function App() {
         <img src="title.png" alt="Tibia Optimizer" className="app-title" />
         <div className="main-card">
           <h1>Character</h1>
-          <Skills
-            main={main}
-            setMain={setMain}
-            secondary={secondary}
-            setSecondary={setSecondary}
-          />
-          <hr />
-          <Equipments
-            vocation={main.vocation}
-            equipment={equipment}
-            setEquipment={setEquipment}
-          />
-          <hr />
-          <Weapons
-            vocation={main.vocation}
-            weapon={weapon}
-            setWeapon={setWeapon}
-          />
-          <hr />
-          <h1>Encounter</h1>
-          <Runes character={{ ...main, magic: effectiveMagicLevel }} />
+          <div style={{ marginBottom: "1.5rem" }}>
+            <label>
+              <strong>Vocation:</strong>
+              <br />
+              <select
+                name="vocation"
+                value={main.vocation}
+                onChange={(e) =>
+                  setMain((prev) => ({
+                    ...prev,
+                    vocation: e.target.value,
+                  }))
+                }
+              >
+                <option value="">Select Vocation</option>
+                <option value="knight">Knight</option>
+                <option value="paladin">Paladin</option>
+                <option value="sorcerer">Sorcerer</option>
+                <option value="druid">Druid</option>
+              </select>
+            </label>
+          </div>
+
+          <div style={{ marginBottom: "1rem" }}>
+            <button
+              className="collapse-toggle"
+              onClick={() => setShowSkills((v) => !v)}
+              aria-label={showSkills ? "Collapse Skills" : "Expand Skills"}
+              type="button"
+            >
+              <span className={`arrow ${showSkills ? "up" : "down"}`}></span>
+              <span className="toggle-label">Skills</span>
+            </button>
+          </div>
+          <div className={`collapsible-section${showSkills ? " open" : ""}`}>
+            {showSkills && (
+              <Skills
+                main={main}
+                setMain={setMain}
+                secondary={secondary}
+                setSecondary={setSecondary}
+              />
+            )}
+          </div>
 
           <hr />
+
+          <div style={{ marginBottom: "1rem" }}>
+            <button
+              className="collapse-toggle"
+              onClick={() => setShowEquipments((v) => !v)}
+              aria-label={
+                showEquipments ? "Collapse Equipments" : "Expand Equipments"
+              }
+            >
+              <span
+                className={`arrow ${showEquipments ? "up" : "down"}`}
+              ></span>
+              <span className="toggle-label">Equipments</span>
+            </button>
+          </div>
+          <div
+            className={`collapsible-section${showEquipments ? " open" : ""}`}
+          >
+            {showEquipments && (
+              <Equipments
+                vocation={main.vocation}
+                equipment={equipment}
+                setEquipment={setEquipment}
+              />
+            )}
+          </div>
+
+          <hr />
+
+          <div style={{ marginBottom: "1rem" }}>
+            <button
+              className="collapse-toggle"
+              onClick={() => setShowWeapons((v) => !v)}
+              aria-label={showWeapons ? "Collapse Weapons" : "Expand Weapons"}
+            >
+              <span className={`arrow ${showWeapons ? "up" : "down"}`}></span>
+              <span className="toggle-label">Weapons</span>
+            </button>
+          </div>
+          <div className={`collapsible-section${showWeapons ? " open" : ""}`}>
+            {showWeapons && (
+              <Weapons
+                vocation={main.vocation}
+                weapon={weapon}
+                setWeapon={setWeapon}
+              />
+            )}
+          </div>
           <div className="equipment-summary">
             <h3>Character Summary</h3>
             <div className="equipment-grid">
@@ -203,6 +277,11 @@ function App() {
               </li>
             </ul>
           </div>
+
+          <h1>Encounter</h1>
+          <Runes character={{ ...main, magic: effectiveMagicLevel }} />
+
+          <hr />
         </div>
       </div>
     </div>

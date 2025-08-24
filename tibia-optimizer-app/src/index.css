@@ -220,3 +220,71 @@ input[type="number"].skill-input {
     margin-left: auto;
     margin-right: auto;
 }
+
+.collapsible-section {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+        max-height 0.6s cubic-bezier(.4, 2, .6, 1),
+        opacity 0.5s cubic-bezier(.4, 2, .6, 1);
+    will-change: max-height, opacity;
+}
+
+.collapsible-section.open {
+    max-height: 2000px;
+    opacity: 1;
+    transition:
+        max-height 0.6s cubic-bezier(.4, 2, .6, 1),
+        opacity 0.5s cubic-bezier(.4, 2, .6, 1);
+}
+
+.collapse-toggle {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #0a2233 60%, #0ff 100%);
+    color: #fff;
+    border: 2px solid #0ff;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    margin: 0.5rem 0 1rem 0;
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.10);
+    transition: background 0.2s, border 0.2s, color 0.2s;
+    outline: none;
+    user-select: none;
+    gap: 0.7rem;
+}
+
+.collapse-toggle:hover,
+.collapse-toggle:focus {
+    background: linear-gradient(90deg, #0ff 0%, #0a2233 100%);
+    color: #0ff;
+    border-color: #fff;
+}
+
+.collapse-toggle .arrow {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    border-right: 3px solid #0ff;
+    border-bottom: 3px solid #0ff;
+    margin-right: 0.5em;
+    transition: transform 0.4s cubic-bezier(.4, 2, .6, 1), border-color 0.2s;
+    transform: rotate(-45deg);
+}
+
+.collapse-toggle .arrow.down {
+    transform: rotate(45deg);
+}
+
+.collapse-toggle .arrow.up {
+    transform: rotate(-135deg);
+}
+
+.toggle-label {
+    letter-spacing: 1px;
+}
