@@ -88,7 +88,7 @@ export const weaponList = [
     skills: { sword: 0 },
     version: "before 11.40",
   },
-
+  //----------------------------
   // AXES
   {
     name: "Axe",
@@ -134,7 +134,7 @@ export const weaponList = [
     skills: { axe: 0 },
     version: "before 11.40",
   },
-
+  //----------------------------
   // CLUBS
   {
     name: "Mace",
@@ -180,8 +180,8 @@ export const weaponList = [
     skills: { club: 0 },
     version: "before 11.40",
   },
-
-  // CROSSBOWS
+  //----------------------------
+  // CROSSBOWS & BOLTS
   {
     name: "Crossbow",
     type: "crossbow",
@@ -236,8 +236,53 @@ export const weaponList = [
     resistance: {},
     skills: { distance: 3 },
   },
-
-  // BOWS
+  {
+    name: "Bolt",
+    type: "ammunition",
+    attack: 25,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Power Bolt",
+    type: "ammunition",
+    attack: 35,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Piercing Bolt",
+    type: "ammunition",
+    attack: 30,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Spectral Bolt",
+    type: "ammunition",
+    attack: 32,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Infernal Bolt",
+    type: "ammunition",
+    attack: 40,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  //----------------------------
+  // BOWS & ARROWS
   {
     name: "Bow",
     type: "bow",
@@ -337,7 +382,61 @@ export const weaponList = [
     resistance: { holy: 7 },
     skills: { distance: 4 },
   },
-
+  {
+    name: "Arrow",
+    type: "ammunition",
+    attack: 18,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Sniper Arrow",
+    type: "ammunition",
+    attack: 25,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Onyx Arrow",
+    type: "ammunition",
+    attack: 28,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Crystalline Arrow",
+    type: "ammunition",
+    attack: 32,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Diamond Arrow",
+    type: "ammunition",
+    attack: 35,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  {
+    name: "Burst Arrow",
+    type: "ammunition",
+    attack: 31,
+    typeDamage: "physical",
+    resistanceAll: 0,
+    resistance: {},
+    skills: { distance: 0 },
+  },
+  //----------------------------
   // THROWING WEAPONS
   {
     name: "Assassin Star",
@@ -402,7 +501,7 @@ export const weaponList = [
     skills: { distance: 0 },
     version: "before 11.40",
   },
-
+  //----------------------------
   // WANDS
   {
     name: "Wand of Vortex",
@@ -515,7 +614,7 @@ export const weaponList = [
     skills: { magicLevel: 3 },
     version: "before 11.40",
   },
-
+  //----------------------------
   // RODS
   {
     name: "Snakebite Rod",
@@ -627,4 +726,5 @@ export const weaponList = [
     skills: { magicLevel: 3 },
     version: "before 11.40",
   },
+  //----------------------------
 ];

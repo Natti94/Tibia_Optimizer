@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { equipmentList } from "../../../data/item/equipments";
+import { useState, useEffect } from "react";
+import { equipmentList } from "../../../data/character/items/equipments";
 
 function Equipments({ vocation }) {
   const [equipment, setEquipment] = useState({
@@ -95,16 +95,14 @@ function Equipments({ vocation }) {
     setEquipment((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  const calculateTotals = () => {
+  useEffect(() => {
     let armorSum = 0;
     let resistanceOverallSum = 0;
     let resistanceSpecificSum = {};
-    let skillSum = {};
+    let skillSumObj = {};
 
     Object.values(equipment).forEach((equipmentName) => {
-      const selected = (Array.isArray(equipmentList) ? equipmentList : []).find(
-        (item) => item.name === equipmentName
-      );
+      const selected = equipmentList.find((item) => item.name === equipmentName);
       if (!selected) return;
       armorSum += selected.armor || 0;
       if (selected.resistanceAll) {
@@ -118,7 +116,7 @@ function Equipments({ vocation }) {
       }
       if (selected.skills) {
         Object.entries(selected.skills).forEach(([element, value]) => {
-          skillSum[element] = (skillSum[element] || 0) + (value || 0);
+          skillSumObj[element] = (skillSumObj[element] || 0) + (value || 0);
         });
       }
     });
@@ -126,8 +124,8 @@ function Equipments({ vocation }) {
     setTotalArmor(armorSum);
     setTotalAllResistance(resistanceOverallSum);
     setTotalSpecificResistance(resistanceSpecificSum);
-    setSkillSum(skillSum);
-  };
+    setSkillSum(skillSumObj);
+  }, [equipment]);
 
   const renderEquipmentProps = (type) => {
     const obj = getSelectedEquipmentObj(type);
@@ -393,14 +391,6 @@ function Equipments({ vocation }) {
                 {equipment.offhand || "None"}
               </li>
             </ul>
-
-            <h3>
-              Calculate:{" "}
-              <button className="calculate-button" onClick={calculateTotals}>
-                =
-              </button>
-            </h3>
-
             <p>
               <strong>Total Armor: </strong>
               {totalArmor}

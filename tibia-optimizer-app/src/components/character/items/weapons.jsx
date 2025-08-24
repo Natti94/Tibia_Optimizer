@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { weaponList } from "../../../data/item/weapons";
+import { weaponList } from "../../../data/character/items/weapons";
 
 function Weapon({ vocation }) {
   const [weapon, setWeapon] = useState("");
@@ -47,35 +47,27 @@ function Weapon({ vocation }) {
     selectedWeaponObj.name.toLowerCase().includes("bow") &&
     !isCrossbow;
 
-  const [totalAttack, setTotalAttack] = useState(0);
-  const [totalDamage, setTotalDamage] = useState(0);
-
-  const calculateTotals = () => {
-    if (!selectedWeaponObj) {
-      setTotalAttack(0);
-      setTotalDamage(0);
-      return;
-    }
+  // --- Calculate attack/damage directly ---
+  let totalAttack = 0;
+  let totalDamage = 0;
+  if (selectedWeaponObj) {
     if (vocation === "knight" || vocation === "paladin") {
-      setTotalAttack(selectedWeaponObj.attack || 0);
-      setTotalDamage(0);
+      totalAttack = selectedWeaponObj.attack || 0;
+      totalDamage = 0;
     } else if (vocation === "sorcerer" || vocation === "druid") {
       if (
         selectedWeaponObj.damage &&
         typeof selectedWeaponObj.damage === "object"
       ) {
         const { min = 0, max = 0 } = selectedWeaponObj.damage;
-        setTotalAttack(0);
-        setTotalDamage((min + max) / 2);
+        totalAttack = 0;
+        totalDamage = (min + max) / 2;
       } else {
-        setTotalAttack(0);
-        setTotalDamage(selectedWeaponObj.damage || 0);
+        totalAttack = 0;
+        totalDamage = selectedWeaponObj.damage || 0;
       }
-    } else {
-      setTotalAttack(0);
-      setTotalDamage(0);
     }
-  };
+  }
 
   const renderWeaponProps = () => {
     const obj = selectedWeaponObj;
@@ -245,12 +237,7 @@ function Weapon({ vocation }) {
               </>
             )}
             {renderWeaponProps()}
-            <h3>
-              Calculate:{" "}
-              <button className="calculate-button" onClick={calculateTotals}>
-                =
-              </button>
-            </h3>
+
             <p>
               <strong>
                 {vocation === "knight" || vocation === "paladin"

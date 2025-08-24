@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { runeList } from "../../../data/item/rune/rune";
+import { runeList } from "../../../data/character/items/rune";
 
 const VOCATION_MODIFIERS = {
   knight: { magic: 0.3 },
