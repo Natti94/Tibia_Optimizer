@@ -39,6 +39,7 @@ function App() {
   const [showSkills, setShowSkills] = useState(true);
   const [showEquipments, setShowEquipments] = useState(true);
   const [showWeapons, setShowWeapons] = useState(true);
+  const [collapsed, setCollapsed] = useState(true); 
 
   function forceCasing(str) {
     return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
@@ -308,6 +309,16 @@ function App() {
           <Runes character={{ ...main, magic: effectiveMagicLevel }} />
         </div>
       </div>
+      {collapsed ? (
+        <div className="collapse-overlay">
+          <button
+            className="begin-optimize-btn"
+            onClick={() => setCollapsed(false)}
+          >
+            BEGIN OPTIMIZE UR CHARACTER
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
