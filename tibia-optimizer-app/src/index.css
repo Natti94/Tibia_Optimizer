@@ -33,28 +33,28 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 3.5rem;
+    padding: 2rem 2rem;
     border-radius: 18px;
     outline: 6px groove aqua;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
-    max-height: 100%;
-    overflow: auto;
-    overflow-x: hidden;
+    max-height: none;
+    overflow: visible;
     box-sizing: border-box;
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 .app-title {
     width: 100%;
     max-width: 765px;
     object-fit: contain;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
 }
 
 .main-card {
+    position: relative;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 2rem;
     border-radius: 10px;
@@ -64,6 +64,28 @@ body {
     max-width: 700px;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     text-shadow: 1px 1px 3px black;
+    margin-top: 0;
+    overflow-y: auto;
+    max-height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: #ff8c00 #181818;
+}
+
+/* Chrome, Edge, Safari */
+.main-card::-webkit-scrollbar {
+    width: 12px;
+    background: #181818;
+    border-radius: 8px;
+}
+
+.main-card::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ffb347 0%, #ff8c00 100%);
+    border-radius: 8px;
+    border: 2px solid #181818;
+}
+
+.main-card::-webkit-scrollbar-thumb:hover {
+    background: #ff8c00;
 }
 
 .calculate-button {
@@ -251,7 +273,7 @@ input[type="number"].skill-input {
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.10);
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.10);
     transition: background 0.2s, border 0.2s, color 0.2s;
     outline: none;
     user-select: none;
@@ -295,7 +317,6 @@ input[type="number"].skill-input {
     width: 210px;
     height: 100vh;
     background: rgba(255, 140, 0, 0.18);
-    /* light orange transparent */
     box-shadow: 2px 0 16px 0 rgba(255, 140, 0, 0.10);
     z-index: 100;
     display: flex;
@@ -304,6 +325,14 @@ input[type="number"].skill-input {
     padding: 2rem 1rem 1rem 1.5rem;
     font-family: monospace;
     border-right: 2px solid rgba(255, 140, 0, 0.25);
+    transition: width 0.3s cubic-bezier(.4, 2, .6, 1), padding 0.3s cubic-bezier(.4, 2, .6, 1);
+    overflow-x: hidden;
+}
+
+.side-nav.collapsed {
+    width: 48px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .side-nav-title {
@@ -311,35 +340,52 @@ input[type="number"].skill-input {
     font-weight: bold;
     color: #ff8c00;
     margin-bottom: 2.5rem;
+    margin-top: 2.2rem;
     letter-spacing: 1px;
     text-shadow: 1px 1px 4px #fff2;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+}
+
+.side-nav.collapsed .side-nav-title {
+    opacity: 0;
 }
 
 .side-nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 1.5rem 0 0 0;
     width: 100%;
+    transition: opacity 0.2s;
 }
 
-.side-nav li {
-    margin-bottom: 1.2rem;
+.side-nav.collapsed ul {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.side-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.08rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    display: block;
-    transition: background 0.2s, color 0.2s;
-}
-
-.side-nav a:hover,
-.side-nav a:focus {
-    background: rgba(255, 140, 0, 0.25);
+.side-nav-collapse-btn {
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    background: rgba(255, 140, 0, 0.18);
     color: #ff8c00;
+    border: 2px solid #ff8c00;
+    border-radius: 6px;
+    padding: 0.2rem 0.7rem;
+    font-size: 1.2rem;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 101;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.side-nav-collapse-btn:hover,
+.side-nav-collapse-btn:focus {
+    background: #ff8c00;
+    color: #fff;
+    border-color: #fff;
 }
 
 .collapse-app-btn {
@@ -400,4 +446,178 @@ input[type="number"].skill-input {
     background: #ff8c00;
     color: #fff;
     border-color: #fff;
+}
+
+.side-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: 8px;
+    display: block;
+    border: 2px solid #ff8c00;
+    background: rgba(255, 140, 0, 0.10);
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px 0 rgba(255, 140, 0, 0.08);
+    transition:
+        background 0.18s,
+        color 0.18s,
+        border 0.18s,
+        box-shadow 0.18s;
+}
+
+.side-nav a:hover,
+.side-nav a:focus {
+    background: #ff8c00;
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 0 0 16px 2px rgba(255, 140, 0, 0.18);
+}
+
+.begin-shine-btn {
+    display: block;
+    margin: 2rem auto 0 auto;
+    padding: 1.1rem 3.5rem;
+    font-size: 2rem;
+    font-family: monospace;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #00faff 0%, #00c3ff 100%);
+    border: 3px solid #0ff;
+    border-radius: 16px;
+    box-shadow:
+        0 0 32px 8px rgba(0, 255, 255, 0.25),
+        0 0 8px 2px #0ff,
+        0 0 0 4px rgba(0, 255, 255, 0.10) inset;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+}
+
+.begin-shine-btn:hover,
+.begin-shine-btn:focus {
+    background: linear-gradient(90deg, #0ff 0%, #00c3ff 100%);
+    color: #111;
+    border-color: #fff;
+    box-shadow:
+        0 0 48px 12px #0ff,
+        0 0 16px 4px #0ff,
+        0 0 0 6px rgba(0, 255, 255, 0.18) inset;
+}
+
+.restart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #0a2233 60%, #0ff 100%);
+    color: #fff;
+    border: 2px solid #0ff;
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.10);
+    transition: background 0.2s, border 0.2s, color 0.2s;
+    outline: none;
+    user-select: none;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+
+.restart-btn:hover,
+.restart-btn:focus {
+    background: linear-gradient(90deg, #0ff 0%, #0a2233 100%);
+    color: #0ff;
+    border-color: #fff;
+}
+
+.restart-icon {
+    font-size: 1.4em;
+    margin-right: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: linear-gradient(90deg, #ffb347 0%, #ff8c00 100%);
+    color: #fff;
+    border: 2px solid #ff8c00;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 24px 4px rgba(255,140,0,0.18);
+    z-index: 2000;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.scroll-top-btn:hover,
+.scroll-top-btn:focus {
+    background: #ff8c00;
+    color: #fff;
+    border-color: #fff;
+}
+
+.skills-flex-row {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.skills-main {
+    flex: 2 1 0;
+    min-width: 0;
+}
+
+.skills-secondary {
+    flex: 1 1 250px;
+    min-width: 220px;
+    max-width: 320px;
+    background: rgba(0, 255, 255, 0.04);
+    border: 1.5px solid #0ff;
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.08);
+}
+
+.skills-secondary h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #0ff;
+    text-align: left;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+@keyframes shine {
+    0% {
+        box-shadow: 0 0 32px 8px #0ff, 0 0 8px 2px #0ff;
+    }
+
+    50% {
+        box-shadow: 0 0 48px 16px #fff, 0 0 16px 4px #0ff;
+    }
+
+    100% {
+        box-shadow: 0 0 32px 8px #0ff, 0 0 8px 2px #0ff;
+    }
 }
