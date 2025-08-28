@@ -66,12 +66,12 @@ body {
     text-shadow: 1px 1px 3px black;
     margin-top: 0;
     overflow-y: auto;
+    height: auto;
     max-height: 100vh;
     scrollbar-width: thin;
     scrollbar-color: #ff8c00 #181818;
 }
 
-/* Chrome, Edge, Safari */
 .main-card::-webkit-scrollbar {
     width: 12px;
     background: #181818;
@@ -556,7 +556,7 @@ input[type="number"].skill-input {
     font-family: monospace;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 24px 4px rgba(255,140,0,0.18);
+    box-shadow: 0 0 24px 4px rgba(255, 140, 0, 0.18);
     z-index: 2000;
     transition: background 0.2s, color 0.2s, border 0.2s;
     display: flex;

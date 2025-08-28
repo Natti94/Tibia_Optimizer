@@ -50,7 +50,6 @@ function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-
   function forceCasing(str) {
     return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
   }
@@ -382,7 +381,6 @@ function App() {
           </div>
         ) : null}
       </div>{" "}
-      {/* end of .content-wrapper */}
       {showScroll && (
         <button
           className="scroll-top-btn"
