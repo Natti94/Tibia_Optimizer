@@ -43,7 +43,7 @@ function App() {
   const [intro, setIntro] = useState(true);
   const [showMainCard, setShowMainCard] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
-
+  const [hiding, setHiding] = useState(false);
   useEffect(() => {
     const onScroll = () => setShowScroll(window.scrollY > 200);
     window.addEventListener("scroll", onScroll);
@@ -94,7 +94,10 @@ function App() {
   let totalDamage = 0;
   if (selectedWeaponObj) {
     totalAttack = selectedWeaponObj.attack || 0;
-    if (typeof selectedWeaponObj.damage === "object") {
+    if (
+      typeof selectedWeaponObj.damage === "object" &&
+      selectedWeaponObj.damage !== null
+    ) {
       totalDamage =
         ((selectedWeaponObj.damage.min || 0) +
           (selectedWeaponObj.damage.max || 0)) /
@@ -130,11 +133,22 @@ function App() {
       </BrowserRouter>
       <img className="background" src="background.png" alt="background" />
       <div className="content-wrapper">
-        <img src="title.png" alt="Tibia Optimizer" className="app-title" />
+        <div className="app-title-wrapper">
+          <img src="title.png" alt="Tibia Optimizer" className="app-title" />
+        </div>
         {!showMainCard && (
           <button
             className="begin-shine-btn"
-            onClick={() => setShowMainCard(true)}
+            onClick={() => {
+              setHiding(true);
+              setShowMainCard(true);
+              setTimeout(() => {
+                setHiding(false);
+                document
+                  .getElementById("move-to-vocation")
+                  .scrollIntoView({ behavior: "smooth" });
+              }, 10);
+            }}
             aria-label="Show Main Card"
             type="button"
             style={{ margin: "2rem auto 0 auto", display: "block" }}
@@ -142,11 +156,17 @@ function App() {
             BEGIN
           </button>
         )}
-        {showMainCard && (
-          <div className="main-card">
+        {(showMainCard || hiding) && (
+          <div className={`main-card${hiding ? " hide" : " show"}`}>
             <button
               className="restart-btn"
-              onClick={() => setShowMainCard(false)}
+              onClick={() => {
+                setHiding(true);
+                setTimeout(() => {
+                  setShowMainCard(false);
+                  setHiding(false);
+                }, 250);
+              }}
               aria-label="Restart"
               type="button"
               style={{
@@ -164,6 +184,7 @@ function App() {
             <h1>Character</h1>
             <div style={{ marginBottom: "1.5rem" }}>
               <label>
+                <div id="move-to-vocation" />
                 <strong>Vocation:</strong>
                 <br />
                 <select
@@ -363,7 +384,7 @@ function App() {
                   </ul>
                 </div>
                 <br />
-                <hr />
+                <hr color="aqua" />
                 <h1>Encounter</h1>
                 <Runes character={{ ...main, magic: effectiveMagicLevel }} />
               </div>
@@ -374,7 +395,12 @@ function App() {
           <div className="collapse-overlay">
             <button
               className="begin-optimize-btn"
-              onClick={() => setIntro(false)}
+              onClick={() => {
+                setIntro(false);
+                setTimeout(() => {
+                  window.scrollTo({ top: 80, behavior: "smooth" });
+                }, 10);
+              }}
             >
               START PLAYING YOUR CHARACTER LIKE A PRO!
             </button>

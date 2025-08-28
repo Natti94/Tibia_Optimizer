@@ -119,11 +119,15 @@ function Weapons({ vocation, weapon, setWeapon }) {
                 >
                   <option value="">Select Weapon</option>
                   {["sword", "axe", "club"].flatMap((type) =>
-                    getAllOptions(type).map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))
+                    getAllOptions(type)
+                      .filter((name) =>
+                        weaponList.some((item) => item.name === name)
+                      )
+                      .map((name) => (
+                        <option key={name} value={name}>
+                          {name}
+                        </option>
+                      ))
                   )}
                 </select>
               </label>
