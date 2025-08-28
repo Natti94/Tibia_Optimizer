@@ -1,43 +1,48 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import About from "../pages/about";
+import Donate from "../pages/donate";
 
 function Nav() {
   const [collapsed, setCollapsed] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLinkClick = (path) => {
-    navigate(path);
-  };
 
   return (
-    <nav className={`side-nav${collapsed ? " collapsed" : ""}`}>
-      <button
-        className="side-nav-collapse-btn"
-        onClick={() => setCollapsed((v) => !v)}
-        aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
-        type="button"
-      >
-        {collapsed ? "»" : "«"}
-      </button>
-      <div className="side-nav-title">{!collapsed && "Tibia Optimizer"}</div>
-      <ul>
-        {!collapsed && (
-          <>
-            <li>
-              <a onClick={() => handleLinkClick("/")}>Home</a>
-            </li>
-            <br />
-            <li>
-              <a onClick={() => handleLinkClick("/optimizer")}>About</a>
-            </li>
-            <br />
-            <li>
-              <a onClick={() => handleLinkClick("/about")}>Donate</a>
-            </li>
-          </>
-        )}
-      </ul>
-    </nav>
+    <>
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/donate" element={<Donate />} />
+      </Routes>
+      <nav className={`side-nav${collapsed ? " collapsed" : ""}`}>
+        <button
+          className="side-nav-collapse-btn"
+          onClick={() => setCollapsed((v) => !v)}
+          aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
+          type="button"
+        >
+          <span className="side-nav-collapse-icon">
+            {collapsed ? "»" : "«"}
+          </span>
+        </button>
+        <div className="side-nav-title">{!collapsed && "Tibia Optimizer"}</div>
+        <ul>
+          {!collapsed && (
+            <>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <br />
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <br />
+              <li>
+                <Link to="/donate">Donate</Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+    </>
   );
 }
 
