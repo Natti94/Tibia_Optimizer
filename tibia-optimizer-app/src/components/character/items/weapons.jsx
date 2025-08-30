@@ -84,7 +84,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
       {!vocation && (
         <div className="select-vocation-message">
           <strong>
-            🛈 Please select a vocation to view and manage weapons.
+            🛈 Please select a vocation to view and edit this.
           </strong>
         </div>
       )}

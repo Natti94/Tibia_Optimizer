@@ -6,12 +6,11 @@ const VOCATION_MODIFIERS = {
   paladin: { magic: 0.5 },
   sorcerer: { magic: 1.0 },
   druid: { magic: 1.0 },
-  "": { magic: 0.5 },
+  "": { magic: 0.1 },
 };
 
 function Rune({ character }) {
   const [selectedRune, setSelectedRune] = useState(null);
-
   const magicLevel = parseInt(character.magic) || 0;
   const MAGIC_FORMULA = magicLevel * 2 + 5;
   const vocation = character.vocation || "";
@@ -55,7 +54,7 @@ function Rune({ character }) {
       <h2>Runes</h2>
       {!character.vocation && (
         <div className="select-vocation-message">
-         <strong>🛈 Please select a vocation to view and edit this.</strong>
+          <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
       <div className={`vocation-content${character.vocation ? " show" : ""}`}>

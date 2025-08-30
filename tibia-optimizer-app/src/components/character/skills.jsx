@@ -68,9 +68,10 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     className="skill-input"
                   />
                 </label>
+
                 <label>
-                  Magic Level:
-                  <br />
+                  <img src="/Magic_Level_Icon.png" alt="Magic Level Icon" />{" "}
+                  Magic Level: <br />
                   <input
                     type="number"
                     name="magic"

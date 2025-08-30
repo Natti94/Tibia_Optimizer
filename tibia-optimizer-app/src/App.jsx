@@ -7,6 +7,7 @@ import Skills from "./components/character/skills";
 import Equipments from "./components/character/items/equipments";
 import Weapons from "./components/character/items/weapons";
 import Runes from "./components/encounters/character/runes";
+import Spells from "./components/encounters/character/spells";
 import "./index.css";
 
 function App() {
@@ -40,10 +41,12 @@ function App() {
   const [showSkills, setShowSkills] = useState(true);
   const [showEquipments, setShowEquipments] = useState(true);
   const [showWeapons, setShowWeapons] = useState(true);
+
   const [intro, setIntro] = useState(true);
   const [showMainCard, setShowMainCard] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const [hiding, setHiding] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setShowScroll(window.scrollY > 200);
     window.addEventListener("scroll", onScroll);
@@ -181,6 +184,7 @@ function App() {
               </span>
               <span className="toggle-label">Restart</span>
             </button>
+            <hr color="aqua" />
             <h1>Character</h1>
             <div style={{ marginBottom: "1.5rem" }}>
               <label>
@@ -386,7 +390,18 @@ function App() {
                 <br />
                 <hr color="aqua" />
                 <h1>Encounter</h1>
-                <Runes character={{ ...main, magic: effectiveMagicLevel }} />
+                <div className="encounter-summary-flex">
+                  <div className="encounter-summary-left">
+                    <Runes
+                      character={{ ...main, magic: effectiveMagicLevel }}
+                    />
+                  </div>
+                  <div className="encounter-summary-right">
+                    <Spells
+                      character={{ ...main, magic: effectiveMagicLevel }}
+                    />
+                  </div>
+                </div>
               </div>
             )}
           </div>
