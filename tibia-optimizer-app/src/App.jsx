@@ -230,12 +230,14 @@ function App() {
                   className={`collapsible-section${showSkills ? " open" : ""}`}
                 >
                   {showSkills && (
-                    <Skills
-                      main={main}
-                      setMain={setMain}
-                      secondary={secondary}
-                      setSecondary={setSecondary}
-                    />
+                    <div className="panel-section">
+                      <Skills
+                        main={main}
+                        setMain={setMain}
+                        secondary={secondary}
+                        setSecondary={setSecondary}
+                      />
+                    </div>
                   )}
                 </div>
 
@@ -261,11 +263,13 @@ function App() {
                   }`}
                 >
                   {showEquipments && (
-                    <Equipments
-                      vocation={main.vocation}
-                      equipment={equipment}
-                      setEquipment={setEquipment}
-                    />
+                    <div className="panel-section">
+                      <Equipments
+                        vocation={main.vocation}
+                        equipment={equipment}
+                        setEquipment={setEquipment}
+                      />
+                    </div>
                   )}
                 </div>
 
@@ -287,11 +291,13 @@ function App() {
                   className={`collapsible-section${showWeapons ? " open" : ""}`}
                 >
                   {showWeapons && (
-                    <Weapons
-                      vocation={main.vocation}
-                      weapon={weapon}
-                      setWeapon={setWeapon}
-                    />
+                    <div className="panel-section">
+                      <Weapons
+                        vocation={main.vocation}
+                        weapon={weapon}
+                        setWeapon={setWeapon}
+                      />
+                    </div>
                   )}
                 </div>
                 <div className="equipment-summary">

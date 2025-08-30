@@ -672,6 +672,14 @@ input[type="number"].skill-input {
     box-shadow: 0 0 8px rgba(0,255,255,0.08) inset;
 }
 
+.panel-section {
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 0 8px rgba(0,255,255,0.08) inset;
+    margin-bottom: 1.5rem;
+}
+
 @keyframes shine {
     0% {
         box-shadow: 0 0 32px 8px #0ff, 0 0 8px 2px #0ff;
