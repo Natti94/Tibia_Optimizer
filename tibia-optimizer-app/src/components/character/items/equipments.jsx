@@ -188,7 +188,10 @@ function Equipments({ vocation, equipment, setEquipment }) {
                     <label>
                       Legs:
                       <br />
-                      <select value={equipment.leg} onChange={handleChange("leg")}>
+                      <select
+                        value={equipment.leg}
+                        onChange={handleChange("leg")}
+                      >
                         <option value="">Select Legs</option>
                         {getAllOptions("leg").map((name) => (
                           <option key={name} value={name}>

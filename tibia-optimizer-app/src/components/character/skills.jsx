@@ -58,6 +58,9 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                 <div className="skills-main">
                   <label>
                     <h3>Main Attributes</h3>
+                    <br />
+                    <img src="/skills/main/level_icon.png" alt="Level Icon" />
+                    <br />
                     Level:
                     <br />
                     <input
@@ -71,7 +74,10 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                   </label>
 
                   <label>
-                    <img src="/Magic_Level_Icon.png" alt="Magic Level Icon" />{" "}
+                    <img
+                      src="/skills/main/magic_level_icon.png"
+                      alt="Magic Level Icon"
+                    />{" "}
                     <br />
                     Magic Level:
                     <br />
@@ -85,7 +91,10 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img src="/Hit_Point_Icon.png" alt="Hit Point Icon" />{" "}
+                    <img
+                      src="/skills/main/hit_point_icon.png"
+                      alt="Hit Point Icon"
+                    />{" "}
                     <br />
                     Health:
                     <br />
@@ -98,7 +107,10 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img src="/Mana_Point_Icon.png" alt="Mana Point Icon" />{" "}
+                    <img
+                      src="/skills/main/mana_point_icon.png"
+                      alt="Mana Point Icon"
+                    />{" "}
                     <br />
                     Mana:
                     <br />

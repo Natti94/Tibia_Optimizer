@@ -134,10 +134,10 @@ function App() {
       <BrowserRouter>
         <Nav />
       </BrowserRouter>
-      <img className="background" src="background.png" alt="background" />
+      <img className="background" src="/page/background.png" alt="Background" />
       <div className="content-wrapper">
         <div className="app-title-wrapper">
-          <img src="title.png" alt="Tibia Optimizer" className="app-title" />
+          <img src="/page/title.png" alt="Title" className="app-title" />
         </div>
         {!showMainCard && (
           <button
