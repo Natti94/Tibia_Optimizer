@@ -111,39 +111,6 @@ body::-webkit-scrollbar-thumb:hover {
     pointer-events: none;
 }
 
-.main-card::-webkit-scrollbar {
-    width: 12px;
-    background: #181818;
-    border-radius: 8px;
-}
-
-.main-card::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #ffb347 0%, #ff8c00 100%);
-    border-radius: 8px;
-    border: 2px solid #181818;
-}
-
-.main-card::-webkit-scrollbar-thumb:hover {
-    background: #ff8c00;
-}
-
-.calculate-button {
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 2s ease, transform 2s ease;
-}
-
-.calculate-button:hover {
-    background-color: aqua;
-
-}
-
 label {
     display: block;
     margin-bottom: 1.2rem;
@@ -376,7 +343,7 @@ input[type="number"].skill-input {
 .side-nav-title {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #ff8c00;
+    color: white;
     margin-bottom: 2.5rem;
     margin-top: 2.2rem;
     letter-spacing: 1px;
@@ -419,11 +386,14 @@ input[type="number"].skill-input {
     transition: background 0.2s, color 0.2s, border 0.2s;
 }
 
-.side-nav-collapse-btn:hover,
-.side-nav-collapse-btn:focus {
+.side-nav-collapse-btn:hover {
     background: #ff8c00;
     color: #fff;
     border-color: #fff;
+}
+
+.side-nav-collapse-icon {
+    color: white;
 }
 
 .collapse-app-btn {
@@ -611,8 +581,6 @@ input[type="number"].skill-input {
     color: #fff;
     border-color: #fff;
 }
-
-
 
 .row {
     display: flex;

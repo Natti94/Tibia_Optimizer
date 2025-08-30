@@ -72,7 +72,9 @@ function Skills({ main, setMain, secondary, setSecondary }) {
 
                   <label>
                     <img src="/Magic_Level_Icon.png" alt="Magic Level Icon" />{" "}
-                    Magic Level: <br />
+                    <br />
+                    Magic Level:
+                    <br />
                     <input
                       type="number"
                       name="magic"
@@ -83,6 +85,8 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
+                    <img src="/Hit_Point_Icon.png" alt="Hit Point Icon" />{" "}
+                    <br />
                     Health:
                     <br />
                     <input
@@ -94,6 +98,8 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
+                    <img src="/Mana_Point_Icon.png" alt="Mana Point Icon" />{" "}
+                    <br />
                     Mana:
                     <br />
                     <input

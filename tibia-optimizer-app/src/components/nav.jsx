@@ -19,7 +19,7 @@ function Nav() {
           aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
           type="button"
         >
-          <span className="side-nav-collapse-icon">
+          <span className="side-nav-collapse-icon" color="">
             {collapsed ? "»" : "«"}
           </span>
         </button>
