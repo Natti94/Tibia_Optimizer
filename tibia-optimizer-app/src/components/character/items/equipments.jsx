@@ -149,174 +149,180 @@ function Equipments({ vocation, equipment, setEquipment }) {
             )}
             <br />
             <br />
-            <div className="equipments-flex-row">
-              <div className="equipments-main">
-                <label>
-                  Helmet:
-                  <br />
-                  <select
-                    value={equipment.helmet}
-                    onChange={handleChange("helmet")}
-                  >
-                    <option value="">Select Helmet</option>
-                    {getAllOptions("helmet").map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                  {renderEquipmentProps("helmet")}
-                </label>
-                <label>
-                  Armor:
-                  <br />
-                  <select
-                    value={equipment.armor}
-                    onChange={handleChange("armor")}
-                  >
-                    <option value="">Select Armor</option>
-                    {getAllOptions("armor").map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                  {renderEquipmentProps("armor")}
-                </label>
-                <label>
-                  Legs:
-                  <br />
-                  <select value={equipment.leg} onChange={handleChange("leg")}>
-                    <option value="">Select Legs</option>
-                    {getAllOptions("leg").map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                  {renderEquipmentProps("leg")}
-                </label>
-                <label>
-                  Boots:
-                  <br />
-                  <select
-                    value={equipment.boot}
-                    onChange={handleChange("boot")}
-                  >
-                    <option value="">Select Boots</option>
-                    {getAllOptions("boot").map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                  {renderEquipmentProps("boot")}
-                </label>
+            <div className="row">
+              <div className="col-main">
+                <div className="equipments-flex-row">
+                  <div className="equipments-main">
+                    <label>
+                      Helmet:
+                      <br />
+                      <select
+                        value={equipment.helmet}
+                        onChange={handleChange("helmet")}
+                      >
+                        <option value="">Select Helmet</option>
+                        {getAllOptions("helmet").map((name) => (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                      {renderEquipmentProps("helmet")}
+                    </label>
+                    <label>
+                      Armor:
+                      <br />
+                      <select
+                        value={equipment.armor}
+                        onChange={handleChange("armor")}
+                      >
+                        <option value="">Select Armor</option>
+                        {getAllOptions("armor").map((name) => (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                      {renderEquipmentProps("armor")}
+                    </label>
+                    <label>
+                      Legs:
+                      <br />
+                      <select value={equipment.leg} onChange={handleChange("leg")}>
+                        <option value="">Select Legs</option>
+                        {getAllOptions("leg").map((name) => (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                      {renderEquipmentProps("leg")}
+                    </label>
+                    <label>
+                      Boots:
+                      <br />
+                      <select
+                        value={equipment.boot}
+                        onChange={handleChange("boot")}
+                      >
+                        <option value="">Select Boots</option>
+                        {getAllOptions("boot").map((name) => (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                      {renderEquipmentProps("boot")}
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div className="equipments-secondary">
-                <label>
-                  Amulet:
-                  <br />
-                  <select
-                    value={equipment.amulet}
-                    onChange={handleChange("amulet")}
-                  >
-                    <option value="">Select Amulet</option>
-                    {getAllOptions("amulet").map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                  {renderEquipmentProps("amulet")}
-                </label>
-                <label>
-                  Ring:
-                  <br />
-                  <select
-                    value={equipment.ring}
-                    onChange={handleChange("ring")}
-                  >
-                    <option value="">Select Ring</option>
-                    {getAllOptions("ring").map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                  {renderEquipmentProps("ring")}
-                </label>
-                <label>
-                  Trinket:
-                  <br />
-                  <select
-                    value={equipment.trinket}
-                    onChange={handleChange("trinket")}
-                  >
-                    <option value="">Select Trinket</option>
-                    {getAllOptions("trinket").map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                  {renderEquipmentProps("trinket")}
-                </label>
-                {vocation === "paladin" && paladinMode === "12.5+" && (
+              <div className="col-side">
+                <div className="equipments-secondary">
                   <label>
-                    Quiver:
+                    Amulet:
                     <br />
                     <select
-                      value={equipment.offhand}
-                      onChange={handleChange("offhand")}
+                      value={equipment.amulet}
+                      onChange={handleChange("amulet")}
                     >
-                      <option value="">Select Quiver</option>
-                      {getAllOptions("offhand").map((name) => (
+                      <option value="">Select Amulet</option>
+                      {getAllOptions("amulet").map((name) => (
                         <option key={name} value={name}>
                           {name}
                         </option>
                       ))}
                     </select>
-                    {renderEquipmentProps("offhand")}
+                    {renderEquipmentProps("amulet")}
                   </label>
-                )}
-                {vocation === "knight" && (
                   <label>
-                    Shield:
+                    Ring:
                     <br />
                     <select
-                      value={equipment.offhand}
-                      onChange={handleChange("offhand")}
+                      value={equipment.ring}
+                      onChange={handleChange("ring")}
                     >
-                      <option value="">Select Shield</option>
-                      {getAllOptions("offhand").map((name) => (
+                      <option value="">Select Ring</option>
+                      {getAllOptions("ring").map((name) => (
                         <option key={name} value={name}>
                           {name}
                         </option>
                       ))}
                     </select>
-                    {renderEquipmentProps("offhand")}
+                    {renderEquipmentProps("ring")}
                   </label>
-                )}
+                  <label>
+                    Trinket:
+                    <br />
+                    <select
+                      value={equipment.trinket}
+                      onChange={handleChange("trinket")}
+                    >
+                      <option value="">Select Trinket</option>
+                      {getAllOptions("trinket").map((name) => (
+                        <option key={name} value={name}>
+                          {name}
+                        </option>
+                      ))}
+                    </select>
+                    {renderEquipmentProps("trinket")}
+                  </label>
+                  {vocation === "paladin" && paladinMode === "12.5+" && (
+                    <label>
+                      Quiver:
+                      <br />
+                      <select
+                        value={equipment.offhand}
+                        onChange={handleChange("offhand")}
+                      >
+                        <option value="">Select Quiver</option>
+                        {getAllOptions("offhand").map((name) => (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                      {renderEquipmentProps("offhand")}
+                    </label>
+                  )}
+                  {vocation === "knight" && (
+                    <label>
+                      Shield:
+                      <br />
+                      <select
+                        value={equipment.offhand}
+                        onChange={handleChange("offhand")}
+                      >
+                        <option value="">Select Shield</option>
+                        {getAllOptions("offhand").map((name) => (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                      {renderEquipmentProps("offhand")}
+                    </label>
+                  )}
 
-                {(vocation === "sorcerer" || vocation === "druid") && (
-                  <label>
-                    Spellbook:
-                    <br />
-                    <select
-                      value={equipment.offhand}
-                      onChange={handleChange("offhand")}
-                    >
-                      <option value="">Select Spellbook</option>
-                      {getAllOptions("offhand").map((name) => (
-                        <option key={name} value={name}>
-                          {name}
-                        </option>
-                      ))}
-                    </select>
-                    {renderEquipmentProps("offhand")}
-                  </label>
-                )}
+                  {(vocation === "sorcerer" || vocation === "druid") && (
+                    <label>
+                      Spellbook:
+                      <br />
+                      <select
+                        value={equipment.offhand}
+                        onChange={handleChange("offhand")}
+                      >
+                        <option value="">Select Spellbook</option>
+                        {getAllOptions("offhand").map((name) => (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                      {renderEquipmentProps("offhand")}
+                    </label>
+                  )}
+                </div>
               </div>
             </div>
           </>

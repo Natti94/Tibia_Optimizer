@@ -230,7 +230,7 @@ function App() {
                   className={`collapsible-section${showSkills ? " open" : ""}`}
                 >
                   {showSkills && (
-                    <div className="panel-section">
+                    <div className="panel">
                       <Skills
                         main={main}
                         setMain={setMain}
@@ -263,7 +263,7 @@ function App() {
                   }`}
                 >
                   {showEquipments && (
-                    <div className="panel-section">
+                    <div className="panel">
                       <Equipments
                         vocation={main.vocation}
                         equipment={equipment}
@@ -291,7 +291,7 @@ function App() {
                   className={`collapsible-section${showWeapons ? " open" : ""}`}
                 >
                   {showWeapons && (
-                    <div className="panel-section">
+                    <div className="panel">
                       <Weapons
                         vocation={main.vocation}
                         weapon={weapon}
@@ -396,13 +396,13 @@ function App() {
                 <br />
                 <hr color="aqua" />
                 <h1>Encounter</h1>
-                <div className="encounter-summary-flex">
-                  <div className="encounter-summary-left">
+                <div className="row">
+                  <div className="col-main panel">
                     <Runes
                       character={{ ...main, magic: effectiveMagicLevel }}
                     />
                   </div>
-                  <div className="encounter-summary-right">
+                  <div className="col-side panel">
                     <Spells
                       character={{ ...main, magic: effectiveMagicLevel }}
                     />

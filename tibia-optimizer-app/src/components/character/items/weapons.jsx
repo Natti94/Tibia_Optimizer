@@ -79,7 +79,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
   };
 
   return (
-    <div>
+    <>
       <h2>Weapons</h2>
       {!vocation && (
         <div className="select-vocation-message">
@@ -231,7 +231,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 }
 

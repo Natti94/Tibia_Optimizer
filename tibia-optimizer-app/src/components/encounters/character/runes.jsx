@@ -50,7 +50,7 @@ function Rune({ character }) {
   }
 
   return (
-    <div>
+    <>
       <h2>Runes</h2>
       {!character.vocation && (
         <div className="select-vocation-message">
@@ -103,7 +103,7 @@ function Rune({ character }) {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 }
 

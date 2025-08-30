@@ -53,73 +53,77 @@ function Skills({ main, setMain, secondary, setSecondary }) {
         )}
         <div className={`vocation-content${main.vocation ? " show" : ""}`}>
           {main.vocation && (
-            <div className="skills-flex-row">
-              <div className="skills-main">
-                <label>
-                  <h3>Main Attributes</h3>
-                  Level:
-                  <br />
-                  <input
-                    type="number"
-                    name="level"
-                    value={main.level}
-                    onChange={handleMainChange}
-                    min="1"
-                    className="skill-input"
-                  />
-                </label>
-
-                <label>
-                  <img src="/Magic_Level_Icon.png" alt="Magic Level Icon" />{" "}
-                  Magic Level: <br />
-                  <input
-                    type="number"
-                    name="magic"
-                    value={main.magic}
-                    onChange={handleMainChange}
-                    min="1"
-                    className="skill-input"
-                  />
-                </label>
-                <label>
-                  Health:
-                  <br />
-                  <input
-                    type="number"
-                    value={calculatedHealth}
-                    readOnly
-                    className="skill-input"
-                    tabIndex={-1}
-                  />
-                </label>
-                <label>
-                  Mana:
-                  <br />
-                  <input
-                    type="number"
-                    value={calculatedMana}
-                    readOnly
-                    className="skill-input"
-                    tabIndex={-1}
-                  />
-                </label>
-              </div>
-              <div className="skills-secondary">
-                <h3>Secondary Attributes</h3>
-                {Object.keys(secondary).map((skill) => (
-                  <label key={skill}>
-                    {forceCasing(skill)}:
+            <div className="row">
+              <div className="col-main">
+                <div className="skills-main">
+                  <label>
+                    <h3>Main Attributes</h3>
+                    Level:
                     <br />
                     <input
                       type="number"
-                      name={skill}
-                      value={secondary[skill]}
-                      onChange={handleSecondaryChange}
-                      min="0"
+                      name="level"
+                      value={main.level}
+                      onChange={handleMainChange}
+                      min="1"
                       className="skill-input"
                     />
                   </label>
-                ))}
+
+                  <label>
+                    <img src="/Magic_Level_Icon.png" alt="Magic Level Icon" />{" "}
+                    Magic Level: <br />
+                    <input
+                      type="number"
+                      name="magic"
+                      value={main.magic}
+                      onChange={handleMainChange}
+                      min="1"
+                      className="skill-input"
+                    />
+                  </label>
+                  <label>
+                    Health:
+                    <br />
+                    <input
+                      type="number"
+                      value={calculatedHealth}
+                      readOnly
+                      className="skill-input"
+                      tabIndex={-1}
+                    />
+                  </label>
+                  <label>
+                    Mana:
+                    <br />
+                    <input
+                      type="number"
+                      value={calculatedMana}
+                      readOnly
+                      className="skill-input"
+                      tabIndex={-1}
+                    />
+                  </label>
+                </div>
+              </div>
+              <div className="col-side">
+                <div className="skills-secondary">
+                  <h3>Secondary Attributes</h3>
+                  {Object.keys(secondary).map((skill) => (
+                    <label key={skill}>
+                      {forceCasing(skill)}:
+                      <br />
+                      <input
+                        type="number"
+                        name={skill}
+                        value={secondary[skill]}
+                        onChange={handleSecondaryChange}
+                        min="0"
+                        className="skill-input"
+                      />
+                    </label>
+                  ))}
+                </div>
               </div>
             </div>
           )}

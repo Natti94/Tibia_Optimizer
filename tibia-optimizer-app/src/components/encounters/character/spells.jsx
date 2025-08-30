@@ -50,7 +50,7 @@ function Spells({ character }) {
   }
 
   return (
-    <div>
+    <>
       <h2>Spells</h2>
       {!character.vocation && (
         <div className="select-vocation-message">
@@ -102,7 +102,7 @@ function Spells({ character }) {
           )}
         </>
       )}
-    </div>
+    </>
   );
 }
 export default Spells;
