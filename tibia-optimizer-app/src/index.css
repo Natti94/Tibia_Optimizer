@@ -340,16 +340,23 @@ input[type="number"].skill-input {
     padding-right: 0.5rem;
 }
 
-.side-nav-title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 2.5rem;
-    margin-top: 2.2rem;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 4px #fff2;
-    white-space: nowrap;
+.side-nav-image-top {
+    width: 50%;
+    height: auto;
+    margin-left: -2rem;
+    margin-top: -2rem;
+    border-radius: 8px;
     transition: opacity 0.2s;
+}
+
+.side-nav-image-bottom {
+    width: 50%;
+    height: auto;
+    margin-left: -2rem;
+    margin-bottom: -2rem;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.12);
 }
 
 .side-nav.collapsed .side-nav-title {
@@ -371,7 +378,7 @@ input[type="number"].skill-input {
 
 .side-nav-collapse-btn {
     position: absolute;
-    top: 10px;
+    top: 60px;
     right: 8px;
     background: rgba(255, 140, 0, 0.18);
     color: #ff8c00;
@@ -568,10 +575,10 @@ input[type="number"].skill-input {
     cursor: pointer;
     box-shadow: 0 0 24px 4px rgba(255, 140, 0, 0.18);
     z-index: 2000;
-    transition: 
-        background 0.2s, 
-        color 0.2s, 
-        border 0.2s, 
+    transition:
+        background 0.2s,
+        color 0.2s,
+        border 0.2s,
         transform 0.2s;
     display: flex;
     align-items: center;
@@ -606,6 +613,19 @@ input[type="number"].skill-input {
     padding: 1rem 1.2rem;
     box-shadow: 0 0 8px rgba(0, 255, 255, 0.08) inset;
     margin-bottom: 1.5rem;
+}
+
+.side-nav-video-bottom {
+    width: 100%;
+    height: auto;
+    max-width: 180px;
+    border-radius: 8px;
+    margin-top: 3rem;
+    margin-left: 0.75rem;
+    display: block;
+    object-fit: cover;
+
+    box-shadow: 0 0 16px 2px rgba(255, 140, 0, 0.18), 0 0 0 4px rgba(255, 140, 0, 0.10) inset;
 }
 
 @keyframes shine {
