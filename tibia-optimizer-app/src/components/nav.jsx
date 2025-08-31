@@ -9,7 +9,7 @@ function Nav() {
       <nav className={`side-nav${collapsed ? " collapsed" : ""}`}>
         <img
           className="side-nav-image-top"
-          src="/nav/nav_image_top.gif"
+          src="/nav/nav_image.gif"
           alt="Nav Image"
         />
         <button
@@ -23,9 +23,12 @@ function Nav() {
           </span>
         </button>
         <div className="side-nav-title">{!collapsed}</div>
+
         <ul>
           {!collapsed && (
             <>
+              <hr color="#ff8c00" />
+              <br />
               <li>
                 <Link to="/">Home</Link>
               </li>
@@ -51,14 +54,6 @@ function Nav() {
               </li>
             </>
           )}
-          <video
-            className="side-nav-video-bottom"
-            src="/nav/nav_video_bottom.mp4"
-            alt="Nav Video"
-            autoPlay
-            loop
-            muted
-          />
         </ul>
       </nav>
     </div>

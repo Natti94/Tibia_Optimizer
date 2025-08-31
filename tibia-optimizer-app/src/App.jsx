@@ -8,8 +8,9 @@ import Weapons from "./components/character/items/weapons";
 import Runes from "./components/encounters/character/runes";
 import Spells from "./components/encounters/character/spells";
 import Nav from "./components/nav";
+import Panel from "./components/panel";
 import About from "./pages/about";
-import Donate from "./pages/donate";
+import Support from "./pages/support";
 import "./index.css";
 
 function App() {
@@ -132,359 +133,390 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Nav />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="app-container">
-              <img
-                className="background"
-                src="/page/background.png"
-                alt="Background"
-              />
-              <div className="content-wrapper">
-                <div className="app-title-wrapper">
-                  <img
-                    src="/page/title.png"
-                    alt="Title"
-                    className="app-title"
-                  />
-                </div>
-                {!showMainCard && (
-                  <button
-                    className="begin-shine-btn"
-                    onClick={() => {
-                      setHiding(true);
-                      setShowMainCard(true);
-                      setTimeout(() => {
-                        setHiding(false);
-                        document
-                          .getElementById("move-to-vocation")
-                          .scrollIntoView({ behavior: "smooth" });
-                      }, 10);
-                    }}
-                    aria-label="Show Main Card"
-                    type="button"
-                    style={{ margin: "2rem auto 0 auto", display: "block" }}
-                  >
-                    BEGIN
-                  </button>
-                )}
-                {(showMainCard || hiding) && (
-                  <div className={`main-card${hiding ? " hide" : " show"}`}>
+    <>
+      <Panel />
+      <panel />
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="app-container">
+                <img
+                  className="background"
+                  src="/page/background.png"
+                  alt="Background"
+                />
+                <div className="content-wrapper">
+                  <div className="app-title-wrapper">
+                    <img
+                      src="/page/title.png"
+                      alt="Title"
+                      className="app-title"
+                    />
+                    <video
+                      className="title-smoke-video"
+                      src="/page/smoke.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        opacity: 0.1,
+                        transition: "opacity 0.5s ease-in-out",
+                        pointerEvents: "none",
+                        zIndex: 2,
+                      }}
+                    />
+                  </div>
+                  {!showMainCard && (
                     <button
-                      className="restart-btn"
+                      className="begin-shine-btn"
                       onClick={() => {
                         setHiding(true);
+                        setShowMainCard(true);
                         setTimeout(() => {
-                          setShowMainCard(false);
                           setHiding(false);
-                        }, 250);
-                      }}
-                      aria-label="Restart"
-                      type="button"
-                      style={{
-                        marginBottom: "1.5rem",
-                        marginLeft: 0,
-                        display: "block",
-                        margin: "0 auto 1.5rem auto",
-                      }}
-                    >
-                      <span
-                        className="restart-icon"
-                        role="img"
-                        aria-label="Restart"
-                      >
-                        ⟳
-                      </span>
-                      <span className="toggle-label">Restart</span>
-                    </button>
-                    <hr color="aqua" />
-                    <h1>Character</h1>
-                    <div style={{ marginBottom: "1.5rem" }}>
-                      <label>
-                        <div id="move-to-vocation" />
-                        <strong>Vocation:</strong>
-                        <br />
-                        <select
-                          name="vocation"
-                          value={main.vocation}
-                          onChange={(e) =>
-                            setMain((prev) => ({
-                              ...prev,
-                              vocation: e.target.value,
-                            }))
-                          }
-                        >
-                          <option value="">Select Vocation</option>
-                          <option value="knight">Knight</option>
-                          <option value="paladin">Paladin</option>
-                          <option value="sorcerer">Sorcerer</option>
-                          <option value="druid">Druid</option>
-                        </select>
-                      </label>
-                    </div>
-                    {showMainCard && (
-                      <div className="collapsible-section open">
-                        <div style={{ marginBottom: "1rem" }}>
-                          <button
-                            className="collapse-toggle"
-                            onClick={() => setShowSkills((v) => !v)}
-                            aria-label={
-                              showSkills ? "Collapse Skills" : "Expand Skills"
-                            }
-                            type="button"
-                          >
-                            <span
-                              className={`arrow ${showSkills ? "up" : "down"}`}
-                            ></span>
-                            <span className="toggle-label">Skills</span>
-                          </button>
-                        </div>
-                        <div
-                          className={`collapsible-section${
-                            showSkills ? " open" : ""
-                          }`}
-                        >
-                          {showSkills && (
-                            <div className="panel">
-                              <Skills
-                                main={main}
-                                setMain={setMain}
-                                secondary={secondary}
-                                setSecondary={setSecondary}
-                              />
-                            </div>
-                          )}
-                        </div>
-
-                        <div style={{ marginBottom: "1rem" }}>
-                          <button
-                            className="collapse-toggle"
-                            onClick={() => setShowEquipments((v) => !v)}
-                            aria-label={
-                              showEquipments
-                                ? "Collapse Equipments"
-                                : "Expand Equipments"
-                            }
-                          >
-                            <span
-                              className={`arrow ${
-                                showEquipments ? "up" : "down"
-                              }`}
-                            ></span>
-                            <span className="toggle-label">Equipments</span>
-                          </button>
-                        </div>
-                        <div
-                          className={`collapsible-section${
-                            showEquipments ? " open" : ""
-                          }`}
-                        >
-                          {showEquipments && (
-                            <div className="panel">
-                              <Equipments
-                                vocation={main.vocation}
-                                equipment={equipment}
-                                setEquipment={setEquipment}
-                              />
-                            </div>
-                          )}
-                        </div>
-
-                        <div style={{ marginBottom: "1rem" }}>
-                          <button
-                            className="collapse-toggle"
-                            onClick={() => setShowWeapons((v) => !v)}
-                            aria-label={
-                              showWeapons
-                                ? "Collapse Weapons"
-                                : "Expand Weapons"
-                            }
-                          >
-                            <span
-                              className={`arrow ${showWeapons ? "up" : "down"}`}
-                            ></span>
-                            <span className="toggle-label">Weapons</span>
-                          </button>
-                        </div>
-                        <div
-                          className={`collapsible-section${
-                            showWeapons ? " open" : ""
-                          }`}
-                        >
-                          {showWeapons && (
-                            <div className="panel">
-                              <Weapons
-                                vocation={main.vocation}
-                                weapon={weapon}
-                                setWeapon={setWeapon}
-                              />
-                            </div>
-                          )}
-                        </div>
-                        <div className="equipment-summary">
-                          <h3>Character Summary</h3>
-                          <div className="equipment-grid">
-                            <p>
-                              <strong>Vocation:</strong>{" "}
-                              {forceCasing(main.vocation) || "None"}
-                            </p>
-                            <p>
-                              <strong>Level:</strong> {main.level || "None"}
-                            </p>
-                            <p>
-                              <strong>Magic Level:</strong>{" "}
-                              {main.magic || "None"}
-                            </p>
-                            <p>
-                              <strong>Effective Magic Level:</strong>{" "}
-                              {effectiveMagicLevel}
-                            </p>
-                            <p>
-                              <strong>Weapon:</strong> {weapon.weapon || "None"}
-                            </p>
-                            <p>
-                              <strong>Ammunition:</strong>{" "}
-                              {weapon.ammunition || "None"}
-                            </p>
-                            <p>
-                              <strong>Helmet:</strong>{" "}
-                              {equipment.helmet || "None"}
-                            </p>
-                            <p>
-                              <strong>Armor:</strong>{" "}
-                              {equipment.armor || "None"}
-                            </p>
-                            <p>
-                              <strong>Legs:</strong> {equipment.leg || "None"}
-                            </p>
-                            <p>
-                              <strong>Boots:</strong> {equipment.boot || "None"}
-                            </p>
-                            <p>
-                              <strong>Amulet:</strong>{" "}
-                              {equipment.amulet || "None"}
-                            </p>
-                            <p>
-                              <strong>Ring:</strong> {equipment.ring || "None"}
-                            </p>
-                            <p>
-                              <strong>Trinket:</strong>{" "}
-                              {equipment.trinket || "None"}
-                            </p>
-                            <p>
-                              <strong>Shield/Offhand/Spellbook:</strong>{" "}
-                              {equipment.offhand || "None"}
-                            </p>
-                          </div>
-                          <br />
-                          <ul>
-                            <li>
-                              <strong>Total Armor:</strong> {totalArmor}
-                            </li>
-                            <li>
-                              <strong>Total All Resistance:</strong>{" "}
-                              {totalAllResistance}%
-                            </li>
-                            <li>
-                              <strong>
-                                Total Element Specific Resistance:
-                              </strong>
-                              <ul>
-                                {Object.entries(totalSpecificResistance).map(
-                                  ([element, value]) => (
-                                    <li key={element}>
-                                      {forceCasing(element)}: {value}%
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </li>
-                            <li>
-                              <strong>Total Skills:</strong>
-                              <ul>
-                                {Object.entries(skillSum)
-                                  .filter(
-                                    ([skill]) =>
-                                      skill !== "attack" && skill !== "damage"
-                                  )
-                                  .map(([skill, value]) => (
-                                    <li key={skill}>
-                                      {forceCasing(skill)}: {value}
-                                    </li>
-                                  ))}
-                              </ul>
-                            </li>
-                            <li>
-                              <strong>Total Attack:</strong> {totalAttack}
-                            </li>
-                            <li>
-                              <strong>Total Damage:</strong> {totalDamage}
-                            </li>
-                          </ul>
-                        </div>
-                        <br />
-                        <hr color="aqua" />
-                        <h1>Encounter</h1>
-                        <div className="row">
-                          <div className="col-main panel">
-                            <Runes
-                              character={{
-                                ...main,
-                                magic: effectiveMagicLevel,
-                              }}
-                            />
-                          </div>
-                          <div className="col-side panel">
-                            <Spells
-                              character={{
-                                ...main,
-                                magic: effectiveMagicLevel,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-                {intro ? (
-                  <div className="collapse-overlay">
-                    <button
-                      className="begin-optimize-btn"
-                      onClick={() => {
-                        setIntro(false);
-                        setTimeout(() => {
-                          window.scrollTo({ top: 80, behavior: "smooth" });
+                          document
+                            .getElementById("move-to-vocation")
+                            .scrollIntoView({ behavior: "smooth" });
                         }, 10);
                       }}
+                      aria-label="Show Main Card"
+                      type="button"
+                      style={{ margin: "2rem auto 0 auto", display: "block" }}
                     >
-                      START PLAYING YOUR CHARACTER LIKE A PRO!
+                      BEGIN
                     </button>
-                  </div>
-                ) : null}
-                {showScroll && (
-                  <button
-                    className="scroll-top-btn"
-                    onClick={() =>
-                      window.scrollTo({ top: 0, behavior: "smooth" })
-                    }
-                    aria-label="Scroll to top"
-                  >
-                    ↑
-                  </button>
-                )}
+                  )}
+                  {(showMainCard || hiding) && (
+                    <div className={`main-card${hiding ? " hide" : " show"}`}>
+                      <button
+                        className="restart-btn"
+                        onClick={() => {
+                          setHiding(true);
+                          setTimeout(() => {
+                            setShowMainCard(false);
+                            setHiding(false);
+                          }, 250);
+                        }}
+                        aria-label="Restart"
+                        type="button"
+                        style={{
+                          marginBottom: "1.5rem",
+                          marginLeft: 0,
+                          display: "block",
+                          margin: "0 auto 1.5rem auto",
+                        }}
+                      >
+                        <span
+                          className="restart-icon"
+                          role="img"
+                          aria-label="Restart"
+                        >
+                          ⟳
+                        </span>
+                        <span className="toggle-label">Restart</span>
+                      </button>
+                      <hr color="aqua" />
+                      <h1>Character</h1>
+                      <div style={{ marginBottom: "1.5rem" }}>
+                        <label>
+                          <div id="move-to-vocation" />
+                          <strong>Vocation:</strong>
+                          <br />
+                          <select
+                            name="vocation"
+                            value={main.vocation}
+                            onChange={(e) =>
+                              setMain((prev) => ({
+                                ...prev,
+                                vocation: e.target.value,
+                              }))
+                            }
+                          >
+                            <option value="">Select Vocation</option>
+                            <option value="knight">Knight</option>
+                            <option value="paladin">Paladin</option>
+                            <option value="sorcerer">Sorcerer</option>
+                            <option value="druid">Druid</option>
+                          </select>
+                        </label>
+                      </div>
+                      {showMainCard && (
+                        <div className="collapsible-section open">
+                          <div style={{ marginBottom: "1rem" }}>
+                            <button
+                              className="collapse-toggle"
+                              onClick={() => setShowSkills((v) => !v)}
+                              aria-label={
+                                showSkills ? "Collapse Skills" : "Expand Skills"
+                              }
+                              type="button"
+                            >
+                              <span
+                                className={`arrow ${
+                                  showSkills ? "up" : "down"
+                                }`}
+                              ></span>
+                              <span className="toggle-label">Skills</span>
+                            </button>
+                          </div>
+                          <div
+                            className={`collapsible-section${
+                              showSkills ? " open" : ""
+                            }`}
+                          >
+                            {showSkills && (
+                              <div className="panel">
+                                <Skills
+                                  main={main}
+                                  setMain={setMain}
+                                  secondary={secondary}
+                                  setSecondary={setSecondary}
+                                />
+                              </div>
+                            )}
+                          </div>
+
+                          <div style={{ marginBottom: "1rem" }}>
+                            <button
+                              className="collapse-toggle"
+                              onClick={() => setShowEquipments((v) => !v)}
+                              aria-label={
+                                showEquipments
+                                  ? "Collapse Equipments"
+                                  : "Expand Equipments"
+                              }
+                            >
+                              <span
+                                className={`arrow ${
+                                  showEquipments ? "up" : "down"
+                                }`}
+                              ></span>
+                              <span className="toggle-label">Equipments</span>
+                            </button>
+                          </div>
+                          <div
+                            className={`collapsible-section${
+                              showEquipments ? " open" : ""
+                            }`}
+                          >
+                            {showEquipments && (
+                              <div className="panel">
+                                <Equipments
+                                  vocation={main.vocation}
+                                  equipment={equipment}
+                                  setEquipment={setEquipment}
+                                />
+                              </div>
+                            )}
+                          </div>
+
+                          <div style={{ marginBottom: "1rem" }}>
+                            <button
+                              className="collapse-toggle"
+                              onClick={() => setShowWeapons((v) => !v)}
+                              aria-label={
+                                showWeapons
+                                  ? "Collapse Weapons"
+                                  : "Expand Weapons"
+                              }
+                            >
+                              <span
+                                className={`arrow ${
+                                  showWeapons ? "up" : "down"
+                                }`}
+                              ></span>
+                              <span className="toggle-label">Weapons</span>
+                            </button>
+                          </div>
+                          <div
+                            className={`collapsible-section${
+                              showWeapons ? " open" : ""
+                            }`}
+                          >
+                            {showWeapons && (
+                              <div className="panel">
+                                <Weapons
+                                  vocation={main.vocation}
+                                  weapon={weapon}
+                                  setWeapon={setWeapon}
+                                />
+                              </div>
+                            )}
+                          </div>
+                          <div className="equipment-summary">
+                            <h3>Character Summary</h3>
+                            <div className="equipment-grid">
+                              <p>
+                                <strong>Vocation:</strong>{" "}
+                                {forceCasing(main.vocation) || "None"}
+                              </p>
+                              <p>
+                                <strong>Level:</strong> {main.level || "None"}
+                              </p>
+                              <p>
+                                <strong>Magic Level:</strong>{" "}
+                                {main.magic || "None"}
+                              </p>
+                              <p>
+                                <strong>Effective Magic Level:</strong>{" "}
+                                {effectiveMagicLevel}
+                              </p>
+                              <p>
+                                <strong>Weapon:</strong>{" "}
+                                {weapon.weapon || "None"}
+                              </p>
+                              <p>
+                                <strong>Ammunition:</strong>{" "}
+                                {weapon.ammunition || "None"}
+                              </p>
+                              <p>
+                                <strong>Helmet:</strong>{" "}
+                                {equipment.helmet || "None"}
+                              </p>
+                              <p>
+                                <strong>Armor:</strong>{" "}
+                                {equipment.armor || "None"}
+                              </p>
+                              <p>
+                                <strong>Legs:</strong> {equipment.leg || "None"}
+                              </p>
+                              <p>
+                                <strong>Boots:</strong>{" "}
+                                {equipment.boot || "None"}
+                              </p>
+                              <p>
+                                <strong>Amulet:</strong>{" "}
+                                {equipment.amulet || "None"}
+                              </p>
+                              <p>
+                                <strong>Ring:</strong>{" "}
+                                {equipment.ring || "None"}
+                              </p>
+                              <p>
+                                <strong>Trinket:</strong>{" "}
+                                {equipment.trinket || "None"}
+                              </p>
+                              <p>
+                                <strong>Shield/Offhand/Spellbook:</strong>{" "}
+                                {equipment.offhand || "None"}
+                              </p>
+                            </div>
+                            <br />
+                            <ul>
+                              <li>
+                                <strong>Total Armor:</strong> {totalArmor}
+                              </li>
+                              <li>
+                                <strong>Total All Resistance:</strong>{" "}
+                                {totalAllResistance}%
+                              </li>
+                              <li>
+                                <strong>
+                                  Total Element Specific Resistance:
+                                </strong>
+                                <ul>
+                                  {Object.entries(totalSpecificResistance).map(
+                                    ([element, value]) => (
+                                      <li key={element}>
+                                        {forceCasing(element)}: {value}%
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </li>
+                              <li>
+                                <strong>Total Skills:</strong>
+                                <ul>
+                                  {Object.entries(skillSum)
+                                    .filter(
+                                      ([skill]) =>
+                                        skill !== "attack" && skill !== "damage"
+                                    )
+                                    .map(([skill, value]) => (
+                                      <li key={skill}>
+                                        {forceCasing(skill)}: {value}
+                                      </li>
+                                    ))}
+                                </ul>
+                              </li>
+                              <li>
+                                <strong>Total Attack:</strong> {totalAttack}
+                              </li>
+                              <li>
+                                <strong>Total Damage:</strong> {totalDamage}
+                              </li>
+                            </ul>
+                          </div>
+                          <br />
+                          <hr color="aqua" />
+                          <h1>Encounter</h1>
+                          <div className="row">
+                            <div className="col-main panel">
+                              <Runes
+                                character={{
+                                  ...main,
+                                  magic: effectiveMagicLevel,
+                                }}
+                              />
+                            </div>
+                            <div className="col-side panel">
+                              <Spells
+                                character={{
+                                  ...main,
+                                  magic: effectiveMagicLevel,
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {intro ? (
+                    <div className="collapse-overlay">
+                      <button
+                        className="begin-optimize-btn"
+                        onClick={() => {
+                          setIntro(false);
+                          setTimeout(() => {
+                            window.scrollTo({ top: 80, behavior: "smooth" });
+                          }, 10);
+                        }}
+                      >
+                        START PLAYING YOUR CHARACTER LIKE A PRO!
+                      </button>
+                    </div>
+                  ) : null}
+                  {showScroll && (
+                    <button
+                      className="scroll-top-btn"
+                      onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                      }
+                      aria-label="Scroll to top"
+                    >
+                      ↑
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          }
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/donate" element={<Donate />} />
-      </Routes>
-    </BrowserRouter>
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/donate" element={<Support />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

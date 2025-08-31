@@ -1,4 +1,4 @@
-function Donate() {
+function Support() {
   return (
     <div>
       <h1>Donate</h1>
@@ -7,4 +7,4 @@ function Donate() {
   );
 }
 
-export default Donate;
+export default Support;
