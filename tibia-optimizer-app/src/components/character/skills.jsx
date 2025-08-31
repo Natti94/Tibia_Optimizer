@@ -7,6 +7,25 @@ function Skills({ main, setMain, secondary, setSecondary }) {
     "": { health: 0, mana: 0, melee: 0.5, distance: 0.5, magic: 0.5 },
   };
 
+  const secondaryIcon = {
+    sword: (
+      <img src="/skills/secondary/sword_fighting_icon.png" alt="Sword Icon" />
+    ),
+    axe: <img src="/skills/secondary/axe_fighting_icon.png" alt="Axe Icon" />,
+    club: (
+      <img src="/skills/secondary/club_fighting_icon.png" alt="Club Icon" />
+    ),
+    distance: (
+      <img
+        src="/skills/secondary/distance_fighting_icon.png"
+        alt="Distance Icon"
+      />
+    ),
+    shield: (
+      <img src="/skills/secondary/shielding_icon.png" alt="Shield Icon" />
+    ),
+  };
+
   const forceCasing = (str) => {
     return str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
   };
@@ -41,11 +60,6 @@ function Skills({ main, setMain, secondary, setSecondary }) {
   return (
     <div>
       <form>
-        <label>
-          Vocation:
-          <br />
-          <h2>Skills</h2>
-        </label>
         {!main.vocation && (
           <div className="select-vocation-message">
             <strong>🛈 Please select a vocation to view and edit this.</strong>
@@ -58,9 +72,10 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                 <div className="skills-main">
                   <label>
                     <h3>Main Attributes</h3>
-                    <br />
-                    <img src="/skills/main/level_icon.png" alt="Level Icon" />
-                    <br />
+                    <img
+                      src="/skills/main/level_icon.png"
+                      alt="Level Icon"
+                    />{" "}
                     Level:
                     <br />
                     <input
@@ -72,13 +87,11 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       className="skill-input"
                     />
                   </label>
-
                   <label>
                     <img
                       src="/skills/main/magic_level_icon.png"
                       alt="Magic Level Icon"
                     />{" "}
-                    <br />
                     Magic Level:
                     <br />
                     <input
@@ -95,7 +108,6 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       src="/skills/main/hit_point_icon.png"
                       alt="Hit Point Icon"
                     />{" "}
-                    <br />
                     Health:
                     <br />
                     <input
@@ -111,7 +123,6 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       src="/skills/main/mana_point_icon.png"
                       alt="Mana Point Icon"
                     />{" "}
-                    <br />
                     Mana:
                     <br />
                     <input
@@ -129,7 +140,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                   <h3>Secondary Attributes</h3>
                   {Object.keys(secondary).map((skill) => (
                     <label key={skill}>
-                      {forceCasing(skill)}:
+                      {secondaryIcon[skill]} {forceCasing(skill)}:
                       <br />
                       <input
                         type="number"
@@ -164,7 +175,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
             <ul>
               {Object.entries(secondary).map(([skill, value]) => (
                 <li key={skill}>
-                  {forceCasing(skill)}: {value}
+                  {forceCasing(skill)}: {value} <br />
                 </li>
               ))}
             </ul>

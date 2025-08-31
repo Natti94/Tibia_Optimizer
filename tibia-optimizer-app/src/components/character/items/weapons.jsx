@@ -79,13 +79,10 @@ function Weapons({ vocation, weapon, setWeapon }) {
   };
 
   return (
-    <>
-      <h2>Weapons</h2>
+    <div>
       {!vocation && (
         <div className="select-vocation-message">
-          <strong>
-            🛈 Please select a vocation to view and edit this.
-          </strong>
+          <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
       <div className={`vocation-content${vocation ? " show" : ""}`}>
@@ -231,7 +228,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

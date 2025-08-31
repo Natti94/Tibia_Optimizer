@@ -107,7 +107,7 @@ body::-webkit-scrollbar-thumb:hover {
 .main-card.hide {
     opacity: 0;
     transform: translateY(-60px);
-    /* Slide up when hiding */
+
     pointer-events: none;
 }
 
@@ -556,8 +556,8 @@ input[type="number"].skill-input {
     position: fixed;
     bottom: 32px;
     right: 32px;
-    background: linear-gradient(90deg, #ffb347 0%, #ff8c00 100%);
-    color: #fff;
+    background: rgba(255, 140, 0, 0.18);
+    color: white;
     border: 2px solid #ff8c00;
     border-radius: 50%;
     width: 48px;
@@ -568,7 +568,11 @@ input[type="number"].skill-input {
     cursor: pointer;
     box-shadow: 0 0 24px 4px rgba(255, 140, 0, 0.18);
     z-index: 2000;
-    transition: background 0.2s, color 0.2s, border 0.2s;
+    transition: 
+        background 0.2s, 
+        color 0.2s, 
+        border 0.2s, 
+        transform 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -580,6 +584,7 @@ input[type="number"].skill-input {
     background: #ff8c00;
     color: #fff;
     border-color: #fff;
+    transform: scale(1.15);
 }
 
 .row {

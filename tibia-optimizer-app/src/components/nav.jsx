@@ -1,48 +1,48 @@
 import { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import About from "../pages/about";
-import Donate from "../pages/donate";
+import { Link } from "react-router-dom";
 
 function Nav() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <>
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/donate" element={<Donate />} />
-      </Routes>
-      <nav className={`side-nav${collapsed ? " collapsed" : ""}`}>
-        <button
-          className="side-nav-collapse-btn"
-          onClick={() => setCollapsed((v) => !v)}
-          aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
-          type="button"
-        >
-          <span className="side-nav-collapse-icon" color="">
-            {collapsed ? "»" : "«"}
-          </span>
-        </button>
-        <div className="side-nav-title">{!collapsed && "Tibia Optimizer"}</div>
-        <ul>
-          {!collapsed && (
-            <>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <br />
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <br />
-              <li>
-                <Link to="/donate">Donate</Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
-    </>
+    <nav className={`side-nav${collapsed ? " collapsed" : ""}`}>
+      <button
+        className="side-nav-collapse-btn"
+        onClick={() => setCollapsed((v) => !v)}
+        aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
+        type="button"
+      >
+        <span className="side-nav-collapse-icon" color="">
+          {collapsed ? "»" : "«"}
+        </span>
+      </button>
+      <div className="side-nav-title">{!collapsed}</div>
+      <ul>
+        {!collapsed && (
+          <>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <br />
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <br />
+            <li>
+              <Link to="/donate">Guides</Link>
+            </li>
+            <br />
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+            <br />
+            <li>
+              <Link to="/support">Support Us</Link>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
   );
 }
 

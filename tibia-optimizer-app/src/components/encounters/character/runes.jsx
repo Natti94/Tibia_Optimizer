@@ -67,7 +67,7 @@ function Rune({ character }) {
                 <li>Paladin: 50%</li>
                 <li>Sorcerer: 100%</li>
                 <li>Druid: 100%</li>
-                <li>No vocation: 50%</li>
+                <li>No vocation: 10%</li>
               </ul>
               <p>
                 Your vocation is{" "}

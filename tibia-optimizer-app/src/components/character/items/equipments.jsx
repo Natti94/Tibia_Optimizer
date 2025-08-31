@@ -108,7 +108,6 @@ function Equipments({ vocation, equipment, setEquipment }) {
 
   return (
     <div>
-      <h2>Equipments</h2>
       {!vocation && (
         <div className="select-vocation-message">
           <strong>🛈 Please select a vocation to view and edit this.</strong>

@@ -7,4 +7,4 @@ function Donate() {
   );
 }
 
-export default Donate();
+export default Donate;
