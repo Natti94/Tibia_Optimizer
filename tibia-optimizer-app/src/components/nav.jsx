@@ -18,37 +18,49 @@ function Nav() {
           aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
           type="button"
         >
-          <span className="side-nav-collapse-icon" color="">
+          <span className="side-nav-collapse-icon">
             {collapsed ? "»" : "«"}
           </span>
         </button>
+
         <div className="side-nav-title">{!collapsed}</div>
 
         <ul>
           {!collapsed && (
             <>
               <hr color="#ff8c00" />
-              <br />
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <br />
+              <Link to="/">
+                <img
+                  src="/nav/title_small.png"
+                  alt="Title Small"
+                  height={90}
+                  width={120}
+                  style={{ marginLeft: "3.1rem", marginTop: "1rem" }}
+                />
+              </Link>
               <li>
                 <Link to="/about">About</Link>
               </li>
-              <br />
+
               <li>
                 <Link to="/guides">Guides</Link>
               </li>
-              <br />
               <li>
-                <Link to="/cooperations">Cooperations</Link>
+                <Link to="/cooperations">
+                  Cooperations
+                  <img
+                    className="nav-icon"
+                    src="/nav/cooperate_icon.png"
+                    alt="Cooperate Icon"
+                    style={{ margin: "-0.5rem 1rem" }}
+                  />
+                </Link>
               </li>
-              <br />
+
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
-              <br />
+
               <li>
                 <Link to="/support">Support Us</Link>
               </li>
