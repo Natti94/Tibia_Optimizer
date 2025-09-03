@@ -50,6 +50,10 @@ function App() {
   const [showScroll, setShowScroll] = useState(false);
   const [hiding, setHiding] = useState(false);
 
+  const background = import.meta.env.VITE_CLOUDINARY_BACKGROUND;
+  const title = import.meta.env.VITE_CLOUDINARY_TITLE;
+  const smokeEffect = import.meta.env.VITE_CLOUDINARY_SMOKE_EFFECT;
+
   useEffect(() => {
     const onScroll = () => setShowScroll(window.scrollY > 200);
     window.addEventListener("scroll", onScroll);
@@ -135,7 +139,6 @@ function App() {
   return (
     <>
       <Panel />
-      <panel />
       <BrowserRouter>
         <Nav />
         <Routes>
@@ -143,21 +146,12 @@ function App() {
             path="/"
             element={
               <div className="app-container">
-                <img
-                  className="background"
-                  src="/page/background.png"
-                  alt="Background"
-                />
+                <img className="background" src={background} alt="Background" />
                 <div className="content-wrapper">
                   <div className="app-title-wrapper">
-                    <img
-                      src="/page/title.png"
-                      alt="Title"
-                      className="app-title"
-                    />
+                    <img src={title} alt="Title" className="app-title" />
                     <video
-                      className="title-smoke-video"
-                      src="/page/smoke.mp4"
+                      src={smokeEffect}
                       autoPlay
                       loop
                       muted

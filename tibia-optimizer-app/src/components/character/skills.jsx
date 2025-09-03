@@ -7,23 +7,20 @@ function Skills({ main, setMain, secondary, setSecondary }) {
     "": { health: 0, mana: 0, melee: 0.5, distance: 0.5, magic: 0.5 },
   };
 
-  const secondaryIcon = {
-    sword: (
-      <img src="/skills/secondary/sword_fighting_icon.png" alt="Sword Icon" />
-    ),
-    axe: <img src="/skills/secondary/axe_fighting_icon.png" alt="Axe Icon" />,
-    club: (
-      <img src="/skills/secondary/club_fighting_icon.png" alt="Club Icon" />
-    ),
-    distance: (
-      <img
-        src="/skills/secondary/distance_fighting_icon.png"
-        alt="Distance Icon"
-      />
-    ),
-    shield: (
-      <img src="/skills/secondary/shielding_icon.png" alt="Shield Icon" />
-    ),
+  const mainSkillIcon = {
+    level: import.meta.env.VITE_CLOUDINARY_LEVEL_ICON,
+    magic: import.meta.env.VITE_CLOUDINARY_MAGIC_LEVEL_ICON,
+    health: import.meta.env.VITE_CLOUDINARY_HIT_POINT_ICON,
+    mana: import.meta.env.VITE_CLOUDINARY_MANA_POINT_ICON,
+  };
+
+  const secondarySkillIcon = {
+    sword: import.meta.env.VITE_CLOUDINARY_SWORD_FIGHTING_ICON,
+    axe: import.meta.env.VITE_CLOUDINARY_AXE_FIGHTING_ICON,
+    club: import.meta.env.VITE_CLOUDINARY_CLUB_FIGHTING_ICON,
+    distance: import.meta.env.VITE_CLOUDINARY_DISTANCE_FIGHTING_ICON,
+    fist: import.meta.env.VITE_CLOUDINARY_FIST_FIGHTING_ICON,
+    shielding: import.meta.env.VITE_CLOUDINARY_SHIELDING_ICON,
   };
 
   const forceCasing = (str) => {
@@ -72,11 +69,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                 <div className="skills-main">
                   <label>
                     <h3>Main Attributes</h3>
-                    <img
-                      src="/skills/main/level_icon.png"
-                      alt="Level Icon"
-                    />{" "}
-                    Level:
+                    <img src={mainSkillIcon.level} alt="Level Icon" /> Level:
                     <br />
                     <input
                       type="number"
@@ -88,10 +81,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img
-                      src="/skills/main/magic_level_icon.png"
-                      alt="Magic Level Icon"
-                    />{" "}
+                    <img src={mainSkillIcon.magic} alt="Magic Level Icon" />{" "}
                     Magic Level:
                     <br />
                     <input
@@ -104,10 +94,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img
-                      src="/skills/main/hit_point_icon.png"
-                      alt="Hit Point Icon"
-                    />{" "}
+                    <img src={mainSkillIcon.health} alt="Hit Point Icon" />{" "}
                     Health:
                     <br />
                     <input
@@ -119,11 +106,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img
-                      src="/skills/main/mana_point_icon.png"
-                      alt="Mana Point Icon"
-                    />{" "}
-                    Mana:
+                    <img src={mainSkillIcon.mana} alt="Mana Point Icon" /> Mana:
                     <br />
                     <input
                       type="number"
@@ -140,7 +123,12 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                   <h3>Secondary Attributes</h3>
                   {Object.keys(secondary).map((skill) => (
                     <label key={skill}>
-                      {secondaryIcon[skill]} {forceCasing(skill)}:
+                      <img
+                        src={secondarySkillIcon[skill]}
+                        alt={`${forceCasing(skill)} Icon`}
+                        style={{ verticalAlign: "middle", marginRight: "5px" }}
+                      />
+                      {forceCasing(skill)}:
                       <br />
                       <input
                         type="number"
