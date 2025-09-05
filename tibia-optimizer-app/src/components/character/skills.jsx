@@ -8,19 +8,19 @@ function Skills({ main, setMain, secondary, setSecondary }) {
   };
 
   const mainSkillIcon = {
-    level: import.meta.env.VITE_CLOUDINARY_LEVEL_ICON,
-    magic: import.meta.env.VITE_CLOUDINARY_MAGIC_LEVEL_ICON,
-    health: import.meta.env.VITE_CLOUDINARY_HIT_POINT_ICON,
-    mana: import.meta.env.VITE_CLOUDINARY_MANA_POINT_ICON,
+    level: `/api/getAsset?asset=levelIcon`,
+    magic: `/api/getAsset?asset=magicLevelIcon`,
+    health: `/api/getAsset?asset=hitPointIcon`,
+    mana: `/api/getAsset?asset=manaPointIcon`,
   };
 
   const secondarySkillIcon = {
-    sword: import.meta.env.VITE_CLOUDINARY_SWORD_FIGHTING_ICON,
-    axe: import.meta.env.VITE_CLOUDINARY_AXE_FIGHTING_ICON,
-    club: import.meta.env.VITE_CLOUDINARY_CLUB_FIGHTING_ICON,
-    distance: import.meta.env.VITE_CLOUDINARY_DISTANCE_FIGHTING_ICON,
-    fist: import.meta.env.VITE_CLOUDINARY_FIST_FIGHTING_ICON,
-    shielding: import.meta.env.VITE_CLOUDINARY_SHIELDING_ICON,
+    sword: `/api/getAsset?asset=swordFightingIcon`,
+    axe: `/api/getAsset?asset=axeFightingIcon`,
+    club: `/api/getAsset?asset=clubFightingIcon`,
+    distance: `/api/getAsset?asset=distanceFightingIcon`,
+    fist: `/api/getAsset?asset=fistFightingIcon`,
+    shielding: `/api/getAsset?asset=shieldingIcon`,
   };
 
   const forceCasing = (str) => {
