@@ -36,9 +36,4 @@ function assetHandler(event) {
   };
 }
 
-// IMPORTANT:
-// - For client-side (React) code, use import.meta.env.VITE_CLOUDINARY_*
-// - For serverless functions (like this), use process.env.VITE_CLOUDINARY_*
-// - Set all VITE_CLOUDINARY_* variables in Netlify dashboard for production
-
 export { assetHandler };
