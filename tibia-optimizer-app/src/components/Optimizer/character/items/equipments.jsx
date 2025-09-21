@@ -1,22 +1,24 @@
 import { useState } from "react";
-import { equipmentList } from "../../../data/character/items/equipments";
+import { equipmentList } from "../../../../data/character/items/equipments";
 
 function Equipments({ vocation, equipment, setEquipment }) {
   const [paladinMode, setPaladinMode] = useState("12.5+");
 
+  const placeholderEquipment = {
+    helmet: ["Helmet Test"],
+    armor: ["Armor Test"],
+    leg: ["Legs Test"],
+    boot: ["Boots Test"],
+    amulet: ["Amulet Test"],
+    ring: ["Ring Test"],
+    trinket: ["Trinket Test"],
+    shield: ["Shield Test"],
+    quiver: ["Quiver Test"],
+    spellbook: ["Spellbook Test"],
+  };
+
   const forceCasing = (str) =>
     str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
-
-  const placeholderEquipment = {
-    helmet: ["helmet"],
-    armor: ["armor"],
-    leg: ["legs"],
-    boot: ["boots"],
-    amulet: ["amulet"],
-    ring: ["ring"],
-    trinket: ["trinket"],
-    offhand: ["offhand"],
-  };
 
   const getAllOptions = (type) => {
     const placeholders = placeholderEquipment[type] || [];
@@ -274,17 +276,17 @@ function Equipments({ vocation, equipment, setEquipment }) {
                       Quiver:
                       <br />
                       <select
-                        value={equipment.offhand}
-                        onChange={handleChange("offhand")}
+                        value={equipment.quiver}
+                        onChange={handleChange("quiver")}
                       >
                         <option value="">Select Quiver</option>
-                        {getAllOptions("offhand").map((name) => (
+                        {getAllOptions("quiver").map((name) => (
                           <option key={name} value={name}>
                             {name}
                           </option>
                         ))}
                       </select>
-                      {renderEquipmentProps("offhand")}
+                      {renderEquipmentProps("quiver")}
                     </label>
                   )}
                   {vocation === "knight" && (
@@ -292,11 +294,11 @@ function Equipments({ vocation, equipment, setEquipment }) {
                       Shield:
                       <br />
                       <select
-                        value={equipment.offhand}
-                        onChange={handleChange("offhand")}
+                        value={equipment.shield}
+                        onChange={handleChange("shield")}
                       >
                         <option value="">Select Shield</option>
-                        {getAllOptions("offhand").map((name) => (
+                        {getAllOptions("shield").map((name) => (
                           <option key={name} value={name}>
                             {name}
                           </option>
@@ -311,11 +313,11 @@ function Equipments({ vocation, equipment, setEquipment }) {
                       Spellbook:
                       <br />
                       <select
-                        value={equipment.offhand}
-                        onChange={handleChange("offhand")}
+                        value={equipment.spellbook}
+                        onChange={handleChange("spellbook")}
                       >
                         <option value="">Select Spellbook</option>
-                        {getAllOptions("offhand").map((name) => (
+                        {getAllOptions("spellbook").map((name) => (
                           <option key={name} value={name}>
                             {name}
                           </option>

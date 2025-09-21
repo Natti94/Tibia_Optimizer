@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { spellList } from "../../../data/character/spells";
-
-const VOCATION_MODIFIERS = {
-  knight: { magic: 0.3 },
-  paladin: { magic: 0.5 },
-  sorcerer: { magic: 1.0 },
-  druid: { magic: 1.0 },
-  "": { magic: 0.1 },
-};
+import { spellList } from "../../../../data/character/spells";
 
 function Spells({ character }) {
+  const VOCATION_MODIFIERS = {
+    knight: { magic: 0.3 },
+    paladin: { magic: 0.5 },
+    sorcerer: { magic: 1.0 },
+    druid: { magic: 1.0 },
+    "": { magic: 0.1 },
+  };
+
   const [selectedSpell, setSelectedSpell] = useState(null);
   const magicLevel = parseInt(character.magic) || 0;
   const MAGIC_FORMULA = magicLevel * 2 + 5;
@@ -57,10 +57,27 @@ function Spells({ character }) {
           <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
+      <div
+        className={`vocation-content${character.vocation ? " show" : ""}`}
+      ></div>
       {character.vocation && (
         <>
+          <div>
+            <h3>Vocational Spell Modifiers</h3>
+            <ul>
+              <li>{VOCATION_MODIFIERS.knight.magic * 100}%</li>
+              <li>{VOCATION_MODIFIERS.paladin.magic * 100}%</li>
+              <li>{VOCATION_MODIFIERS.sorcerer.magic * 100}%</li>
+              <li>{VOCATION_MODIFIERS.druid.magic * 100}%</li>
+              <li>{VOCATION_MODIFIERS[""].magic * 100}%</li>
+            </ul>
+            <p>
+              Your vocation is{" "}
+              <strong>{forceCasing(character.vocation)}.</strong>
+            </p>
+          </div>
           <label>
-            Spell:
+            Select Spell:
             <br />
             <select
               value={selectedSpell ? selectedSpell.name : ""}

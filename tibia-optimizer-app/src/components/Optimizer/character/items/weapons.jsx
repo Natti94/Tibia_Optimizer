@@ -1,18 +1,20 @@
-import { weaponList } from "../../../data/character/items/weapons";
+import { weaponList } from "../../../../data/character/items/weapons";
 
 function Weapons({ vocation, weapon, setWeapon }) {
+  const placeholderWeapons = {
+    sword: ["Sword Test"],
+    axe: ["Axe Test"],
+    club: ["Club Test"],
+    bow: ["Bow Test"],
+    crossbow: ["Crossbow Test"],
+    wand: ["Wand Test"],
+    rod: ["Rod Test"],
+    bolt: ["Bolt Test"],
+    arrow: ["Arrow Test"],
+  };
+
   const forceCasing = (str) =>
     str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
-
-  const placeholderWeapons = {
-    sword: ["Sword"],
-    axe: ["Axe"],
-    club: ["Club"],
-    bow: ["Bow"],
-    crossbow: ["Crossbow"],
-    wand: ["Wand"],
-    rod: ["Rod"],
-  };
 
   const getAllOptions = (type) => {
     const placeholders = placeholderWeapons[type] || [];
@@ -161,7 +163,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
                       }
                     >
                       <option value="">Select arrow</option>
-                      <option value="Arrow">Arrow</option>
+                      <option value="Arrow">{placeholderWeapons.arrow}</option>
                     </select>
                   </label>
                 )}
@@ -176,7 +178,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
                       }
                     >
                       <option value="">Select Bolt</option>
-                      <option value="Bolt">Bolt</option>
+                      <option value="Bolt">{placeholderWeapons.bolt}</option>
                     </select>
                   </label>
                 )}

@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { runeList } from "../../../data/character/items/rune";
-
-const VOCATION_MODIFIERS = {
-  knight: { magic: 0.3 },
-  paladin: { magic: 0.5 },
-  sorcerer: { magic: 1.0 },
-  druid: { magic: 1.0 },
-  "": { magic: 0.1 },
-};
+import { runeList } from "../../../../data/character/items/runes";
 
 function Rune({ character }) {
+  const VOCATION_MODIFIERS = {
+    knight: { magic: 0.3 },
+    paladin: { magic: 0.5 },
+    sorcerer: { magic: 1.0 },
+    druid: { magic: 1.0 },
+    "": { magic: 0.1 },
+  };
+
   const [selectedRune, setSelectedRune] = useState(null);
   const magicLevel = parseInt(character.magic) || 0;
   const MAGIC_FORMULA = magicLevel * 2 + 5;
@@ -63,11 +63,11 @@ function Rune({ character }) {
             <div>
               <h3>Vocational Rune Modifiers</h3>
               <ul>
-                <li>Knight: 30%</li>
-                <li>Paladin: 50%</li>
-                <li>Sorcerer: 100%</li>
-                <li>Druid: 100%</li>
-                <li>No vocation: 10%</li>
+                <li>{VOCATION_MODIFIERS.knight.magic * 100}%</li>
+                <li>{VOCATION_MODIFIERS.paladin.magic * 100}%</li>
+                <li>{VOCATION_MODIFIERS.sorcerer.magic * 100}%</li>
+                <li>{VOCATION_MODIFIERS.druid.magic * 100}%</li>
+                <li>{VOCATION_MODIFIERS[""].magic * 100}%</li>
               </ul>
               <p>
                 Your vocation is{" "}
