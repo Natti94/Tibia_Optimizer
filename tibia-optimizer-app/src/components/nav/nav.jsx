@@ -3,25 +3,26 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   const [collapsed, setCollapsed] = useState(false);
-  const navImage =
-    "https://res.cloudinary.com/diqeltpvw/image/upload/v1756834802/nav_image_gv72ih.gif";
-  const navIcon = {
-    about:
-      "https://res.cloudinary.com/diqeltpvw/image/upload/v1756834802/about_icon.png",
-    guides:
-      "https://res.cloudinary.com/diqeltpvw/image/upload/v1756841326/guide_icon_vgmybf.png",
-    partners:
-      "https://res.cloudinary.com/diqeltpvw/image/upload/v1756924729/Partner_Icon_p8srfd.png",
-    contact:
-      "https://res.cloudinary.com/diqeltpvw/image/upload/v1756834802/contact_icon.png",
-    support:
-      "https://res.cloudinary.com/diqeltpvw/image/upload/v1756834802/support_icon.png",
+
+  const isProd = import.meta.env.PROD;
+
+  const assets = {
+    book_gif: isProd
+      ? `/api/getAsset?asset=book_gif`
+      : import.meta.env.VITE_CLOUDINARY_BOOK_GIF,
+    title_small: isProd
+      ? `/api/getAsset?asset=title_small`
+      : import.meta.env.VITE_CLOUDINARY_TITLE_SMALL,
   };
 
   return (
     <div>
       <nav className={`side-nav${collapsed ? " collapsed" : ""}`}>
-        <img className="side-nav-image-top" src={navImage} alt="Nav Image" />
+        <img
+          className="side-nav-image-top"
+          src={assets.book_gif}
+          alt="Nav Image"
+        />
         <button
           className="side-nav-collapse-btn"
           onClick={() => setCollapsed((v) => !v)}
@@ -41,7 +42,7 @@ function Nav() {
               <hr color="#ff8c00" />
               <Link to="/">
                 <img
-                  src="/nav/title_small.png"
+                  src={assets.title_small}
                   alt="Title Small"
                   height={90}
                   width={120}
@@ -60,7 +61,7 @@ function Nav() {
                   Partners
                   <img
                     className="nav-icon"
-                    src={navIcon.partners}
+              
                     alt="Partners Icon"
                     style={{ margin: "-0.5rem 1rem" }}
                   />

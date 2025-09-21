@@ -7,20 +7,39 @@ function Skills({ main, setMain, secondary, setSecondary }) {
     "": { health: 0, mana: 0, melee: 0.5, distance: 0.5, magic: 0.5 },
   };
 
-  const mainSkillIcon = {
-    level: `/api/getAsset?asset=levelIcon`,
-    magic: `/api/getAsset?asset=magicLevelIcon`,
-    health: `/api/getAsset?asset=hitPointIcon`,
-    mana: `/api/getAsset?asset=manaPointIcon`,
-  };
+  const isProd = import.meta.env.PROD;
 
-  const secondarySkillIcon = {
-    sword: `/api/getAsset?asset=swordFightingIcon`,
-    axe: `/api/getAsset?asset=axeFightingIcon`,
-    club: `/api/getAsset?asset=clubFightingIcon`,
-    distance: `/api/getAsset?asset=distanceFightingIcon`,
-    fist: `/api/getAsset?asset=fistFightingIcon`,
-    shielding: `/api/getAsset?asset=shieldingIcon`,
+  const assets = {
+    level: isProd
+      ? `/api/getAsset?assets=levelIcon`
+      : import.meta.env.VITE_CLOUDINARY_LEVEL_ICON,
+    magic: isProd
+      ? `/api/getAsset?assets=magicLevelIcon`
+      : import.meta.env.VITE_CLOUDINARY_MAGIC_LEVEL_ICON,
+    health: isProd
+      ? `/api/getAsset?assets=hitPointIcon`
+      : import.meta.env.VITE_CLOUDINARY_HIT_POINT_ICON,
+    mana: isProd
+      ? `/api/getAsset?assets=manaPointIcon`
+      : import.meta.env.VITE_CLOUDINARY_MANA_POINT_ICON,
+    sword: isProd
+      ? `/api/getAsset?assets=swordFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_SWORD_FIGHTING_ICON,
+    axe: isProd
+      ? `/api/getAsset?assets=axeFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_AXE_FIGHTING_ICON,
+    club: isProd
+      ? `/api/getAsset?assets=clubFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_CLUB_FIGHTING_ICON,
+    distance: isProd
+      ? `/api/getAsset?assets=distanceFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_DISTANCE_FIGHTING_ICON,
+    fist: isProd
+      ? `/api/getAsset?assets=fistFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_FIST_FIGHTING_ICON,
+    shield: isProd
+      ? `/api/getAsset?assets=shieldingIcon`
+      : import.meta.env.VITE_CLOUDINARY_SHIELDING_ICON,
   };
 
   const forceCasing = (str) => {
@@ -69,7 +88,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                 <div className="skills-main">
                   <label>
                     <h3>Main Attributes</h3>
-                    <img src={mainSkillIcon.level} alt="Level Icon" /> Level:
+                    <img src={assets.level} alt="Level Icon" /> Level:
                     <br />
                     <input
                       type="number"
@@ -81,8 +100,8 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img src={mainSkillIcon.magic} alt="Magic Level Icon" />{" "}
-                    Magic Level:
+                    <img src={assets.magic} alt="Magic Level Icon" /> Magic
+                    Level:
                     <br />
                     <input
                       type="number"
@@ -94,8 +113,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img src={mainSkillIcon.health} alt="Hit Point Icon" />{" "}
-                    Health:
+                    <img src={assets.health} alt="Hit Point Icon" /> Health:
                     <br />
                     <input
                       type="number"
@@ -106,7 +124,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                     />
                   </label>
                   <label>
-                    <img src={mainSkillIcon.mana} alt="Mana Point Icon" /> Mana:
+                    <img src={assets.mana} alt="Mana Point Icon" /> Mana:
                     <br />
                     <input
                       type="number"
@@ -124,7 +142,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                   {Object.keys(secondary).map((skill) => (
                     <label key={skill}>
                       <img
-                        src={secondarySkillIcon[skill]}
+                        src={assets[skill]}
                         alt={`${forceCasing(skill)} Icon`}
                         style={{ verticalAlign: "middle", marginRight: "5px" }}
                       />

@@ -9,39 +9,77 @@ function Weapons({ vocation, weapon, setWeapon }) {
     crossbow: ["Crossbow Test"],
     wand: ["Wand Test"],
     rod: ["Rod Test"],
-    bolt: ["Bolt Test"],
     arrow: ["Arrow Test"],
+    bolt: ["Bolt Test"],
   };
 
   const forceCasing = (str) =>
     str.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase());
 
   const getAllOptions = (type) => {
-    const placeholders = placeholderWeapons[type] || [];
+    const t = (type || "").toLowerCase();
     const data = Array.isArray(weaponList) ? weaponList : [];
-    const apiNames = data
-      .filter(
-        (item) => item.type && item.type.toLowerCase() === type && item.name
-      )
-      .map((item) => item.name);
+    const s = (v) => (v || "").toLowerCase();
+    const placeholders = placeholderWeapons[t] || [];
+
+    let apiNames = [];
+
+    if (t === "sword" || t === "axe" || t === "club") {
+      apiNames = data
+        .filter(
+          (item) =>
+            item &&
+            item.name &&
+            ((item.skills &&
+              Object.prototype.hasOwnProperty.call(item.skills, t)) ||
+              s(item.name).includes(t))
+        )
+        .map((item) => item.name);
+    } else if (t === "wand") {
+      apiNames = data
+        .filter((item) => item && item.name && s(item.name).includes("wand"))
+        .map((item) => item.name);
+    } else if (t === "rod") {
+      apiNames = data
+        .filter((item) => item && item.name && s(item.name).includes("rod"))
+        .map((item) => item.name);
+    } else if (t === "arrow" || t === "bolt") {
+      const isArrow = t === "arrow";
+      apiNames = data
+        .filter((item) => item && s(item.type) === "ammunition" && item.name)
+        .filter((item) =>
+          isArrow
+            ? s(item.name).includes("arrow")
+            : s(item.name).includes("bolt")
+        )
+        .map((item) => item.name);
+    } else {
+      apiNames = data
+        .filter((item) => item && item.type && s(item.type) === t && item.name)
+        .map((item) => item.name);
+    }
+
+    const uniqueApi = Array.from(new Set(apiNames));
     return [
       ...placeholders,
-      ...apiNames.filter((name) => !placeholders.includes(name)),
+      ...uniqueApi.filter((n) => !placeholders.includes(n)),
     ];
   };
 
   const selectedWeaponObj = weaponList.find(
     (item) => item.name === weapon.weapon
   );
-
+  const selectedName = (weapon.weapon || "").toLowerCase();
   const isCrossbow =
-    selectedWeaponObj &&
-    selectedWeaponObj.name &&
-    selectedWeaponObj.name.toLowerCase().includes("crossbow");
+    (selectedWeaponObj &&
+      selectedWeaponObj.name &&
+      selectedWeaponObj.name.toLowerCase().includes("crossbow")) ||
+    selectedName.includes("crossbow");
   const isBow =
-    selectedWeaponObj &&
-    selectedWeaponObj.name &&
-    selectedWeaponObj.name.toLowerCase().includes("bow") &&
+    ((selectedWeaponObj &&
+      selectedWeaponObj.name &&
+      selectedWeaponObj.name.toLowerCase().includes("bow")) ||
+      selectedName.includes("bow")) &&
     !isCrossbow;
 
   const renderWeaponProps = () => {
@@ -118,15 +156,11 @@ function Weapons({ vocation, weapon, setWeapon }) {
                 >
                   <option value="">Select Weapon</option>
                   {["sword", "axe", "club"].flatMap((type) =>
-                    getAllOptions(type)
-                      .filter((name) =>
-                        weaponList.some((item) => item.name === name)
-                      )
-                      .map((name) => (
-                        <option key={name} value={name}>
-                          {name}
-                        </option>
-                      ))
+                    getAllOptions(type).map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))
                   )}
                 </select>
               </label>
@@ -163,7 +197,11 @@ function Weapons({ vocation, weapon, setWeapon }) {
                       }
                     >
                       <option value="">Select arrow</option>
-                      <option value="Arrow">{placeholderWeapons.arrow}</option>
+                      {getAllOptions("arrow").map((name) => (
+                        <option key={name} value={name}>
+                          {name}
+                        </option>
+                      ))}
                     </select>
                   </label>
                 )}
@@ -177,8 +215,12 @@ function Weapons({ vocation, weapon, setWeapon }) {
                         setWeapon({ ...weapon, ammunition: e.target.value })
                       }
                     >
-                      <option value="">Select Bolt</option>
-                      <option value="Bolt">{placeholderWeapons.bolt}</option>
+                      <option value="">Select bolt</option>
+                      {getAllOptions("bolt").map((name) => (
+                        <option key={name} value={name}>
+                          {name}
+                        </option>
+                      ))}
                     </select>
                   </label>
                 )}

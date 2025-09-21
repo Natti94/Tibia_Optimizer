@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { runeList } from "../../../../data/character/items/runes";
+import { runeList } from "../../../../../data/character/items/runes";
 
-function Rune({ character }) {
+function DamageRunes({ character }) {
   const VOCATION_MODIFIERS = {
     knight: { magic: 0.3 },
     paladin: { magic: 0.5 },
@@ -62,17 +62,19 @@ function Rune({ character }) {
           <>
             <div>
               <h3>Vocational Rune Modifiers</h3>
-              <ul>
-                <li>{VOCATION_MODIFIERS.knight.magic * 100}%</li>
-                <li>{VOCATION_MODIFIERS.paladin.magic * 100}%</li>
-                <li>{VOCATION_MODIFIERS.sorcerer.magic * 100}%</li>
-                <li>{VOCATION_MODIFIERS.druid.magic * 100}%</li>
-                <li>{VOCATION_MODIFIERS[""].magic * 100}%</li>
-              </ul>
               <p>
                 Your vocation is{" "}
                 <strong>{forceCasing(character.vocation)}.</strong>
+                <h4>Effective Damage:</h4>
               </p>
+              <ul>
+                <li>
+                  <span>
+                    {forceCasing(vocation)}{" "}
+                    {(VOCATION_MODIFIERS[vocation]?.magic ?? 1) * 100}%
+                  </span>
+                </li>
+              </ul>
             </div>
             <label>
               Select Rune:
@@ -107,4 +109,4 @@ function Rune({ character }) {
   );
 }
 
-export default Rune;
+export default DamageRunes;

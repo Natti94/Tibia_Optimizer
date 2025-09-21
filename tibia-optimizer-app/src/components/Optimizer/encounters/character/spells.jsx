@@ -64,17 +64,19 @@ function Spells({ character }) {
         <>
           <div>
             <h3>Vocational Spell Modifiers</h3>
-            <ul>
-              <li>{VOCATION_MODIFIERS.knight.magic * 100}%</li>
-              <li>{VOCATION_MODIFIERS.paladin.magic * 100}%</li>
-              <li>{VOCATION_MODIFIERS.sorcerer.magic * 100}%</li>
-              <li>{VOCATION_MODIFIERS.druid.magic * 100}%</li>
-              <li>{VOCATION_MODIFIERS[""].magic * 100}%</li>
-            </ul>
             <p>
               Your vocation is{" "}
               <strong>{forceCasing(character.vocation)}.</strong>
+              <h4>Effective Damage:</h4>
             </p>
+            <ul>
+              <li>
+                <span>
+                  {forceCasing(vocation)}{" "}
+                  {(VOCATION_MODIFIERS[vocation]?.magic ?? 1) * 100}%
+                </span>
+              </li>
+            </ul>
           </div>
           <label>
             Select Spell:

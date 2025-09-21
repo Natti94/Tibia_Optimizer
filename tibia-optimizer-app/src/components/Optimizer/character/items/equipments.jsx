@@ -22,8 +22,11 @@ function Equipments({ vocation, equipment, setEquipment }) {
 
   const getAllOptions = (type) => {
     const placeholders = placeholderEquipment[type] || [];
+
     let data = Array.isArray(equipmentList) ? equipmentList : [];
+
     let apiNames = [];
+
     if (type === "offhand") {
       if (vocation === "paladin" && paladinMode === "12.5+") {
         apiNames = data
@@ -307,7 +310,6 @@ function Equipments({ vocation, equipment, setEquipment }) {
                       {renderEquipmentProps("offhand")}
                     </label>
                   )}
-
                   {(vocation === "sorcerer" || vocation === "druid") && (
                     <label>
                       Spellbook:

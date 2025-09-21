@@ -1,7 +1,9 @@
 const assetPaths = {
   background: process.env.VITE_CLOUDINARY_BACKGROUND,
   title: process.env.VITE_CLOUDINARY_TITLE,
+  title_small: process.env.VITE_CLOUDINARY_TITLE_SMALL,
   title_effect: process.env.VITE_CLOUDINARY_TITLE_EFFECT,
+  book_gif: process.env.VITE_CLOUDINARY_BOOK_GIF,
   level_icon: process.env.VITE_CLOUDINARY_LEVEL_ICON,
   magicLevel_icon: process.env.VITE_CLOUDINARY_MAGIC_LEVEL_ICON,
   hitPoint_icon: process.env.VITE_CLOUDINARY_HIT_POINT_ICON,

@@ -4,7 +4,7 @@ import { weaponList } from "../../data/character/items/weapons";
 import Skills from "./character/skills";
 import Equipments from "./character/items/equipments";
 import Weapons from "./character/items/weapons";
-import Runes from "./encounters/character/runes";
+import DamageRunes from "./encounters/character/runes/damageRunes";
 import Spells from "./encounters/character/spells";
 
 function Form() {
@@ -13,6 +13,7 @@ function Form() {
     level: "",
     magic: "",
   });
+
   const [secondary, setSecondary] = useState({
     sword: "",
     axe: "",
@@ -20,6 +21,7 @@ function Form() {
     distance: "",
     shield: "",
   });
+
   const [equipment, setEquipment] = useState({
     helmet: "",
     armor: "",
@@ -28,8 +30,11 @@ function Form() {
     amulet: "",
     ring: "",
     trinket: "",
-    offhand: "",
+    shield: "",
+    quiver: "",
+    spellbook: "",
   });
+
   const [weapon, setWeapon] = useState({
     weapon: "",
     ammunition: "",
@@ -44,9 +49,46 @@ function Form() {
   const [showScroll, setShowScroll] = useState(false);
   const [hiding, setHiding] = useState(false);
 
-  const background = import.meta.env.VITE_CLOUDINARY_BACKGROUND;
-  const title = import.meta.env.VITE_CLOUDINARY_TITLE;
-  const smokeEffect = import.meta.env.VITE_CLOUDINARY_SMOKE_EFFECT;
+  const isProd = import.meta.env.PROD;
+
+  const assets = {
+    title: isProd
+      ? `/api/getAsset?assets=title`
+      : import.meta.env.VITE_CLOUDINARY_TITLE,
+    title_effect: isProd
+      ? `/api/getAsset?assets=titleEffect`
+      : import.meta.env.VITE_CLOUDINARY_TITLE_EFFECT,
+    level: isProd
+      ? `/api/getAsset?assets=levelIcon`
+      : import.meta.env.VITE_CLOUDINARY_LEVEL_ICON,
+    magic: isProd
+      ? `/api/getAsset?assets=magicLevelIcon`
+      : import.meta.env.VITE_CLOUDINARY_MAGIC_LEVEL_ICON,
+    health: isProd
+      ? `/api/getAsset?assets=hitPointIcon`
+      : import.meta.env.VITE_CLOUDINARY_HIT_POINT_ICON,
+    mana: isProd
+      ? `/api/getAsset?assets=manaPointIcon`
+      : import.meta.env.VITE_CLOUDINARY_MANA_POINT_ICON,
+    sword: isProd
+      ? `/api/getAsset?assets=swordFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_SWORD_FIGHTING_ICON,
+    axe: isProd
+      ? `/api/getAsset?assets=axeFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_AXE_FIGHTING_ICON,
+    club: isProd
+      ? `/api/getAsset?assets=clubFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_CLUB_FIGHTING_ICON,
+    distance: isProd
+      ? `/api/getAsset?assets=distanceFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_DISTANCE_FIGHTING_ICON,
+    fist: isProd
+      ? `/api/getAsset?assets=fistFightingIcon`
+      : import.meta.env.VITE_CLOUDINARY_FIST_FIGHTING_ICON,
+    shield: isProd
+      ? `/api/getAsset?assets=shieldingIcon`
+      : import.meta.env.VITE_CLOUDINARY_SHIELDING_ICON,
+  };
 
   useEffect(() => {
     const onScroll = () => setShowScroll(window.scrollY > 200);
@@ -93,28 +135,30 @@ function Form() {
   const selectedWeaponObj = weaponList.find(
     (item) => item.name === weapon.weapon
   );
+  const selectedAmmoObj = weaponList.find(
+    (item) => item.name === weapon.ammunition
+  );
 
-  let totalAttack = 0;
-  let totalDamage = 0;
-  if (selectedWeaponObj) {
-    totalAttack = selectedWeaponObj.attack || 0;
-    if (
-      typeof selectedWeaponObj.damage === "object" &&
-      selectedWeaponObj.damage !== null
-    ) {
-      totalDamage =
-        ((selectedWeaponObj.damage.min || 0) +
-          (selectedWeaponObj.damage.max || 0)) /
-        2;
-    } else {
-      totalDamage = selectedWeaponObj.damage || 0;
+  const avgDamage = (dmg) => {
+    if (typeof dmg === "object" && dmg !== null) {
+      return ((dmg.min || 0) + (dmg.max || 0)) / 2;
     }
-  }
+    return dmg || 0;
+  };
+
+  const weaponAttack = selectedWeaponObj?.attack || 0;
+  const weaponDamage = avgDamage(selectedWeaponObj?.damage);
+  const ammoAttack = selectedAmmoObj?.attack || 0;
+  const ammoDamage = avgDamage(selectedAmmoObj?.damage);
+
+  let totalAttack = weaponAttack + ammoAttack;
+  let totalDamage = weaponDamage + ammoDamage;
+
   if (selectedWeaponObj) {
     if (selectedWeaponObj.attack)
       addTo(skillSum, "attack", selectedWeaponObj.attack);
     if (selectedWeaponObj.damage)
-      addTo(skillSum, "damage", selectedWeaponObj.damage);
+      addTo(skillSum, "damage", avgDamage(selectedWeaponObj.damage));
     if (selectedWeaponObj.resistance) {
       Object.entries(selectedWeaponObj.resistance).forEach(
         ([element, value]) => {
@@ -130,30 +174,36 @@ function Form() {
     }
   }
 
+  if (selectedAmmoObj) {
+    if (selectedAmmoObj.attack)
+      addTo(skillSum, "attack", selectedAmmoObj.attack);
+    if (selectedAmmoObj.damage)
+      addTo(skillSum, "damage", avgDamage(selectedAmmoObj.damage));
+    if (selectedAmmoObj.resistance) {
+      Object.entries(selectedAmmoObj.resistance).forEach(([element, value]) => {
+        addTo(totalSpecificResistance, element, value);
+      });
+    }
+    if (selectedAmmoObj.skills) {
+      Object.entries(selectedAmmoObj.skills).forEach(([skill, value]) => {
+        addTo(skillSum, skill, value);
+        if (skill === "magicLevel") magicLevelBonus += value;
+      });
+    }
+  }
+
   return (
     <div className="app-container">
-      <img className="background" src={background} alt="Background" />
       <div className="content-wrapper">
-        <div className="app-title-wrapper">
-          <img src={title} alt="Title" className="app-title" />
+        <div className="title-wrapper">
+          <img src={assets.title} alt="Title" className="title" />
           <video
-            src={smokeEffect}
+            src={assets.title_effect}
             autoPlay
             loop
             muted
             playsInline
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              opacity: 0.1,
-              transition: "opacity 0.5s ease-in-out",
-              pointerEvents: "none",
-              zIndex: 2,
-            }}
+            className="title-overlay"
           />
         </div>
         {!showMainCard && (
@@ -171,7 +221,6 @@ function Form() {
             }}
             aria-label="Show Main Card"
             type="button"
-            style={{ margin: "2rem auto 0 auto", display: "block" }}
           >
             BEGIN
           </button>
@@ -189,12 +238,6 @@ function Form() {
               }}
               aria-label="Restart"
               type="button"
-              style={{
-                marginBottom: "1.5rem",
-                marginLeft: 0,
-                display: "block",
-                margin: "0 auto 1.5rem auto",
-              }}
             >
               <span className="restart-icon" role="img" aria-label="Restart">
                 ⟳
@@ -325,13 +368,29 @@ function Form() {
                       {forceCasing(main.vocation) || "None"}
                     </p>
                     <p>
-                      <strong>Level:</strong> {main.level || "None"}
+                      <strong>
+                        {" "}
+                        <img src={assets.level} alt="Level Icon" /> Level:
+                      </strong>{" "}
+                      {main.level || "None"}
                     </p>
                     <p>
-                      <strong>Magic Level:</strong> {main.magic || "None"}
+                      <strong>
+                        {" "}
+                        <img src={assets.magic} alt="Magic Level Icon" /> Magic
+                        Level:
+                      </strong>{" "}
+                      {main.magic || "None"}
                     </p>
                     <p>
-                      <strong>Effective Magic Level:</strong>{" "}
+                      <strong>
+                        {" "}
+                        <img
+                          src={assets.magic}
+                          alt="Effective Magic Level Icon"
+                        />{" "}
+                        Effective Magic Level:
+                      </strong>{" "}
                       {effectiveMagicLevel}
                     </p>
                     <p>
@@ -361,10 +420,22 @@ function Form() {
                     <p>
                       <strong>Trinket:</strong> {equipment.trinket || "None"}
                     </p>
-                    <p>
-                      <strong>Shield/Offhand/Spellbook:</strong>{" "}
-                      {equipment.offhand || "None"}
-                    </p>
+                    {(() => {
+                      const OFFHAND_SLOTS_BY_VOCATION = {
+                        knight: ["shield"],
+                        paladin: ["quiver", "shield"],
+                        sorcerer: ["spellbook"],
+                        druid: ["spellbook"],
+                      };
+                      const voc = main.vocation || "";
+                      const offhandSlots = OFFHAND_SLOTS_BY_VOCATION[voc] || [];
+                      return offhandSlots.map((slot) => (
+                        <p key={slot}>
+                          <strong>{forceCasing(slot)}:</strong>{" "}
+                          {equipment[slot] || "None"}
+                        </p>
+                      ));
+                    })()}
                   </div>
                   <br />
                   <ul>
@@ -415,7 +486,7 @@ function Form() {
                 <h1>Encounter</h1>
                 <div className="row">
                   <div className="col-main panel">
-                    <Runes
+                    <DamageRunes
                       character={{
                         ...main,
                         magic: effectiveMagicLevel,
