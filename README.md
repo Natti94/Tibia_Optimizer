@@ -83,6 +83,8 @@ VITE_CLOUDINARY_GUIDE_ICON=
 VITE_CLOUDINARY_CONTACT_ICON=
 VITE_CLOUDINARY_COOPERATION_ICON=
 VITE_CLOUDINARY_DONATE_ICON=
+VITE...
+......
 ```
 In development the app reads directly from these URLs. In production (Netlify), assets are fetched via the Netlify function endpoint `/api/getAsset` implemented in `netlify/getAssets.js`.
 
