@@ -14,31 +14,31 @@ function Skills({ main, setMain, secondary, setSecondary }) {
       ? `/api/getAsset?assets=levelIcon`
       : import.meta.env.VITE_CLOUDINARY_LEVEL_ICON,
     magic: isProd
-      ? `/api/getAsset?assets=magicLevelIcon`
+      ? `/api/getAsset?assets=magicLevel_icon`
       : import.meta.env.VITE_CLOUDINARY_MAGIC_LEVEL_ICON,
     health: isProd
-      ? `/api/getAsset?assets=hitPointIcon`
-      : import.meta.env.VITE_CLOUDINARY_HIT_POINT_ICON,
+      ? `/api/getAsset?assets=healthPoint_icon`
+      : import.meta.env.VITE_CLOUDINARY_HEALTH_POINT_ICON,
     mana: isProd
-      ? `/api/getAsset?assets=manaPointIcon`
+      ? `/api/getAsset?assets=manaPoint_icon`
       : import.meta.env.VITE_CLOUDINARY_MANA_POINT_ICON,
     sword: isProd
-      ? `/api/getAsset?assets=swordFightingIcon`
+      ? `/api/getAsset?assets=swordFighting_icon`
       : import.meta.env.VITE_CLOUDINARY_SWORD_FIGHTING_ICON,
     axe: isProd
-      ? `/api/getAsset?assets=axeFightingIcon`
+      ? `/api/getAsset?assets=axeFighting_icon`
       : import.meta.env.VITE_CLOUDINARY_AXE_FIGHTING_ICON,
     club: isProd
-      ? `/api/getAsset?assets=clubFightingIcon`
+      ? `/api/getAsset?assets=clubFighting_icon`
       : import.meta.env.VITE_CLOUDINARY_CLUB_FIGHTING_ICON,
     distance: isProd
-      ? `/api/getAsset?assets=distanceFightingIcon`
+      ? `/api/getAsset?assets=distanceFighting_icon`
       : import.meta.env.VITE_CLOUDINARY_DISTANCE_FIGHTING_ICON,
     fist: isProd
-      ? `/api/getAsset?assets=fistFightingIcon`
+      ? `/api/getAsset?assets=fistFighting_icon`
       : import.meta.env.VITE_CLOUDINARY_FIST_FIGHTING_ICON,
     shield: isProd
-      ? `/api/getAsset?assets=shieldingIcon`
+      ? `/api/getAsset?assets=shielding_icon`
       : import.meta.env.VITE_CLOUDINARY_SHIELDING_ICON,
   };
 

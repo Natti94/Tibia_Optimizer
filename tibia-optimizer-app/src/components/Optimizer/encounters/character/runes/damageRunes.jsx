@@ -51,7 +51,7 @@ function DamageRunes({ character }) {
 
   return (
     <>
-      <h2>Runes</h2>
+      <h2>Damage Runes</h2>
       {!character.vocation && (
         <div className="select-vocation-message">
           <strong>🛈 Please select a vocation to view and edit this.</strong>

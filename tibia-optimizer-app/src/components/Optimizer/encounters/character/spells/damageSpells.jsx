@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { spellList } from "../../../../data/character/spells";
+import { spellList } from "../../../../../data/character/spells";
 
-function Spells({ character }) {
+function DamageSpells({ character }) {
   const VOCATION_MODIFIERS = {
     knight: { magic: 0.3 },
     paladin: { magic: 0.5 },
@@ -51,7 +51,7 @@ function Spells({ character }) {
 
   return (
     <>
-      <h2>Spells</h2>
+      <h2>Damage Spells</h2>
       {!character.vocation && (
         <div className="select-vocation-message">
           <strong>🛈 Please select a vocation to view and edit this.</strong>
@@ -124,4 +124,4 @@ function Spells({ character }) {
     </>
   );
 }
-export default Spells;
+export default DamageSpells;

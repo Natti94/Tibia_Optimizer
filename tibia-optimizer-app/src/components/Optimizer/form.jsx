@@ -5,7 +5,7 @@ import Skills from "./character/skills";
 import Equipments from "./character/items/equipments";
 import Weapons from "./character/items/weapons";
 import DamageRunes from "./encounters/character/runes/damageRunes";
-import Spells from "./encounters/character/spells";
+import DamageSpells from "./encounters/character/spells/damageSpells";
 
 function Form() {
   const [main, setMain] = useState({
@@ -56,38 +56,8 @@ function Form() {
       ? `/api/getAsset?assets=title`
       : import.meta.env.VITE_CLOUDINARY_TITLE,
     title_effect: isProd
-      ? `/api/getAsset?assets=titleEffect`
+      ? `/api/getAsset?assets=title_effect`
       : import.meta.env.VITE_CLOUDINARY_TITLE_EFFECT,
-    level: isProd
-      ? `/api/getAsset?assets=levelIcon`
-      : import.meta.env.VITE_CLOUDINARY_LEVEL_ICON,
-    magic: isProd
-      ? `/api/getAsset?assets=magicLevelIcon`
-      : import.meta.env.VITE_CLOUDINARY_MAGIC_LEVEL_ICON,
-    health: isProd
-      ? `/api/getAsset?assets=hitPointIcon`
-      : import.meta.env.VITE_CLOUDINARY_HIT_POINT_ICON,
-    mana: isProd
-      ? `/api/getAsset?assets=manaPointIcon`
-      : import.meta.env.VITE_CLOUDINARY_MANA_POINT_ICON,
-    sword: isProd
-      ? `/api/getAsset?assets=swordFightingIcon`
-      : import.meta.env.VITE_CLOUDINARY_SWORD_FIGHTING_ICON,
-    axe: isProd
-      ? `/api/getAsset?assets=axeFightingIcon`
-      : import.meta.env.VITE_CLOUDINARY_AXE_FIGHTING_ICON,
-    club: isProd
-      ? `/api/getAsset?assets=clubFightingIcon`
-      : import.meta.env.VITE_CLOUDINARY_CLUB_FIGHTING_ICON,
-    distance: isProd
-      ? `/api/getAsset?assets=distanceFightingIcon`
-      : import.meta.env.VITE_CLOUDINARY_DISTANCE_FIGHTING_ICON,
-    fist: isProd
-      ? `/api/getAsset?assets=fistFightingIcon`
-      : import.meta.env.VITE_CLOUDINARY_FIST_FIGHTING_ICON,
-    shield: isProd
-      ? `/api/getAsset?assets=shieldingIcon`
-      : import.meta.env.VITE_CLOUDINARY_SHIELDING_ICON,
   };
 
   useEffect(() => {
@@ -494,7 +464,7 @@ function Form() {
                     />
                   </div>
                   <div className="col-side panel">
-                    <Spells
+                    <DamageSpells
                       character={{
                         ...main,
                         magic: effectiveMagicLevel,
