@@ -214,9 +214,9 @@ function Form() {
               </span>
               <span className="toggle-label">Restart</span>
             </button>
-            <hr color="aqua" />
+            <hr className="rule-aqua" />
             <h1>Character</h1>
-            <div style={{ marginBottom: "1.5rem" }}>
+            <div className="m-b-15">
               <label>
                 <div id="move-to-vocation" />
                 <strong>Vocation:</strong>
@@ -241,7 +241,7 @@ function Form() {
             </div>
             {showMainCard && (
               <div className="collapsible-section open">
-                <div style={{ marginBottom: "1rem" }}>
+                <div className="m-b-10">
                   <button
                     className="collapse-toggle"
                     onClick={() => setShowSkills((v) => !v)}
@@ -271,7 +271,7 @@ function Form() {
                   )}
                 </div>
 
-                <div style={{ marginBottom: "1rem" }}>
+                <div className="m-b-10">
                   <button
                     className="collapse-toggle"
                     onClick={() => setShowEquipments((v) => !v)}
@@ -303,7 +303,7 @@ function Form() {
                   )}
                 </div>
 
-                <div style={{ marginBottom: "1rem" }}>
+                <div className="m-b-10">
                   <button
                     className="collapse-toggle"
                     onClick={() => setShowWeapons((v) => !v)}
@@ -452,7 +452,7 @@ function Form() {
                   </ul>
                 </div>
                 <br />
-                <hr color="aqua" />
+                <hr className="rule-aqua" />
                 <h1>Encounter</h1>
                 <div className="row">
                   <div className="col-main panel">

@@ -481,22 +481,69 @@ input[type="number"].skill-input {
 .side-nav a {
     color: white;
     font-family: monospace;
-    font-size: large;
+    font-size: 1.25rem;
     text-decoration: none;
-    display: block;
-    padding: 0.6rem 0rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 0.3rem 0.85rem 0rem;
+    transform-origin: left center;
     border-radius: 6px;
     margin-bottom: 0.5rem;
-    transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 
 .side-nav a:hover,
 .side-nav a:focus {
-    background: #ff8c00;
-    color: #fff;
-    border-color: #fff;
-    box-shadow: 0 0 16px 2px rgba(255, 140, 0, 0.18);
+    background: none;
+    box-shadow: none;
+    transform: scale(1.1);
+}
+
+.side-nav-logo-link {
+    display: flex;
+    justify-content: center;
+    padding: 0.25rem 0 0.5rem 0;
+    transform: none !important;
+}
+
+.side-nav-logo {
+    display: block;
+    margin: 1rem auto 0 auto;
+    transform-origin: center center;
+    transition: transform 0.2s ease;
+}
+
+.side-nav-logo-link:hover .side-nav-logo,
+.side-nav-logo-link:focus .side-nav-logo {
+    transform: scale(1.12);
+}
+
+.nav-icon {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+}
+
+.m-b-10 {
+    margin-bottom: 1rem;
+}
+
+.m-b-15 {
+    margin-bottom: 1.5rem;
+}
+
+.skill-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.rule-aqua {
+    border: none;
+    height: 2px;
+    background: aqua;
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.6);
 }
 
 .begin-shine-btn {

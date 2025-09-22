@@ -13,6 +13,21 @@ function Nav() {
     title_small: isProd
       ? `/api/getAsset?asset=title_small`
       : import.meta.env.VITE_CLOUDINARY_TITLE_SMALL,
+    about: isProd
+      ? `/api/getAsset?asset=about_icon`
+      : import.meta.env.VITE_CLOUDINARY_ABOUT_ICON,
+    guide: isProd
+      ? `/api/getAsset?asset=guide_icon`
+      : import.meta.env.VITE_CLOUDINARY_GUIDE_ICON,
+    contact: isProd
+      ? `/api/getAsset?asset=contact_icon`
+      : import.meta.env.VITE_CLOUDINARY_CONTACT_ICON,
+    cooperation: isProd
+      ? `/api/getAsset?asset=cooperation_icon`
+      : import.meta.env.VITE_CLOUDINARY_COOPERATION_ICON,
+    donate: isProd
+      ? `/api/getAsset?asset=donate_icon`
+      : import.meta.env.VITE_CLOUDINARY_DONATE_ICON,
   };
 
   return (
@@ -39,41 +54,47 @@ function Nav() {
         <ul>
           {!collapsed && (
             <>
-              <hr color="#ff8c00" />
-              <Link to="/">
+              <Link to="/" className="side-nav-logo-link">
                 <img
+                  className="side-nav-logo"
                   src={assets.title_small}
                   alt="Title Small"
                   height={90}
                   width={120}
-                  style={{ marginLeft: "3.1rem", marginTop: "1rem" }}
                 />
               </Link>
               <li>
-                <Link to="/about">About</Link>
-              </li>
-
-              <li>
-                <Link to="/guides">Guides</Link>
-              </li>
-              <li>
-                <Link to="/partners">
-                  Partners
-                  <img
-                    className="nav-icon"
-              
-                    alt="Partners Icon"
-                    style={{ margin: "-0.5rem 1rem" }}
-                  />
+                <Link to="/about">
+                  <img className="nav-icon" src={assets.about} alt="About Icon" />
+                  <span>About</span>
                 </Link>
               </li>
 
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to="/guides">
+                  <img className="nav-icon" src={assets.guide} alt="Guides Icon" />
+                  <span>Guides</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/cooperations">
+                  <img className="nav-icon" src={assets.cooperation} alt="Cooperations Icon" />
+                  <span>Cooperations</span>
+                </Link>
               </li>
 
               <li>
-                <Link to="/support">Support Us</Link>
+                <Link to="/contact">
+                  <img className="nav-icon" src={assets.contact} alt="Contact Icon" />
+                  <span>Contact</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/donate">
+                  <img className="nav-icon" src={assets.donate} alt="Donate Icon" />
+                  <span>Donate</span>
+                </Link>
               </li>
             </>
           )}

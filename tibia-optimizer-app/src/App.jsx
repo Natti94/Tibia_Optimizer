@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/nav/nav";
 import About from "./components/nav/pages/about";
 import Support from "./components/nav/pages/support";
-import Form from "./components/Optimizer/form";
+import Form from "./components/optimizer/form";
 import "./index.css";
 
 const background = import.meta.env.VITE_CLOUDINARY_BACKGROUND;

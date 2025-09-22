@@ -14,6 +14,11 @@ const assetPaths = {
   distanceFighting_icon: process.env.VITE_CLOUDINARY_DISTANCE_FIGHTING_ICON,
   fistFighting_icon: process.env.VITE_CLOUDINARY_FIST_FIGHTING_ICON,
   shielding_icon: process.env.VITE_CLOUDINARY_SHIELDING_ICON,
+  about_icon: process.env.VITE_CLOUDINARY_ABOUT_ICON,
+  guide_icon: process.env.VITE_CLOUDINARY_GUIDE_ICON,
+  contact_icon: process.env.VITE_CLOUDINARY_CONTACT_ICON,
+  cooperation_icon: process.env.VITE_CLOUDINARY_COOPERATION_ICON,
+  donate_icon: process.env.VITE_CLOUDINARY_DONATE_ICON,
 };
 
 export async function handler(event) {

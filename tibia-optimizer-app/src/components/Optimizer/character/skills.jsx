@@ -144,7 +144,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       <img
                         src={assets[skill]}
                         alt={`${forceCasing(skill)} Icon`}
-                        style={{ verticalAlign: "middle", marginRight: "5px" }}
+                        className="skill-icon"
                       />
                       {forceCasing(skill)}:
                       <br />
