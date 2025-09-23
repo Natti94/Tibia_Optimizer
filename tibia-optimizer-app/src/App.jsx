@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Form from "./components/optimizer/form";
+import Form from "./components/Optimizer/form"
 import Media from "./components/media/media";
 import Nav from "./components/nav/nav";
 import "./index.css";
