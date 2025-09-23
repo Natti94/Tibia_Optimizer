@@ -19,6 +19,7 @@ const assetPaths = {
   contact_icon: process.env.VITE_CLOUDINARY_CONTACT_ICON,
   cooperation_icon: process.env.VITE_CLOUDINARY_COOPERATION_ICON,
   donate_icon: process.env.VITE_CLOUDINARY_DONATE_ICON,
+  playback_video: process.env.VITE_CLOUDINARY_PLAYBACK_VIDEO,
 };
 
 export async function handler(event) {

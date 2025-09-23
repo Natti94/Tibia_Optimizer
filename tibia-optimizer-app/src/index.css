@@ -387,25 +387,22 @@ input[type="number"].skill-input {
 }
 
 .side-nav.collapsed ul {
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .side-nav-collapse-btn {
     position: absolute;
     top: 60px;
     right: 8px;
-    background: rgba(255, 140, 0, 0.18);
-    color: #ff8c00;
-    border: 2px solid #ff8c00;
-    border-radius: 6px;
-    padding: 0.2rem 0.7rem;
-    font-size: 1.2rem;
-    font-family: monospace;
-    font-weight: bold;
+.side-nav.collapsed a span {
+    display: none;
     cursor: pointer;
+.side-nav:not(.collapsed) .nav-icon {
+    display: none;
+}
     z-index: 101;
-    transition: background 0.2s, color 0.2s, border 0.2s;
+    transition: background 0.2s, color 0.2s, border 0.2s, top 0.2s ease;
 }
 
 .side-nav-collapse-btn:hover {
@@ -416,6 +413,11 @@ input[type="number"].skill-input {
 
 .side-nav-collapse-icon {
     color: white;
+}
+
+/* Move the collapse button slightly up when the nav is collapsed */
+.side-nav.collapsed .side-nav-collapse-btn {
+    top: 44px;
 }
 
 .collapse-app-btn {
@@ -493,6 +495,23 @@ input[type="number"].skill-input {
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
+.side-nav.collapsed a {
+    justify-content: center;
+    padding: 0.6rem 0;
+}
+
+.side-nav.collapsed a span {
+    display: none;
+}
+
+.side-nav:not(.collapsed) .nav-icon {
+    display: none;
+}
+
+.side-nav.collapsed .nav-icon {
+    display: inline-block;
+}
+
 
 .side-nav a:hover,
 .side-nav a:focus {
@@ -523,6 +542,7 @@ input[type="number"].skill-input {
 .nav-icon {
     width: 28px;
     height: 28px;
+    filter: invert(1);
     display: inline-block;
 }
 
@@ -669,4 +689,24 @@ input[type="number"].skill-input {
     border-radius: 10px;
     padding: 1rem;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+}
+
+.media {
+    position: fixed;
+    right: 0px;
+    top: 0;
+    height: 100vh;
+    width: min(28vw, 200px);
+    padding: 6px;
+    background: rgba(255, 0, 0, 0.18);
+    border-left: 2px solid rgba(255, 0, 0, 0.25);
+    z-index: 90;
+}
+
+.playback-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
 }

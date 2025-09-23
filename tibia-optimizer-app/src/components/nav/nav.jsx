@@ -52,52 +52,52 @@ function Nav() {
         <div className="side-nav-title">{!collapsed}</div>
 
         <ul>
+          {/* Logo only when expanded */}
           {!collapsed && (
-            <>
-              <Link to="/" className="side-nav-logo-link">
-                <img
-                  className="side-nav-logo"
-                  src={assets.title_small}
-                  alt="Title Small"
-                  height={90}
-                  width={120}
-                />
-              </Link>
-              <li>
-                <Link to="/about">
-                  <img className="nav-icon" src={assets.about} alt="About Icon" />
-                  <span>About</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/guides">
-                  <img className="nav-icon" src={assets.guide} alt="Guides Icon" />
-                  <span>Guides</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/cooperations">
-                  <img className="nav-icon" src={assets.cooperation} alt="Cooperations Icon" />
-                  <span>Cooperations</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/contact">
-                  <img className="nav-icon" src={assets.contact} alt="Contact Icon" />
-                  <span>Contact</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/donate">
-                  <img className="nav-icon" src={assets.donate} alt="Donate Icon" />
-                  <span>Donate</span>
-                </Link>
-              </li>
-            </>
+            <Link to="/" className="side-nav-logo-link">
+              <img
+                className="side-nav-logo"
+                src={assets.title_small}
+                alt="Title Small"
+                height={90}
+                width={120}
+              />
+            </Link>
           )}
+          {/* Menu items always rendered; CSS controls text/icon visibility */}
+          <li>
+            <Link to="/about">
+              <img className="nav-icon" src={assets.about} alt="About Icon" />
+              <span>About</span>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/guides">
+              <img className="nav-icon" src={assets.guide} alt="Guides Icon" />
+              <span>Guides</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/cooperations">
+              <img className="nav-icon" src={assets.cooperation} alt="Cooperations Icon" />
+              <span>Cooperations</span>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/contact">
+              <img className="nav-icon" src={assets.contact} alt="Contact Icon" />
+              <span>Contact</span>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/donate">
+              <img className="nav-icon" src={assets.donate} alt="Donate Icon" />
+              <span>Donate</span>
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>
