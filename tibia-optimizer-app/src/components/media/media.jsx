@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./media.css";
 
 function Media() {
   const [slide, setSlide] = useState(0);

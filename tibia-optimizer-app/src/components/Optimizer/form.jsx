@@ -4,8 +4,9 @@ import { weaponList } from "../../data/character/items/weapons";
 import Skills from "./character/skills";
 import Equipments from "./character/items/equipments";
 import Weapons from "./character/items/weapons";
-import DamageRunes from "./encounters/character/runes/damageRunes";
-import DamageSpells from "./encounters/character/spells/damageSpells";
+import DamageRunes from "./encounters/character/runes/damage";
+import DamageSpells from "./encounters/character/spells/damage";
+import "./optimizer.css";
 
 function Form() {
   const [main, setMain] = useState({
