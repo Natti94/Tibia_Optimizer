@@ -113,47 +113,8 @@ h1 {
     }
 }
 
-/* Optimizer component styles moved to components/optimizer/optimizer.css */
 
 label {
     display: block;
     margin-bottom: 1.2rem;
 }
-
-/* equipment-summary and equipment-grid moved to optimizer.css */
-
-/* skill input styles moved to optimizer.css */
-
-/* vocation animation moved to optimizer.css */
-
-/* select-vocation-message moved to optimizer.css */
-
-/* collapsible-section moved to optimizer.css */
-
-
-/* collapse-toggle styles moved to optimizer.css */
-
-/* Nav component styles moved to components/nav/nav.css */
-
-/* Intro overlay and button moved to optimizer.css */
-
-/* more Nav styles moved */
-
-
-.m-b-10 { margin-bottom: 1rem; }
-.m-b-15 { margin-bottom: 1.5rem; }
-
-/* skill-icon moved to optimizer.css */
-
-/* rule-aqua moved to optimizer.css */
-
-/* begin-shine button moved to optimizer.css */
-
-/* restart button styles moved to optimizer.css */
-
-/* scroll-top button moved to optimizer.css */
-
-/* layout rows/panels moved to optimizer.css */
-
-/* Media component styles moved to components/media/media.css */
-
