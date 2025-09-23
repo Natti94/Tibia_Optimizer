@@ -179,7 +179,7 @@ function Form() {
         </div>
         {!showMainCard && (
           <button
-            className="begin-shine-btn"
+            className="optimizer__begin-shine-btn"
             onClick={() => {
               setHiding(true);
               setShowMainCard(true);
@@ -197,9 +197,15 @@ function Form() {
           </button>
         )}
         {(showMainCard || hiding) && (
-          <div className={`main-card${hiding ? " hide" : " show"}`}>
+          <div
+            className={`optimizer__main-card${
+              hiding
+                ? " optimizer__main-card--hide"
+                : " optimizer__main-card--show"
+            }`}
+          >
             <button
-              className="restart-btn"
+              className="optimizer__restart-btn"
               onClick={() => {
                 setHiding(true);
                 setTimeout(() => {
@@ -210,12 +216,16 @@ function Form() {
               aria-label="Restart"
               type="button"
             >
-              <span className="restart-icon" role="img" aria-label="Restart">
+              <span
+                className="optimizer__restart-icon"
+                role="img"
+                aria-label="Restart"
+              >
                 ⟳
               </span>
-              <span className="toggle-label">Restart</span>
+              <span className="optimizer__toggle-label">Restart</span>
             </button>
-            <hr className="rule-aqua" />
+            <hr className="optimizer__rule-aqua" />
             <h1>Character</h1>
             <div className="m-b-15">
               <label>
@@ -241,10 +251,10 @@ function Form() {
               </label>
             </div>
             {showMainCard && (
-              <div className="collapsible-section open">
+              <div className="optimizer__collapsible-section optimizer__collapsible-section--open">
                 <div className="m-b-10">
                   <button
-                    className="collapse-toggle"
+                    className="optimizer__collapse-toggle"
                     onClick={() => setShowSkills((v) => !v)}
                     aria-label={
                       showSkills ? "Collapse Skills" : "Expand Skills"
@@ -252,16 +262,22 @@ function Form() {
                     type="button"
                   >
                     <span
-                      className={`arrow ${showSkills ? "up" : "down"}`}
+                      className={`optimizer__arrow ${
+                        showSkills
+                          ? "optimizer__arrow--up"
+                          : "optimizer__arrow--down"
+                      }`}
                     ></span>
-                    <span className="toggle-label">Skills</span>
+                    <span className="optimizer__toggle-label">Skills</span>
                   </button>
                 </div>
                 <div
-                  className={`collapsible-section${showSkills ? " open" : ""}`}
+                  className={`optimizer__collapsible-section${
+                    showSkills ? " optimizer__collapsible-section--open" : ""
+                  }`}
                 >
                   {showSkills && (
-                    <div className="panel">
+                    <div className="optimizer__panel">
                       <Skills
                         main={main}
                         setMain={setMain}
@@ -274,7 +290,7 @@ function Form() {
 
                 <div className="m-b-10">
                   <button
-                    className="collapse-toggle"
+                    className="optimizer__collapse-toggle"
                     onClick={() => setShowEquipments((v) => !v)}
                     aria-label={
                       showEquipments
@@ -283,18 +299,24 @@ function Form() {
                     }
                   >
                     <span
-                      className={`arrow ${showEquipments ? "up" : "down"}`}
+                      className={`optimizer__arrow ${
+                        showEquipments
+                          ? "optimizer__arrow--up"
+                          : "optimizer__arrow--down"
+                      }`}
                     ></span>
-                    <span className="toggle-label">Equipments</span>
+                    <span className="optimizer__toggle-label">Equipments</span>
                   </button>
                 </div>
                 <div
-                  className={`collapsible-section${
-                    showEquipments ? " open" : ""
+                  className={`optimizer__collapsible-section${
+                    showEquipments
+                      ? " optimizer__collapsible-section--open"
+                      : ""
                   }`}
                 >
                   {showEquipments && (
-                    <div className="panel">
+                    <div className="optimizer__panel">
                       <Equipments
                         vocation={main.vocation}
                         equipment={equipment}
@@ -306,23 +328,29 @@ function Form() {
 
                 <div className="m-b-10">
                   <button
-                    className="collapse-toggle"
+                    className="optimizer__collapse-toggle"
                     onClick={() => setShowWeapons((v) => !v)}
                     aria-label={
                       showWeapons ? "Collapse Weapons" : "Expand Weapons"
                     }
                   >
                     <span
-                      className={`arrow ${showWeapons ? "up" : "down"}`}
+                      className={`optimizer__arrow ${
+                        showWeapons
+                          ? "optimizer__arrow--up"
+                          : "optimizer__arrow--down"
+                      }`}
                     ></span>
-                    <span className="toggle-label">Weapons</span>
+                    <span className="optimizer__toggle-label">Weapons</span>
                   </button>
                 </div>
                 <div
-                  className={`collapsible-section${showWeapons ? " open" : ""}`}
+                  className={`optimizer__collapsible-section${
+                    showWeapons ? " optimizer__collapsible-section--open" : ""
+                  }`}
                 >
                   {showWeapons && (
-                    <div className="panel">
+                    <div className="optimizer__panel">
                       <Weapons
                         vocation={main.vocation}
                         weapon={weapon}
@@ -331,9 +359,9 @@ function Form() {
                     </div>
                   )}
                 </div>
-                <div className="equipment-summary">
+                <div className="optimizer__equipment-summary">
                   <h3>Character Summary</h3>
-                  <div className="equipment-grid">
+                  <div className="optimizer__equipment-grid">
                     <p>
                       <strong>Vocation:</strong>{" "}
                       {forceCasing(main.vocation) || "None"}
@@ -453,10 +481,10 @@ function Form() {
                   </ul>
                 </div>
                 <br />
-                <hr className="rule-aqua" />
+                <hr className="optimizer__rule-aqua" />
                 <h1>Encounter</h1>
-                <div className="row">
-                  <div className="col-main panel">
+                <div className="optimizer__row">
+                  <div className="optimizer__col-main optimizer__panel">
                     <DamageRunes
                       character={{
                         ...main,
@@ -464,7 +492,7 @@ function Form() {
                       }}
                     />
                   </div>
-                  <div className="col-side panel">
+                  <div className="optimizer__col-side optimizer__panel">
                     <DamageSpells
                       character={{
                         ...main,
@@ -478,9 +506,9 @@ function Form() {
           </div>
         )}
         {intro ? (
-          <div className="collapse-overlay">
+          <div className="optimizer__collapse-overlay">
             <button
-              className="begin-optimize-btn"
+              className="optimizer__begin-optimize-btn"
               onClick={() => {
                 setIntro(false);
                 setTimeout(() => {
@@ -494,7 +522,7 @@ function Form() {
         ) : null}
         {showScroll && (
           <button
-            className="scroll-top-btn"
+            className="optimizer__scroll-top-btn"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Scroll to top"
           >

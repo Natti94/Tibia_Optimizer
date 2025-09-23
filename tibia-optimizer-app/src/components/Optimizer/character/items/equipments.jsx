@@ -114,11 +114,11 @@ function Equipments({ vocation, equipment, setEquipment }) {
   return (
     <div>
       {!vocation && (
-        <div className="select-vocation-message">
+        <div className="optimizer__select-vocation-message">
           <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
-      <div className={`vocation-content${vocation ? " show" : ""}`}>
+      <div className={`optimizer__vocation-content${vocation ? " optimizer__vocation-content--show" : ""}`}>
         {vocation && (
           <>
             <label>
@@ -153,8 +153,8 @@ function Equipments({ vocation, equipment, setEquipment }) {
             )}
             <br />
             <br />
-            <div className="row">
-              <div className="col-main">
+            <div className="optimizer__row">
+              <div className="optimizer__col-main">
                 <div className="equipments-flex-row">
                   <div className="equipments-main">
                     <label>
@@ -224,7 +224,7 @@ function Equipments({ vocation, equipment, setEquipment }) {
                   </div>
                 </div>
               </div>
-              <div className="col-side">
+              <div className="optimizer__col-side">
                 <div className="equipments-secondary">
                   <label>
                     Amulet:

@@ -33,30 +33,30 @@ function Nav() {
 
   return (
     <div>
-      <nav className={`side-nav${collapsed ? " collapsed" : ""}`}>
+      <nav className={`side-nav${collapsed ? " side-nav--collapsed" : ""}`}>
         <img
-          className="side-nav-image-top"
+          className="side-nav__image-top"
           src={assets.book_gif}
           alt="Nav Image"
         />
         <button
-          className="side-nav-collapse-btn"
+          className="side-nav__collapse-btn"
           onClick={() => setCollapsed((v) => !v)}
           aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
           type="button"
         >
-          <span className="side-nav-collapse-icon">
+          <span className="side-nav__collapse-icon">
             {collapsed ? "»" : "«"}
           </span>
         </button>
 
-        <div className="side-nav-title">{!collapsed}</div>
+        <div className="side-nav__title">{!collapsed}</div>
 
-        <ul>
+        <ul className="side-nav__list">
           {!collapsed && (
-            <Link to="/" className="side-nav-logo-link">
+            <Link to="/" className="side-nav__logo-link">
               <img
-                className="side-nav-logo"
+                className="side-nav__logo"
                 src={assets.title_small}
                 alt="Title Small"
                 height={90}
@@ -66,22 +66,22 @@ function Nav() {
           )}
 
           <li>
-            <Link to="/about">
-              <img className="nav-icon" src={assets.about} alt="About Icon" />
+            <Link to="/about" className="side-nav__link">
+              <img className="side-nav__icon" src={assets.about} alt="About Icon" />
               <span>About</span>
             </Link>
           </li>
 
           <li>
-            <Link to="/guides">
-              <img className="nav-icon" src={assets.guide} alt="Guides Icon" />
+            <Link to="/guides" className="side-nav__link">
+              <img className="side-nav__icon" src={assets.guide} alt="Guides Icon" />
               <span>Guides</span>
             </Link>
           </li>
           <li>
-            <Link to="/cooperations">
+            <Link to="/cooperations" className="side-nav__link">
               <img
-                className="nav-icon"
+                className="side-nav__icon"
                 src={assets.cooperation}
                 alt="Cooperations Icon"
               />
@@ -90,9 +90,9 @@ function Nav() {
           </li>
 
           <li>
-            <Link to="/contact">
+            <Link to="/contact" className="side-nav__link">
               <img
-                className="nav-icon"
+                className="side-nav__icon"
                 src={assets.contact}
                 alt="Contact Icon"
               />
@@ -101,8 +101,8 @@ function Nav() {
           </li>
 
           <li>
-            <Link to="/donate">
-              <img className="nav-icon" src={assets.donate} alt="Donate Icon" />
+            <Link to="/donate" className="side-nav__link">
+              <img className="side-nav__icon" src={assets.donate} alt="Donate Icon" />
               <span>Donate</span>
             </Link>
           </li>

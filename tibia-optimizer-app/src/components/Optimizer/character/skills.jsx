@@ -77,14 +77,18 @@ function Skills({ main, setMain, secondary, setSecondary }) {
     <div>
       <form>
         {!main.vocation && (
-          <div className="select-vocation-message">
+          <div className="optimizer__select-vocation-message">
             <strong>🛈 Please select a vocation to view and edit this.</strong>
           </div>
         )}
-        <div className={`vocation-content${main.vocation ? " show" : ""}`}>
+        <div
+          className={`optimizer__vocation-content${
+            main.vocation ? " optimizer__vocation-content--show" : ""
+          }`}
+        >
           {main.vocation && (
-            <div className="row">
-              <div className="col-main">
+            <div className="optimizer__row">
+              <div className="optimizer__col-main">
                 <div className="skills-main">
                   <label>
                     <h3>Main Attributes</h3>
@@ -96,7 +100,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       value={main.level}
                       onChange={handleMainChange}
                       min="1"
-                      className="skill-input"
+                      className="optimizer__skill-input"
                     />
                   </label>
                   <label>
@@ -109,7 +113,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       value={main.magic}
                       onChange={handleMainChange}
                       min="1"
-                      className="skill-input"
+                      className="optimizer__skill-input"
                     />
                   </label>
                   <label>
@@ -119,7 +123,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       type="number"
                       value={calculatedHealth}
                       readOnly
-                      className="skill-input"
+                      className="optimizer__skill-input"
                       tabIndex={-1}
                     />
                   </label>
@@ -130,13 +134,13 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       type="number"
                       value={calculatedMana}
                       readOnly
-                      className="skill-input"
+                      className="optimizer__skill-input"
                       tabIndex={-1}
                     />
                   </label>
                 </div>
               </div>
-              <div className="col-side">
+              <div className="optimizer__col-side">
                 <div className="skills-secondary">
                   <h3>Secondary Attributes</h3>
                   {Object.keys(secondary).map((skill) => (
@@ -144,7 +148,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                       <img
                         src={assets[skill]}
                         alt={`${forceCasing(skill)} Icon`}
-                        className="skill-icon"
+                        className="optimizer__skill-icon"
                       />
                       {forceCasing(skill)}:
                       <br />
@@ -154,7 +158,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                         value={secondary[skill]}
                         onChange={handleSecondaryChange}
                         min="0"
-                        className="skill-input"
+                        className="optimizer__skill-input"
                       />
                     </label>
                   ))}
