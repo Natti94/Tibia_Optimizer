@@ -11,7 +11,6 @@ function Media() {
       : import.meta.env.VITE_CLOUDINARY_PLAYBACK_VIDEO,
   };
 
-  // TEMP
   const newsArticles = [
     "News Article 1: Exciting updates coming soon!",
     "News Article 2: New features have been added.",
