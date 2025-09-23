@@ -355,6 +355,10 @@ input[type="number"].skill-input {
     padding-right: 0.5rem;
 }
 
+.side-nav.collapsed .side-nav-image-top {
+    display: none;
+}
+
 .side-nav-image-top {
     width: 50%;
     height: auto;
@@ -395,12 +399,15 @@ input[type="number"].skill-input {
     position: absolute;
     top: 60px;
     right: 8px;
-.side-nav.collapsed a span {
-    display: none;
+    background: rgba(255, 140, 0, 0.18);
+    color: #ff8c00;
+    border: 2px solid #ff8c00;
+    border-radius: 6px;
+    padding: 0.2rem 0.7rem;
+    font-size: 1.2rem;
+    font-family: monospace;
+    font-weight: bold;
     cursor: pointer;
-.side-nav:not(.collapsed) .nav-icon {
-    display: none;
-}
     z-index: 101;
     transition: background 0.2s, color 0.2s, border 0.2s, top 0.2s ease;
 }
@@ -415,9 +422,12 @@ input[type="number"].skill-input {
     color: white;
 }
 
-/* Move the collapse button slightly up when the nav is collapsed */
 .side-nav.collapsed .side-nav-collapse-btn {
-    top: 44px;
+    top: 10px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 0.15rem 0.5rem;
 }
 
 .collapse-app-btn {
@@ -426,10 +436,6 @@ input[type="number"].skill-input {
     right: 28px;
     z-index: 1001;
     background: rgba(255, 140, 0, 0.18);
-    color: #fff;
-    border: 2px solid #ff8c00;
-    border-radius: 8px;
-    padding: 0.5rem 1.2rem;
     font-family: monospace;
     font-weight: bold;
     cursor: pointer;
@@ -501,10 +507,6 @@ input[type="number"].skill-input {
 }
 
 .side-nav.collapsed a span {
-    display: none;
-}
-
-.side-nav:not(.collapsed) .nav-icon {
     display: none;
 }
 
