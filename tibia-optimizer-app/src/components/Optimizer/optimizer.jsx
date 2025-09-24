@@ -2,6 +2,10 @@ import Form from "./form";
 import "./optimizer.css";
 
 function Optimizer() {
-  return <Form />;
+  return (
+    <div className="optimizer">
+      <Form />
+    </div>
+  );
 }
 export default Optimizer;

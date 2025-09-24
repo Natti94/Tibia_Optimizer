@@ -1,8 +1,8 @@
-/* Nav container (top-level wrapper) */
-.nav {
-    position: relative; /* non-intrusive wrapper; does not affect fixed children */
+.pages {
+    position: relative;
 }
-.side-nav {
+
+.pages__nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -21,17 +21,17 @@
     overflow-x: hidden;
 }
 
-.side-nav--collapsed {
+.pages__nav--collapsed {
     width: 48px;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 }
 
-.side-nav--collapsed .side-nav__image-top {
+.pages__nav--collapsed .pages__nav-image-top {
     display: none;
 }
 
-.side-nav__image-top {
+.pages__nav-image-top {
     width: 50%;
     height: auto;
     margin-left: -2rem;
@@ -40,7 +40,7 @@
     transition: opacity 0.2s;
 }
 
-.side-nav__image-bottom {
+.pages__nav-image-bottom {
     width: 50%;
     height: auto;
     margin-left: -2rem;
@@ -50,11 +50,15 @@
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.12);
 }
 
-.side-nav--collapsed .side-nav__title {
+.pages__nav-title {
+    transition: opacity 0.2s;
+}
+
+.pages__nav--collapsed .pages__nav-title {
     opacity: 0;
 }
 
-.side-nav__list {
+.pages__nav-list {
     list-style: none;
     padding: 0;
     margin: 1.5rem 0 0 0;
@@ -62,12 +66,12 @@
     transition: opacity 0.2s;
 }
 
-.side-nav--collapsed .side-nav__list {
+.pages__nav--collapsed .pages__nav-list {
     opacity: 1;
     pointer-events: auto;
 }
 
-.side-nav__collapse-btn {
+.pages__nav-collapse-btn {
     position: absolute;
     top: 60px;
     right: 8px;
@@ -84,17 +88,17 @@
     transition: background 0.2s, color 0.2s, border 0.2s, top 0.2s ease;
 }
 
-.side-nav__collapse-btn:hover {
+.pages__nav-collapse-btn:hover {
     background: #ff8c00;
     color: #fff;
     border-color: #fff;
 }
 
-.side-nav__collapse-icon {
+.pages__nav-collapse-icon {
     color: white;
 }
 
-.side-nav--collapsed .side-nav__collapse-btn {
+.pages__nav--collapsed .pages__nav-collapse-btn {
     top: 10px;
     left: 50%;
     right: auto;
@@ -102,7 +106,7 @@
     padding: 0.15rem 0.5rem;
 }
 
-.side-nav__link {
+.pages__nav-link {
     color: white;
     font-family: monospace;
     font-size: 1.25rem;
@@ -117,46 +121,46 @@
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.side-nav--collapsed .side-nav__link {
+.pages__nav--collapsed .pages__nav-link {
     justify-content: center;
     padding: 0.6rem 0;
 }
 
-.side-nav--collapsed .side-nav__link span {
+.pages__nav--collapsed .pages__nav-link span {
     display: none;
 }
 
-.side-nav--collapsed .side-nav__icon {
+.pages__nav--collapsed .pages__nav-icon {
     display: inline-block;
 }
 
-.side-nav__link:hover,
-.side-nav__link:focus {
+.pages__nav-link:hover,
+.pages__nav-link:focus {
     background: none;
     box-shadow: none;
     transform: scale(1.1);
 }
 
-.side-nav__logo-link {
+.pages__nav-logo-link {
     display: flex;
     justify-content: center;
     padding: 0.25rem 0 0.5rem 0;
     transform: none !important;
 }
 
-.side-nav__logo {
+.pages__nav-logo {
     display: block;
     margin: 1rem auto 0 auto;
     transform-origin: center center;
     transition: transform 0.2s ease;
 }
 
-.side-nav__logo-link:hover .side-nav__logo,
-.side-nav__logo-link:focus .side-nav__logo {
+.pages__nav-logo-link:hover .pages__nav-logo,
+.pages__nav-logo-link:focus .pages__nav-logo {
     transform: scale(1.12);
 }
 
-.side-nav__icon {
+.pages__nav-icon {
     width: 28px;
     height: 28px;
     filter: invert(1);

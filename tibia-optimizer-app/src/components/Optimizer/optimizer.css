@@ -1,6 +1,60 @@
-/* Optimizer container (top-level wrapper) */
+
 .optimizer {
     position: relative;
+}
+
+.optimizer__form {
+    position: relative;
+    width: 100%;
+}
+.optimizer__content-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 2rem;
+    border-radius: 18px;
+    outline: 6px groove aqua;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    max-height: none;
+    overflow: visible;
+    box-sizing: border-box;
+    margin: 1rem 0;
+}
+
+.optimizer__title-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.optimizer__title {
+    width: 100%;
+    max-width: 765px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.optimizer__title-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    animation: lightning-smoke 10s ease-in-out infinite;
+}
+
+@keyframes lightning-smoke {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.3; }
 }
 .optimizer__main-card {
     position: relative;
@@ -319,14 +373,12 @@ input[type="number"].optimizer__skill-input {
     min-width: 0;
 }
 
-/* Ensure two-column layout within the skills section on medium+ screens */
 @media (min-width: 720px) {
     .optimizer__vocation-content .optimizer__row {
         flex-direction: row;
     }
 }
 
-/* Stack on small screens */
 @media (max-width: 719px) {
     .optimizer__vocation-content .optimizer__row {
         flex-direction: column;

@@ -164,17 +164,17 @@ function Form() {
   }
 
   return (
-  <div className="optimizer app-container">
-      <div className="content-wrapper">
-        <div className="title-wrapper">
-          <img src={assets.title} alt="Title" className="title" />
+    <div className="optimizer__form app-container">
+      <div className="optimizer__content-wrapper">
+        <div className="optimizer__title-wrapper">
+          <img src={assets.title} alt="Title" className="optimizer__title" />
           <video
             src={assets.title_effect}
             autoPlay
             loop
             muted
             playsInline
-            className="title-overlay"
+            className="optimizer__title-overlay"
           />
         </div>
         {!showMainCard && (

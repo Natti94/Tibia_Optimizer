@@ -118,7 +118,11 @@ function Equipments({ vocation, equipment, setEquipment }) {
           <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
-      <div className={`optimizer__vocation-content${vocation ? " optimizer__vocation-content--show" : ""}`}>
+      <div
+        className={`optimizer__vocation-content${
+          vocation ? " optimizer__vocation-content--show" : ""
+        }`}
+      >
         {vocation && (
           <>
             <label>

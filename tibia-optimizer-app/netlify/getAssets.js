@@ -51,7 +51,8 @@ export async function handler(event) {
     };
   }
 
-  console.log(`Redirecting to asset: ${url} for asset: ${asset}`);
+  // Optional debug log (kept minimal). Uncomment if tracing redirects locally.
+  // console.debug(`Redirecting to asset: ${asset}`);
   return {
     statusCode: 302,
     headers: {
