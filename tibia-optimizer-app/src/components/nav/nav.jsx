@@ -32,7 +32,7 @@ function Nav() {
   };
 
   return (
-    <div>
+    <div className="nav">
       <nav className={`side-nav${collapsed ? " side-nav--collapsed" : ""}`}>
         <img
           className="side-nav__image-top"
@@ -67,14 +67,22 @@ function Nav() {
 
           <li>
             <Link to="/about" className="side-nav__link">
-              <img className="side-nav__icon" src={assets.about} alt="About Icon" />
+              <img
+                className="side-nav__icon"
+                src={assets.about}
+                alt="About Icon"
+              />
               <span>About</span>
             </Link>
           </li>
 
           <li>
             <Link to="/guides" className="side-nav__link">
-              <img className="side-nav__icon" src={assets.guide} alt="Guides Icon" />
+              <img
+                className="side-nav__icon"
+                src={assets.guide}
+                alt="Guides Icon"
+              />
               <span>Guides</span>
             </Link>
           </li>
@@ -102,7 +110,11 @@ function Nav() {
 
           <li>
             <Link to="/donate" className="side-nav__link">
-              <img className="side-nav__icon" src={assets.donate} alt="Donate Icon" />
+              <img
+                className="side-nav__icon"
+                src={assets.donate}
+                alt="Donate Icon"
+              />
               <span>Donate</span>
             </Link>
           </li>

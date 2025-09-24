@@ -1,3 +1,7 @@
+/* Optimizer container (top-level wrapper) */
+.optimizer {
+    position: relative;
+}
 .optimizer__main-card {
     position: relative;
     background-color: rgba(0, 0, 0, 0.7);

@@ -1,3 +1,7 @@
+/* Nav container (top-level wrapper) */
+.nav {
+    position: relative; /* non-intrusive wrapper; does not affect fixed children */
+}
 .side-nav {
     position: fixed;
     top: 0;

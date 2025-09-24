@@ -164,7 +164,7 @@ function Form() {
   }
 
   return (
-    <div className="app-container">
+  <div className="optimizer app-container">
       <div className="content-wrapper">
         <div className="title-wrapper">
           <img src={assets.title} alt="Title" className="title" />
