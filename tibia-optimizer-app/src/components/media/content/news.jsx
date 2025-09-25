@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { fetchNews } from "../../../services/media/news";
-import "../media.css";
 
 function News() {
   const [slide, setSlide] = useState(0);

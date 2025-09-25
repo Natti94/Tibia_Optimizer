@@ -1,0 +1,86 @@
+.auth {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0px 6px;
+    z-index: 200;
+}
+
+.auth__handler-login {
+    font-family: monospace;
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255, 140, 0, 0.25);
+    padding: 0px 6px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    color: #fff;
+}
+
+.auth__handler-login h1 {
+    display: none;
+}
+
+.auth__handler-login form {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.auth__handler-login form>div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1 1 0;
+}
+
+.auth__handler-login label {
+    font-size: 0.9rem;
+    margin-top: 0;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.auth__handler-login input[type="text"],
+.auth__handler-login input[type="password"] {
+    flex: 1 1 auto;
+    min-width: 140px;
+    border: 1px solid rgba(255, 140, 0, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.auth__handler-login button[type="submit"] {
+    height: 26px;
+    background: rgba(255, 140, 0, 0.35);
+    color: #fff;
+    border: 1px solid rgba(255, 140, 0, 0.6);
+    cursor: pointer;
+}
+
+.auth__handler-login button[type="submit"]:hover {
+    background: rgba(255, 140, 0, 0.5);
+}
+
+.auth__handler-login a {
+    color: #fff;
+}
+
+.auth__handler-login a:hover {
+    color: aqua;
+}
+
+/* Placeholder for future register: mirrors login container */
+.auth__handler-register {
+    font-family: monospace;
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255, 140, 0, 0.25);
+    padding: 0px 6px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    color: #fff;
+}

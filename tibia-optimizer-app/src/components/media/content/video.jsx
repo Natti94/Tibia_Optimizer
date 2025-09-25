@@ -1,5 +1,3 @@
-import "../media.css";
-
 function Video() {
   const isProd = import.meta.env.PROD;
 

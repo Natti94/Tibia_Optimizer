@@ -32,7 +32,7 @@ function Pages() {
   };
 
   return (
-    <div className="pages">
+<div>
       <nav className={`pages__nav${collapsed ? " pages__nav--collapsed" : ""}`}>
         <img
           className="pages__nav-image-top"
