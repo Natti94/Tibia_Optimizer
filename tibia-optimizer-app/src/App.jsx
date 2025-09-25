@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Optimizer from "./components/optimizer/optimizer";
+import Auth from "./components/auth/auth";
 import Media from "./components/media/media";
 import Nav from "./components/nav/nav";
 import "./index.css";
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <Auth />
         <Routes>
           <Route path="/" element={<Optimizer />} />
         </Routes>
