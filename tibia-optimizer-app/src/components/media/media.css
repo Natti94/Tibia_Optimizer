@@ -1,107 +1,116 @@
-.media {
-    position: fixed;
-    right: 0px;
-    top: 0;
-    height: 100vh;
-    width: min(28vw, 200px);
-    padding: 6px;
-    z-index: 90;
-}
+ .media {
+     position: fixed;
+     right: 0;
+     top: 0;
+     height: 100vh;
+     width: min(28vw, 200px);
+     background: rgba(255, 140, 0, 0.18);
+     box-shadow: 2px 0 16px 0 rgba(255, 140, 0, 0.10);
+     border-left: 2px solid rgba(255, 140, 0, 0.25);
+     border-right: 2px solid rgba(255, 140, 0, 0.25);
+     padding: 6px;
+     z-index: 90;
+ }
 
-.media__news-banner {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.10);
-    margin-bottom: 10px;
-}
+ .media__news-banner {
+     width: 100%;
+     height: auto;
+     display: block;
+ }
 
-.media__news {
-    display: block;
-    background: rgba(255, 255, 255, 0.95);
-    margin-top: 20px;
-    width: 100%;
-    min-height: 30vh;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.10);
-    padding: 8px;
-    color: #222;
-    font-family: monospace;
-    overflow: hidden;
-}
+ .media__news {
+     display: block;
+     width: 100%;
+     min-height: 30vh;
+     padding: 8px;
+     color: #222;
+     font-family: monospace;
+ }
 
-.media__news-title {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #111;
-}
+ .media__news-title {
+     margin: 0 0 6px 0;
+     font-size: 0.92rem;
+     line-height: 1.1rem;
+     color: #fff;
+     font-weight: 600;
+     display: -webkit-box;
+     line-clamp: 4;
+     -webkit-line-clamp: 4;
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: normal;
+     word-break: break-word;
+     max-height: calc(1.1rem * 4);
+ }
 
-.media__news-image {
-    width: 100%;
-    margin-top: 8px;
-    max-height: 18vh;
-    object-fit: cover;
-    display: block;
-    border-radius: 6px;
-}
+ .media__news-image {
+     width: 100%;
+     margin-top: 8px;
+     max-height: 18vh;
+     object-fit: cover;
+     display: block;
+     border-radius: 6px;
+ }
 
-.media__news-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(240, 240, 240, 0.85);
-    margin-top: 8px;
-    width: 100%;
-    padding: 0.45rem 0.6rem;
-}
+ .media__news-footer {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin-top: 8px;
+     width: 100%;
+     padding: 0.45rem 0.6rem;
+ }
 
-.media__news-link {
-    color: #0074d9;
-    text-decoration: none;
-}
+ .media__news-link {
+     color: #fff;
+     font-size: 0.7rem;
+     text-decoration: underline;
+ }
 
-.media__news-link:hover {
-    text-decoration: underline;
-}
+ .media__nav {
+     display: flex;
+     gap: 6px;
+ }
 
-.media__news-indicator {
-    font-weight: bold;
-    opacity: 0.85;
-    color: #444;
-}
+ .media__nav-btn {
+     background: rgba(255, 140, 0, 0.25);
+     color: #fff;
+     border: 1px solid rgba(255, 140, 0, 0.6);
+     border-radius: 6px;
+     width: 28px;
+     height: 28px;
+     cursor: pointer;
+     line-height: 24px;
+     text-align: center;
+     font-weight: 600;
+     font-family: monospace;
+     transition: background .25s, transform .2s, box-shadow .25s, border .25s;
+ }
 
-.media__nav {
-    display: flex;
-    gap: 6px;
-}
+ .media__nav-btn:hover {
+     background: rgba(255, 140, 0, 0.5);
+     border-color: #ffb14d;
+     box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
+     transform: translateY(-1px);
+ }
 
-.media__nav-btn {
-    background: rgba(0, 0, 0, 0.06);
-    color: #222;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
-    width: 26px;
-    height: 26px;
-    cursor: pointer;
-    line-height: 24px;
-    text-align: center;
-    font-weight: bold;
-}
+ .media__nav-btn:active {
+     transform: translateY(0);
+     background: rgba(255, 140, 0, 0.7);
+ }
 
-.media__nav-btn:hover {
-    background: rgba(0, 0, 0, 0.12);
-}
+ .media__nav-btn:focus-visible {
+     outline: 2px solid #ffb14d;
+     outline-offset: 2px;
+ }
 
-.media__video {
-    display: block;
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid rgba(0, 0, 0, 0.10);
-    margin-top: 0.5rem;
-    width: 100%;
-    height: 20vh;
-    object-fit: cover;
-    border-radius: 6px;
-}
+ .media__video {
+     display: block;
+     border: 2px solid rgba(0, 0, 0, 0.10);
+     margin-top: 0.5rem;
+     width: 100%;
+     height: 20vh;
+     object-fit: cover;
+     border-radius: 6px;
+ }

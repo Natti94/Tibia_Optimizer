@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
     try {
       await loginUser(username, password);
-      setSuccess("Login successful, loading profile...");
+      setSuccess("Login successful, loading profile settings...");
       setTimeout(() => {
         navigate("/");
       }, 2000);
