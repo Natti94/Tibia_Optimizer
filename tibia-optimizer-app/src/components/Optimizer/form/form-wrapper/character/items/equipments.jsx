@@ -159,8 +159,8 @@ function Equipments({ vocation, equipment, setEquipment }) {
             <br />
             <div className="optimizer__row">
               <div className="optimizer__col-main">
-                <div className="equipments-flex-row">
-                  <div className="equipments-main">
+                <div className="optimizer__equipments-flex-row">
+                  <div className="optimizer__equipments-main">
                     <label>
                       Helmet:
                       <br />
@@ -229,7 +229,7 @@ function Equipments({ vocation, equipment, setEquipment }) {
                 </div>
               </div>
               <div className="optimizer__col-side">
-                <div className="equipments-secondary">
+                <div className="optimizer__equipments-secondary">
                   <label>
                     Amulet:
                     <br />

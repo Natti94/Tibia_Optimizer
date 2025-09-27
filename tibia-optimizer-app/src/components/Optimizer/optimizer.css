@@ -440,3 +440,29 @@ input[type="number"].optimizer__skill-input {
     vertical-align: middle;
     margin-right: 5px;
 }
+
+.optimizer__skills-main {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.optimizer__skills-secondary {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.optimizer__equipments-flex-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.optimizer__equipments-main {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.optimizer__equipments-secondary {
+    display: grid;
+    gap: 0.8rem;
+}

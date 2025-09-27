@@ -89,7 +89,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
           {main.vocation && (
             <div className="optimizer__row">
               <div className="optimizer__col-main">
-                <div className="skills-main">
+                <div className="optimizer__skills-main">
                   <label>
                     <h3>Main Attributes</h3>
                     <img src={assets.level} alt="Level Icon" /> Level:
@@ -141,7 +141,7 @@ function Skills({ main, setMain, secondary, setSecondary }) {
                 </div>
               </div>
               <div className="optimizer__col-side">
-                <div className="skills-secondary">
+                <div className="optimizer__skills-secondary">
                   <h3>Secondary Attributes</h3>
                   {Object.keys(secondary).map((skill) => (
                     <label key={skill}>

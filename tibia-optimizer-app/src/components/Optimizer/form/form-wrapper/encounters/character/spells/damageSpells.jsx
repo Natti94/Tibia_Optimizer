@@ -53,12 +53,14 @@ function DamageSpells({ character }) {
     <>
       <h2>Damage Spells</h2>
       {!character.vocation && (
-        <div className="select-vocation-message">
+        <div className="optimizer__select-vocation-message">
           <strong>🛈 Please select a vocation to view and edit this.</strong>
         </div>
       )}
       <div
-        className={`vocation-content${character.vocation ? " show" : ""}`}
+        className={`optimizer__vocation-content${
+          character.vocation ? " optimizer__vocation-content--show" : ""
+        }`}
       ></div>
       {character.vocation && (
         <>

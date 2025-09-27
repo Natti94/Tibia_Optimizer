@@ -16,7 +16,7 @@ function Login() {
       setSuccess("Login successful, loading profile settings...");
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1000);
     } catch (err) {
       setError("Login failed. Please check your username and password.", err);
     }

@@ -1,22 +1,10 @@
-import Login from "./handler/handle-wrapper/login";
-import Register from "./handler/handle-wrapper/register";
-import { useLocation } from "react-router-dom";
+import Handler from "./handler/handler";
 import "./auth.css";
 
 function Auth() {
-  const { pathname } = useLocation();
-  const isRegister = pathname.startsWith("/register");
   return (
     <div className="auth">
-      {isRegister ? (
-        <div className="auth__handler-register">
-          <Register />
-        </div>
-      ) : (
-        <div className="auth__handler-login">
-          <Login />
-        </div>
-      )}
+      <Handler />
     </div>
   );
 }

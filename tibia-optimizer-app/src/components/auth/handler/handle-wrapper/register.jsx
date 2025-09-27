@@ -22,7 +22,7 @@ function Register() {
       const csrfToken = await generateCsrf();
       await registerUser(username, password, email, avatar, csrfToken);
       setSuccess("Registration successful, redirecting to login...");
-      setTimeout(() => navigate("/login"), 1600);
+      setTimeout(() => navigate("/login"), 1000);
     } catch (err) {
       setError(
         "Registration failed. Try another username/email or check your input."
