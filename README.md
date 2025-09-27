@@ -174,4 +174,6 @@ Tribute project to Tibia, made by a fan for the community. Integrates TibiaData 
 
 ## License
 
-MIT — free to use, modify, and share.
+Proprietary — All Rights Reserved.
+
+This codebase may not be copied, used, modified, or distributed without prior written permission from the owner. See `LICENSE` for the full text.
