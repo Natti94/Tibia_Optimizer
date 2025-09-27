@@ -26,7 +26,7 @@ function Statistics({
   const assets = {
     statistics_banner: isProd
       ? `/api/getAsset?asset=statistics_banner`
-      : import.meta.env.VITE_CLOUDINARY_STATISTICS_BANNER
+      : import.meta.env.VITE_CLOUDINARY_STATISTICS_BANNER,
   };
 
   const CATEGORY_OPTIONS = [
@@ -126,9 +126,6 @@ function Statistics({
     getStatistics();
   }, [selWorld, selCategory, selVocation, page, limit, worlds]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-
   const categoryLabel = (function () {
     const match = CATEGORY_OPTIONS.find((c) => c.value === selCategory);
     return match ? match.label : selCategory;
@@ -180,7 +177,9 @@ function Statistics({
           ))}
         </select>
       </div>
-      <h2 className="media__stats-title">Highscores: {categoryLabel} — {worldLabel}</h2>
+      <h2 className="media__stats-title">
+        Highscores: {categoryLabel} — {worldLabel}
+      </h2>
       <ul className="media__stats-list">
         {items.map((item) => (
           <li className="media__stats-item" key={`${item.rank}-${item.name}`}>
@@ -189,9 +188,7 @@ function Statistics({
             {typeof item.level === "number" ? (
               <span className="media__stats-level"> — Level {item.level}</span>
             ) : null}
-            {typeof item.value === "number" ? (
-              <span className="media__stats-value"> — Value {item.value}</span>
-            ) : null}
+
             {item.vocation ? (
               <span className="media__stats-vocation"> — {item.vocation}</span>
             ) : null}

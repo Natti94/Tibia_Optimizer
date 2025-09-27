@@ -11,6 +11,7 @@
      padding: 6px;
      z-index: 90;
      overflow-y: auto;
+     overflow-x: hidden;
      /* let panel scroll instead of content overflowing */
      scrollbar-gutter: stable both-edges;
      /* reserve room for scrollbar */
@@ -22,10 +23,27 @@
      box-sizing: border-box;
  }
 
- .media__news-banner {
-     width: 100%;
+ /* Generic rule to ensure any images inside media never overflow horizontally */
+ .media img {
+     max-width: 100%;
      height: auto;
      display: block;
+ }
+
+ /* Ensure direct children don't exceed panel width */
+ .media>* {
+     max-width: 100%;
+ }
+
+ /* Banners in news and stats should always be fully contained */
+ .media__news-banner,
+ .media__stats-banner {
+     width: 240px;
+     max-width: 100%;
+     height: auto;
+     display: block;
+     border-radius: 6px;
+     margin-bottom: 6px;
  }
 
  .media__news {
@@ -39,32 +57,19 @@
      color: #222;
      font-family: monospace;
      overflow: hidden;
-
-     /* keep children within card */
-     .media__stats-banner {
-         width: 100%;
-         height: auto;
-         display: block;
-         border-radius: 4px;
-         margin-bottom: 6px;
-     }
+     /* contain horizontal artifacts within card */
  }
 
- .media__news-title {
-     margin: 0 0 6px 0;
-     font-size: 0.92rem;
-     line-height: 1.1rem;
-     color: #fff;
-     font-weight: 600;
-     display: -webkit-box;
-     line-clamp: 4;
-     -webkit-line-clamp: 4;
-     -webkit-box-orient: vertical;
+ /* News card container to separate from main panel background */
+ .media__news-card {
+     display: block;
+     width: 240px;
+     background: rgba(255, 140, 0, 0.08);
+     border: 1px solid rgba(255, 140, 0, 0.25);
+     border-radius: 6px;
+     padding: 8px;
+     margin-top: 0.5rem;
      overflow: hidden;
-     text-overflow: ellipsis;
-     white-space: normal;
-     word-break: break-word;
-     max-height: calc(1.1rem * 4);
  }
 
  .media__news-image {
@@ -83,12 +88,19 @@
      margin-top: 8px;
      width: 100%;
      padding: 0.45rem 0.6rem;
+     min-width: 0;
+     /* allow children to shrink within panel */
  }
 
  .media__news-link {
      color: #fff;
      font-size: 0.7rem;
      text-decoration: underline;
+     min-width: 0;
+     max-width: 100%;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
  }
 
  .media__nav {
@@ -157,16 +169,9 @@
      scrollbar-gutter: stable both-edges;
  }
 
- .media__stats-banner {
-     width: 100%;
-     height: auto;
-     display: block;
- }
+ /* .media__stats-banner consolidated above with .media__news-banner */
 
- .media__stats-list {
-     padding-right: 6px;
-     /* space so content doesn't go under scrollbar */
- }
+ /* padding-right for stats list handled below in primary definition */
 
  /* Optional: style scrollbars slightly to match theme */
  .media__stats-list::-webkit-scrollbar {
@@ -184,7 +189,7 @@
 
  .media__stats {
      display: block;
-     width: 100%;
+     width: 240px;
      margin-top: 0.5rem;
      padding: 8px;
      color: #222;
@@ -193,6 +198,7 @@
      border: 1px solid rgba(255, 140, 0, 0.25);
      border-radius: 6px;
      overflow: hidden;
+     /* contain inner list borders/shadows */
      /* contain inner list borders/shadows */
  }
 
@@ -209,6 +215,7 @@
      flex-wrap: wrap;
      gap: 6px;
      margin-bottom: 6px;
+     min-width: 0;
  }
 
  .media__stats-select {
@@ -220,6 +227,8 @@
      height: 26px;
      font-family: monospace;
      font-size: 0.84rem;
+     min-width: 0;
+     max-width: 100%;
  }
 
  .media__stats-list {
@@ -233,6 +242,7 @@
      overflow: auto;
      padding-right: 6px;
      /* avoid overlay scrollbar covering text */
+     width: 100%;
  }
 
  .media__stats-item {
@@ -244,6 +254,8 @@
      border-radius: 4px;
      background: rgba(0, 0, 0, 0.06);
      color: #fff;
+     min-width: 0;
+     /* allow inner flex children to shrink */
  }
 
  .media__stats-rank {
@@ -259,6 +271,8 @@
      overflow: hidden;
      text-overflow: ellipsis;
      white-space: nowrap;
+     min-width: 0;
+     /* fix flex item overflow */
  }
 
  .media__stats-level {
@@ -274,8 +288,25 @@
  }
 
  .media__stats-meta {
-     margin-top: 8px;
+     margin-top: 2px;
      font-size: 12px;
      color: #eee;
      text-align: right;
+ }
+
+ .media__news-excerpt {
+     margin: 2px 0 10px 0;
+     font-size: 0.82rem;
+     line-height: 1.05rem;
+     color: #f1f1f1;
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     line-clamp: 6;
+     /* show up to ~6 lines of body */
+     -webkit-line-clamp: 6;
+     /* show up to ~6 lines of body */
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: normal;
+     word-break: break-word;
  }

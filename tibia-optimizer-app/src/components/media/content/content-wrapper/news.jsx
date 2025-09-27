@@ -43,7 +43,7 @@ function News() {
   const next = () => setSlide((s) => (s + 1) % items.length);
 
   return (
-    <div>
+    <div className="media__news-card">
       <img
         className="media__news-banner"
         src={assets.news_banner}
@@ -53,7 +53,9 @@ function News() {
       {!loading && error && <div className="media__news">{error}</div>}
       {!loading && !error && items.length > 0 && (
         <div className="media__news">
-          <h3 className="media__news-title">{items[slide]?.title || "News"}</h3>
+          {items[slide]?.excerpt && (
+            <p className="media__news-excerpt">{items[slide].excerpt}</p>
+          )}
           {items[slide]?.image && (
             <img
               className="media__news-image"
