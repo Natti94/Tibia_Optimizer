@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchNews } from "../../../../services/media/news";
+import { fetchNews } from "../../../../services";
 
 function News() {
   const [slide, setSlide] = useState(0);
@@ -7,8 +7,12 @@ function News() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const isProd = import.meta.env.PROD;
+
   const assets = {
-    news_banner: import.meta.env.VITE_CLOUDINARY_NEWS_BANNER,
+    news_banner: isProd
+      ? `/api/getAsset?asset=news_banner`
+      : import.meta.env.VITE_CLOUDINARY_NEWS_BANNER,
   };
 
   useEffect(() => {
@@ -64,26 +68,28 @@ function News() {
               target="_blank"
               rel="noreferrer"
             >
-              Read on tibia.com
+              READ ON: tibia.com
             </a>
             <div className="media__nav">
-              <span className="media__news-indicator">{`${slide + 1}/${
-                items.length
-              }`}</span>
-              <button
-                className="media__nav-btn"
-                onClick={prev}
-                aria-label="Previous"
-              >
-                ‹
-              </button>
-              <button
-                className="media__nav-btn"
-                onClick={next}
-                aria-label="Next"
-              >
-                ›
-              </button>
+              <div className="media__nav-buttons">
+                <button
+                  className="media__nav-btn"
+                  onClick={prev}
+                  aria-label="Previous"
+                >
+                  ‹
+                </button>
+                <button
+                  className="media__nav-btn"
+                  onClick={next}
+                  aria-label="Next"
+                >
+                  ›
+                </button>
+              </div>
+              <span className="media__news-indicator" aria-live="polite">
+                {slide + 1}/{items.length}
+              </span>
             </div>
           </div>
         </div>

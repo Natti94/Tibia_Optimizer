@@ -19,13 +19,13 @@ function App() {
       <img className="background" src={assets.background} alt="Background" />
       <BrowserRouter>
         <Auth />
-        <Routes>
-          <Route path="/" element={<Optimizer />} />
-          <Route path="/login" element={<Optimizer />} />
-          <Route path="/register" element={<Optimizer />} />
-        </Routes>
         <Nav />
         <Media />
+        <Routes>
+          <Route path="/" element={<Optimizer />} />
+          <Route path="/login" element={<Auth />} />
+          <Route path="/register" element={<Auth />} />
+        </Routes>
       </BrowserRouter>
     </>
   );

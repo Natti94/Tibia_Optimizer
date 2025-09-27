@@ -10,17 +10,12 @@ function Register() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const [avatar] = useState(() => {
-    const randomId = Math.floor(Math.random() * 70) + 1;
-    return `https://i.pravatar.cc/80?img=${randomId}`;
-  });
-
   async function handleRegister(e) {
     e.preventDefault();
     setError(null);
     try {
       const csrfToken = await generateCsrf();
-      await registerUser(username, password, email, avatar, csrfToken);
+      await registerUser(username, password, email, csrfToken);
       setSuccess("Registration successful, redirecting to login...");
       setTimeout(() => navigate("/login"), 1000);
     } catch (err) {
@@ -34,20 +29,6 @@ function Register() {
     <div>
       <h1>Register</h1>
       <form onSubmit={handleRegister}>
-        <div style={{ textAlign: "center", margin: "8px 0" }}>
-          <img
-            src={avatar}
-            alt="Avatar preview"
-            style={{
-              width: 48,
-              height: 48,
-              borderRadius: "50%",
-              objectFit: "cover",
-              border: "2px solid #eee",
-            }}
-            onError={(e) => (e.target.src = "https://i.pravatar.cc/80")}
-          />
-        </div>
         <div>
           <label>Username:</label>
           <input

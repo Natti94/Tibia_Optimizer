@@ -10,14 +10,19 @@ function Handler() {
   return (
     <div className="auth__handler">
       {!isLogin && !isRegister && (
-        <div className="auth__cta">
-          <Link to="/login" className="auth__btn">
-            Sign in
-          </Link>
-          <Link to="/register" className="auth__btn auth__btn--primary">
-            Register
-          </Link>
-        </div>
+        <>
+          <p className="auth__handler-text">
+            Sign in or register to access your personalized <strong>Tibia Optimizer</strong> account.
+          </p>
+          <div className="auth__cta">
+            <Link to="/login" className="auth__btn">
+              Sign in
+            </Link>
+            <Link to="/register" className="auth__btn auth__btn--primary">
+              Register
+            </Link>
+          </div>
+        </>
       )}
       {isLogin && (
         <div className="auth__handler-login">
