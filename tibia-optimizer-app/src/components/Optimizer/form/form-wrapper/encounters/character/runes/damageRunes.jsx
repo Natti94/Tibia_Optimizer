@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { runeList } from "../../../../../data/character/items/runes";
+import { runesList } from "../../../../../../../data/character/items/runes";
 
 function DamageRunes({ character }) {
   const VOCATION_MODIFIERS = {
@@ -82,12 +82,12 @@ function DamageRunes({ character }) {
               <select
                 value={selectedRune ? selectedRune.name : ""}
                 onChange={(e) => {
-                  const rune = runeList.find((r) => r.name === e.target.value);
+                  const rune = runesList.find((r) => r.name === e.target.value);
                   setSelectedRune(rune || null);
                 }}
               >
                 <option value="">Select rune</option>
-                {runeList.map((rune) => (
+                {runesList.map((rune) => (
                   <option key={rune.name} value={rune.name}>
                     {rune.name}
                   </option>

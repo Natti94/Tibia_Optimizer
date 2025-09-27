@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { equipmentList } from "../../data/character/items/equipments";
-import { weaponList } from "../../data/character/items/weapons";
-import Skills from "./character/skills";
-import Equipments from "./character/items/equipments";
-import Weapons from "./character/items/weapons";
-import DamageRunes from "./encounters/character/runes/damage";
-import DamageSpells from "./encounters/character/spells/damage";
-import "./optimizer.css";
+import { equipmentsList } from "../../../data/character/items/equipments";
+import { weaponsList } from "../../../data/character/items/weapons";
+import Skills from "./form-wrapper/character/skills";
+import Equipments from "./form-wrapper/character/items/equipments";
+import Weapons from "./form-wrapper/character/items/weapons";
+import DamageRunes from "./form-wrapper/encounters/character/runes/damageRunes";
+import DamageSpells from "./form-wrapper/encounters/character/spells/damageSpells";
 
 function Form() {
   const [main, setMain] = useState({
@@ -84,7 +83,7 @@ function Form() {
   };
 
   const selectedEquipments = Object.values(equipment)
-    .map((name) => equipmentList.find((item) => item.name === name))
+    .map((name) => equipmentsList.find((item) => item.name === name))
     .filter(Boolean);
 
   selectedEquipments.forEach((item) => {
@@ -103,10 +102,10 @@ function Form() {
     }
   });
 
-  const selectedWeaponObj = weaponList.find(
+  const selectedWeaponObj = weaponsList.find(
     (item) => item.name === weapon.weapon
   );
-  const selectedAmmoObj = weaponList.find(
+  const selectedAmmoObj = weaponsList.find(
     (item) => item.name === weapon.ammunition
   );
 

@@ -1,4 +1,5 @@
-import Pages from "./pages";
+import Pages from "./pages/pages";
+import "./nav.css";
 
 function Nav() {
   return (

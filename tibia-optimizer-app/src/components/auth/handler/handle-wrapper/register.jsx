@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { generateCsrf, registerUser } from "../../../services";
+import { generateCsrf, registerUser } from "../../../../services";
 
 function Register() {
   const [username, setUsername] = useState("");

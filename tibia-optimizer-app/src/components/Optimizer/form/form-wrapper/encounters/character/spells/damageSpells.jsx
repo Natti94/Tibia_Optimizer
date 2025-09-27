@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { spellList } from "../../../../../data/character/spells";
+import { spellsList } from "../../../../../../../data/character/spells";
 
 function DamageSpells({ character }) {
   const VOCATION_MODIFIERS = {
@@ -85,12 +85,12 @@ function DamageSpells({ character }) {
               value={selectedSpell ? selectedSpell.name : ""}
               onChange={(e) =>
                 setSelectedSpell(
-                  spellList.find((spell) => spell.name === e.target.value)
+                  spellsList.find((spell) => spell.name === e.target.value)
                 )
               }
             >
               <option value="">Select Spell</option>
-              {spellList
+              {spellsList
                 .filter(
                   (spell) =>
                     !spell.vocations ||

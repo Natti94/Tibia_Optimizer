@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { equipmentList } from "../../../../data/character/items/equipments";
+import { equipmentsList } from "../../../../../../data/character/items/equipments";
 
 function Equipments({ vocation, equipment, setEquipment }) {
   const [paladinMode, setPaladinMode] = useState("12.5+");
@@ -23,7 +23,7 @@ function Equipments({ vocation, equipment, setEquipment }) {
   const getAllOptions = (type) => {
     const placeholders = placeholderEquipment[type] || [];
 
-    let data = Array.isArray(equipmentList) ? equipmentList : [];
+    let data = Array.isArray(equipmentsList) ? equipmentsList : [];
 
     let apiNames = [];
 
@@ -76,7 +76,7 @@ function Equipments({ vocation, equipment, setEquipment }) {
   };
 
   const getSelectedEquipmentObj = (type) =>
-    (Array.isArray(equipmentList) ? equipmentList : []).find(
+    (Array.isArray(equipmentsList) ? equipmentsList : []).find(
       (item) => item.name === equipment[type]
     );
 

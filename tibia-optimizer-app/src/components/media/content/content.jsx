@@ -1,5 +1,5 @@
-import News from "./content/news";
-import Video from "./content/video";
+import News from "./content-wrapper/news";
+import Video from "./content-wrapper/video";
 
 function Content() {
   return (

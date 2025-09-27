@@ -1,5 +1,5 @@
-import Login from "./handler/login";
-import Register from "./handler/register";
+import Login from "./handler/handle-wrapper/login";
+import Register from "./handler/handle-wrapper/register";
 import { useLocation } from "react-router-dom";
 import "./auth.css";
 

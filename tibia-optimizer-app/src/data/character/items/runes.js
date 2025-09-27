@@ -1,4 +1,4 @@
-export const runeList = [
+export const runesList = [
   // DAMAGE RUNES
   {
     name: "Sudden Death Rune",

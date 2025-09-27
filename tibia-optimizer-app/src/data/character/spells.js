@@ -1,4 +1,4 @@
-export const spellList = [
+export const spellsList = [
   // DAMAGE SPELLS
   {
     name: "Exori",

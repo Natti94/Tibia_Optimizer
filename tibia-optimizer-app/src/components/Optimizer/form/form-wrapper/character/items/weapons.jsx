@@ -1,4 +1,4 @@
-import { weaponList } from "../../../../data/character/items/weapons";
+import { weaponsList } from "../../../../../../data/character/items/weapons";
 
 function Weapons({ vocation, weapon, setWeapon }) {
   const placeholderWeapons = {
@@ -18,7 +18,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
 
   const getAllOptions = (type) => {
     const t = (type || "").toLowerCase();
-    const data = Array.isArray(weaponList) ? weaponList : [];
+    const data = Array.isArray(weaponsList) ? weaponsList : [];
     const s = (v) => (v || "").toLowerCase();
     const placeholders = placeholderWeapons[t] || [];
 
@@ -66,7 +66,7 @@ function Weapons({ vocation, weapon, setWeapon }) {
     ];
   };
 
-  const selectedWeaponObj = weaponList.find(
+  const selectedWeaponObj = weaponsList.find(
     (item) => item.name === weapon.weapon
   );
   const selectedName = (weapon.weapon || "").toLowerCase();

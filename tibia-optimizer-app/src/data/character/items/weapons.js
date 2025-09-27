@@ -1,4 +1,4 @@
-export const weaponList = [
+export const weaponsList = [
   // SWORDS
   {
     name: "Sword",
