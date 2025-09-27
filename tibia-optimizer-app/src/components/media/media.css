@@ -155,7 +155,6 @@
 
  /* Avoid scrollbar overlay clipping */
  .media {
-     /* For browsers that support it, reserve space for scrollbar */
      scrollbar-gutter: stable both-edges;
  }
 
