@@ -153,7 +153,6 @@
      border-radius: 6px;
  }
 
- /* Avoid scrollbar overlay clipping */
  .media {
      scrollbar-gutter: stable both-edges;
  }
